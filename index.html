@@ -1,137 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-
-  <meta
-    name="theme-color"
-    content="#020817"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#020817">
   <title>Humanómetro Parejas</title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <main class="app">
 
-    <section
-      class="interface"
-      aria-label="Humanómetro Parejas"
-    >
+    <section class="interface">
 
-      <!--
-        IMAGEN VISUAL BASE.
-        Debe estar en la misma carpeta que este archivo.
-      -->
-      <img
-        class="interface-image"
-        src="interfaz-parejas-referencia.png"
-        alt="Humanómetro Parejas"
-        draggable="false"
-      >
+      <div class="title">
+        <div class="title-main">Humanómetro</div>
+        <div class="title-sub">PAREJAS</div>
+      </div>
 
-      <!--
-        CAPA INTERACTIVA DE LA RUEDA.
-        La geometría coincide con la rueda de la imagen.
-      -->
-      <svg
-        class="interaction-layer"
-        viewBox="0 0 1024 1536"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
+      <div class="subtitle">
+        Lectura de integración humana en el tiempo
+      </div>
 
-        <defs>
+      <div class="wheel-container">
 
-          <filter
-            id="segmentGlow"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-          >
+        <div class="wheel-glow"></div>
 
-            <feGaussianBlur
-              stdDeviation="7"
-              result="blur"
-            />
+        <svg
+          class="wheel-layer"
+          viewBox="0 0 1024 1536"
+          preserveAspectRatio="none"
+          aria-label="Humanómetro Parejas">
 
-            <feMerge>
-              <feMergeNode in="blur"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
+          <g id="segmentColors"></g>
+          <g id="segmentHits"></g>
 
-          </filter>
+        </svg>
 
-        </defs>
+        <div class="wheel-center">
 
-        <g id="segmentColors"></g>
+          <div class="heart-symbol" id="heartSymbol">♥</div>
 
-        <g id="segmentHits"></g>
+          <button
+            id="enableHeart"
+            class="heart-button"
+            type="button">
+            HABILITAR CORAZÓN
+          </button>
 
-      </svg>
+        </div>
 
+      </div>
 
-      <!--
-        BOTÓN REAL SOBRE HABILITAR CORAZÓN.
-        La imagen ya contiene el diseño visual.
-      -->
-      <button
-        id="enableHeart"
-        class="hotspot heart-hotspot"
-        type="button"
-        aria-label="Habilitar corazón"
-      ></button>
+      <div class="segment-labels">
 
+        <span class="label label-1">Trato</span>
+        <span class="label label-2">Comunicación</span>
+        <span class="label label-3">Conexión</span>
+        <span class="label label-4">Cuidado</span>
+        <span class="label label-5">Respeto</span>
+        <span class="label label-6">Aporte</span>
+        <span class="label label-7">Conflictos</span>
+        <span class="label label-8">Celos</span>
+        <span class="label label-9">Crisis</span>
 
-      <!--
-        MEDIOS DE PAGO.
-        Los botones visuales pertenecen a la imagen.
-      -->
+      </div>
 
-      <button
-        id="paymentMercado"
-        class="hotspot payment-hotspot payment-mercado"
-        type="button"
-        aria-label="Mercado Pago"
-      ></button>
+      <div class="payments">
 
-      <button
-        id="paymentPaypal"
-        class="hotspot payment-hotspot payment-paypal"
-        type="button"
-        aria-label="PayPal"
-      ></button>
+        <button
+          id="paymentMercado"
+          class="payment-button"
+          type="button">
+          Mercado Pago
+        </button>
 
-      <button
-        id="paymentPayoneer"
-        class="hotspot payment-hotspot payment-payoneer"
-        type="button"
-        aria-label="Payoneer"
-      ></button>
+        <button
+          id="paymentPaypal"
+          class="payment-button"
+          type="button">
+          PayPal
+        </button>
 
+        <button
+          id="paymentPayoneer"
+          class="payment-button"
+          type="button">
+          Payoneer
+        </button>
 
-      <!--
-        MODAL DE PREGUNTAS
-      -->
+      </div>
 
       <div
         id="questionModal"
         class="modal"
-        hidden
-      >
+        hidden>
 
         <div class="modal-backdrop"></div>
 
@@ -139,15 +103,13 @@
           class="modal-card"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="modalTitle"
-        >
+          aria-labelledby="modalTitle">
 
           <button
             id="closeModal"
             class="modal-close"
             type="button"
-            aria-label="Cerrar"
-          >
+            aria-label="Cerrar">
             ×
           </button>
 
@@ -157,55 +119,11 @@
 
       </div>
 
-
-      <!--
-        MODAL DE RESULTADO FINAL
-      -->
-
-      <div
-        id="finalModal"
-        class="modal"
-        hidden
-      >
-
-        <div class="modal-backdrop"></div>
-
-        <section
-          class="modal-card final-card"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="finalTitle"
-        >
-
-          <button
-            id="closeFinal"
-            class="modal-close"
-            type="button"
-            aria-label="Cerrar"
-          >
-            ×
-          </button>
-
-          <h2
-            id="finalTitle"
-            class="modal-title"
-          >
-            Lectura de tu vínculo
-          </h2>
-
-          <div id="finalResult"></div>
-
-        </section>
-
-      </div>
-
     </section>
 
   </main>
 
-
   <script src="script.js"></script>
 
 </body>
-
 </html>
