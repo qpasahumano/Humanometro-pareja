@@ -137,6 +137,13 @@ button {
   z-index: 5;
 }
 
+/* =========================================================
+   LOGO SUPERIOR
+   =========================================================
+   El espacio original se conserva para no mover nada.
+   El logo se integra visualmente mediante screen + halo.
+   ========================================================= */
+
 .logo-parejas {
   display: block;
   width: 78px;
@@ -150,6 +157,27 @@ button {
   box-shadow: none;
 
   visibility: visible;
+
+  /*
+    El modo screen hace que las zonas oscuras/negras
+    de la pequeña placa de la imagen se integren con
+    el fondo espacial en lugar de verse como un recuadro.
+  */
+  mix-blend-mode: screen;
+
+  /*
+    Halo luminoso alrededor del logo.
+    No altera su posición ni ocupa espacio adicional.
+  */
+  filter:
+    brightness(1.08)
+    contrast(1.05)
+    drop-shadow(0 0 2px rgba(255,255,255,.82))
+    drop-shadow(0 0 5px rgba(76,226,255,.75))
+    drop-shadow(0 0 10px rgba(0,178,255,.58))
+    drop-shadow(0 0 17px rgba(255,55,194,.30));
+
+  opacity: .98;
 }
 
 .registered {
@@ -1338,6 +1366,20 @@ button {
     height: 72px;
     margin-top: 0;
     margin-bottom: -3px;
+
+    /*
+      Mantiene el mismo espacio que ya tenía reservado
+      el encabezado, pero adapta la presencia visual
+      del logo al teléfono.
+    */
+    mix-blend-mode: screen;
+    filter:
+      brightness(1.08)
+      contrast(1.05)
+      drop-shadow(0 0 2px rgba(255,255,255,.82))
+      drop-shadow(0 0 5px rgba(76,226,255,.72))
+      drop-shadow(0 0 10px rgba(0,178,255,.52))
+      drop-shadow(0 0 15px rgba(255,55,194,.26));
   }
 
   .brand-name {
