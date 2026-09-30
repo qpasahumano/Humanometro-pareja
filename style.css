@@ -305,35 +305,31 @@ button {
 
 /* =========================================================
    SEGMENTOS
-   REFERENCIA VISUAL: BLOQUE 3
    ========================================================= */
+
+/*
+   IMPORTANTE:
+   Los segmentos son solamente contenido visual.
+   No tienen recuadro, fondo, borde ni cápsula.
+   Cada uno queda centrado dentro de su propia
+   porción de la rueda.
+*/
 
 .segment {
   position: absolute;
 
-  /*
-   * Todos los segmentos utilizan ahora exactamente
-   * la misma estructura visual de bloque/botón.
-   */
-  width: 15%;
-  height: 15%;
-  min-width: 54px;
-  min-height: 54px;
+  width: 18%;
+  height: 18%;
 
-  border: 1px solid rgba(91, 221, 255, .38);
-  border-radius: 16px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(12, 49, 86, .72),
-      rgba(4, 22, 52, .58)
-    );
+  border: 0 !important;
+  outline: none;
+  background: transparent !important;
+  box-shadow: none !important;
 
   color: #f5fbff;
   cursor: pointer;
   z-index: 3;
-  padding: 5px 4px;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
@@ -345,41 +341,21 @@ button {
     opacity .35s ease,
     filter .35s ease,
     transform .35s ease,
-    text-shadow .35s ease,
-    border-color .35s ease,
-    box-shadow .35s ease;
+    text-shadow .35s ease;
 
   text-align: center;
-
-  box-shadow:
-    0 0 7px rgba(48, 205, 255, .18),
-    inset 0 0 9px rgba(72, 220, 255, .06);
 
   transform: translate(-50%, -50%);
 }
 
+/* Sin círculos ni recuadros adicionales alrededor de cada bloque */
 .segment::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: .10;
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(0,190,255,.18),
-      transparent 70%
-    );
-  z-index: -1;
-  pointer-events: none;
+  display: none !important;
+  content: none !important;
 }
 
 .segment:hover {
   transform: translate(-50%, -50%) scale(1.03);
-  border-color: rgba(103, 231, 255, .72);
-  box-shadow:
-    0 0 10px rgba(48, 211, 255, .32),
-    inset 0 0 10px rgba(72, 220, 255, .08);
 }
 
 .segment.locked {
@@ -396,11 +372,6 @@ button {
 .segment.active {
   opacity: 1;
   filter: brightness(1.2);
-  border-color: rgba(111, 237, 255, .92);
-  box-shadow:
-    0 0 9px rgba(70, 225, 255, .5),
-    inset 0 0 12px rgba(65, 220, 255, .12);
-
   text-shadow:
     0 0 4px #fff,
     0 0 10px #4beaff,
@@ -426,64 +397,80 @@ button {
   font-weight: 900;
 }
 
-/*
- * Los antiguos colores individuales quedan neutralizados
- * para que los nueve bloques mantengan la misma apariencia.
- */
-.segment.red,
-.segment.yellow,
+.segment.red {
+  filter: drop-shadow(0 0 6px rgba(255,24,123,.62));
+}
+
+.segment.yellow {
+  filter: drop-shadow(0 0 6px rgba(255,224,77,.48));
+}
+
 .segment.ice {
-  filter: none;
+  filter: drop-shadow(0 0 6px rgba(125,234,255,.62));
 }
 
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
-   Separadas para evitar que los bloques se pisen.
    ========================================================= */
 
+/*
+   Distribución radial.
+   Cada bloque ocupa visualmente el centro de su
+   propia porción de 40 grados.
+
+             2
+          1     3
+       9           4
+       8           5
+          7     6
+
+   La posición está calculada para que ningún bloque
+   invada la porción inmediatamente anterior o siguiente.
+*/
+
 .segment-1 {
-  left: 27%;
-  top: 27%;
+  left: 28.8%;
+  top: 24.7%;
 }
 
 .segment-2 {
   left: 50%;
-  top: 20%;
+  top: 17%;
 }
 
 .segment-3 {
-  left: 73%;
-  top: 27%;
+  left: 71.2%;
+  top: 24.7%;
 }
 
 .segment-4 {
-  left: 82%;
-  top: 50%;
+  left: 82.5%;
+  top: 44.3%;
 }
 
 .segment-5 {
-  left: 73%;
-  top: 73%;
+  left: 78.6%;
+  top: 66.5%;
 }
 
 .segment-6 {
-  left: 50%;
-  top: 80%;
+  left: 61.3%;
+  top: 81%;
 }
 
 .segment-7 {
-  left: 27%;
-  top: 73%;
+  left: 38.7%;
+  top: 81%;
 }
 
 .segment-8 {
-  left: 18%;
-  top: 50%;
+  left: 21.4%;
+  top: 66.5%;
 }
 
 .segment-9 {
-  left: 27%;
-  top: 50%;
+  left: 17.5%;
+  top: 44.3%;
 }
 
 /* =========================================================
@@ -557,77 +544,78 @@ button {
 
 /* =========================================================
    SÍMBOLOS ZODIACALES
-   Todos uniformes y ubicados en zonas aéreas.
    ========================================================= */
+
+/*
+   Un solo color:
+   AZUL FRANCIA PROFUNDO + glow LED azul.
+   Sin amarillo, naranja, violeta, verde ni rosa.
+*/
 
 .zodiac {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
 
-  color: #ffffff !important;
+  color: #1769d1;
 
-  font-size: clamp(11px, 2.2vw, 16px);
+  font-size: clamp(12px, 2.4vw, 17px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
-  font-weight: 400;
+  font-weight: 500;
 
-  opacity: .82;
+  opacity: 1;
   pointer-events: none;
 
-  /*
-   * Sin colores individuales.
-   * Sólo blanco + glow celeste muy suave.
-   */
   text-shadow:
-    0 0 2px rgba(255,255,255,.95),
-    0 0 5px rgba(92,224,255,.48),
-    0 0 9px rgba(48,190,255,.22);
-
-  filter: none !important;
+    0 0 2px #0b4fa8,
+    0 0 5px #1769d1,
+    0 0 9px rgba(35,128,255,.95),
+    0 0 15px rgba(24,103,209,.72);
 }
 
 /*
- * Se mantienen fuera del área ocupada por los bloques
- * y fuera de las líneas radiales principales.
- */
+   Los símbolos quedan fuera de las líneas y
+   separados de los bloques funcionales.
+*/
+
 .zodiac-1 {
-  left: 3%;
-  top: 7%;
+  left: -1%;
+  top: 10%;
 }
 
 .zodiac-2 {
-  right: 3%;
-  top: 7%;
+  right: -1%;
+  top: 12%;
 }
 
 .zodiac-3 {
-  right: 2%;
-  top: 43%;
+  right: -1%;
+  top: 51%;
 }
 
 .zodiac-4 {
-  right: 7%;
-  bottom: 4%;
+  right: 11%;
+  bottom: -1%;
 }
 
 .zodiac-5 {
-  left: 47%;
-  bottom: 1%;
+  left: 45%;
+  bottom: -1%;
 }
 
 .zodiac-6 {
-  left: 7%;
-  bottom: 4%;
+  left: -1%;
+  bottom: 11%;
 }
 
 .zodiac-7 {
-  left: 2%;
-  top: 43%;
+  left: -1%;
+  top: 51%;
 }
 
 .zodiac-8 {
-  right: 47%;
-  top: 1%;
+  right: 45%;
+  top: -1%;
 }
 
 /* =========================================================
@@ -1414,12 +1402,8 @@ button {
   }
 
   .segment {
-    width: 15%;
-    height: 15%;
-    min-width: 50px;
-    min-height: 50px;
-    padding: 4px 3px;
-    border-radius: 14px;
+    width: 18%;
+    height: 18%;
   }
 
   .segment-name {
