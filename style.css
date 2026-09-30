@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+html {
+  background: #020817;
+}
+
 body {
   min-height: 100vh;
   min-height: 100dvh;
@@ -20,7 +24,7 @@ body {
     #020817
     url("fondo_constelaciones.png")
     center top / cover
-    no-repeat fixed;
+    no-repeat;
 }
 
 button {
@@ -40,83 +44,95 @@ button {
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  padding: 24px 12px 40px;
+  padding: 24px 12px 24px;
   background: transparent;
 }
 
 /* =========================
    TÍTULO
-========================= */
+   ========================= */
 
 .title {
   position: relative;
-  z-index: 20;
+  z-index: 30;
   text-align: center;
   margin-top: 4px;
   text-shadow:
-    0 0 8px rgba(120, 220, 255, .95),
-    0 0 18px rgba(80, 190, 255, .8),
-    0 0 34px rgba(150, 80, 255, .65);
+    0 0 6px rgba(100, 220, 255, .9),
+    0 0 15px rgba(100, 210, 255, .75),
+    0 0 30px rgba(80, 170, 255, .45);
 }
 
 .title-main {
-  font-size: clamp(30px, 8vw, 56px);
+  font-size: clamp(30px, 8vw, 54px);
   font-weight: 700;
   letter-spacing: 2px;
-  color: #f4fbff;
+  color: rgba(235, 250, 255, .98);
 }
 
 .title-sub {
-  margin-top: 1px;
-  font-size: clamp(15px, 4vw, 24px);
-  font-weight: 700;
-  letter-spacing: 8px;
-  color: #f0d9ff;
+  margin-top: 2px;
+  font-size: clamp(15px, 4vw, 23px);
+  font-weight: 600;
+  letter-spacing: 7px;
+  color: rgba(255, 190, 245, .96);
   text-shadow:
-    0 0 8px rgba(255, 110, 230, .9),
-    0 0 18px rgba(170, 80, 255, .8);
+    0 0 7px rgba(255, 80, 205, .95),
+    0 0 18px rgba(255, 70, 190, .7),
+    0 0 32px rgba(180, 80, 255, .45);
 }
 
 .subtitle {
   position: relative;
-  z-index: 20;
-  max-width: 560px;
+  z-index: 30;
+  max-width: 500px;
   margin: 8px auto 0;
   text-align: center;
-  font-size: clamp(10px, 2.8vw, 15px);
-  letter-spacing: 1px;
-  color: rgba(225, 245, 255, .92);
+  font-size: clamp(10px, 3vw, 16px);
+  letter-spacing: .8px;
+  color: rgba(225, 245, 255, .88);
   text-shadow:
-    0 0 7px rgba(90, 210, 255, .85),
-    0 0 15px rgba(90, 160, 255, .55);
+    0 0 7px rgba(100, 210, 255, .55);
 }
 
 /* =========================
    RUEDA
-========================= */
+   ========================= */
 
 .wheel-container {
   position: relative;
-  width: min(96vw, 680px);
-  aspect-ratio: 1 / 1;
-  margin: 22px auto 0;
+  width: min(94vw, 620px);
+
+  /*
+    La proporción del SVG es 1024 x 1536.
+    Mantener esta proporción evita que la rueda
+    se convierta en óvalo.
+  */
+  aspect-ratio: 1024 / 1536;
+
+  margin: 20px auto 0;
 }
 
 .wheel-glow {
   position: absolute;
-  inset: 2%;
+  left: 7%;
+  right: 7%;
+  top: 16%;
+  bottom: 16%;
   border-radius: 50%;
+
   background:
     radial-gradient(
       circle,
-      rgba(60, 190, 255, .22) 0%,
-      rgba(70, 130, 255, .15) 42%,
-      rgba(140, 60, 255, .10) 62%,
-      transparent 76%
+      rgba(75, 205, 255, .20) 0%,
+      rgba(80, 150, 255, .13) 35%,
+      rgba(100, 80, 255, .08) 58%,
+      transparent 74%
     );
+
   filter: blur(18px);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .wheel-layer {
@@ -125,61 +141,73 @@ button {
   width: 100%;
   height: 100%;
   overflow: visible;
-  z-index: 2;
-}
-
-/* Línea LED de la rueda */
-
-.wheel-layer::before {
-  content: "";
+  z-index: 5;
 }
 
 /* =========================
-   SECTORES
-========================= */
+   DIVISIONES LED
+   ========================= */
 
 .segment-hit {
-  fill: rgba(80, 190, 255, .055);
-  stroke: rgba(110, 220, 255, .72);
-  stroke-width: 4;
-  vector-effect: non-scaling-stroke;
+  fill: rgba(70, 190, 255, .035);
+
+  stroke:
+    rgba(105, 220, 255, .78);
+
+  stroke-width: 5;
+
   transition:
     fill .3s ease,
     stroke .3s ease,
     filter .3s ease;
+
+  filter:
+    drop-shadow(0 0 3px rgba(70, 205, 255, .55))
+    drop-shadow(0 0 8px rgba(70, 190, 255, .30));
 }
 
 .segment-hit.locked {
-  fill: rgba(20, 50, 80, .035);
-  stroke: rgba(100, 180, 220, .32);
+  fill: rgba(60, 170, 230, .025);
+
+  stroke:
+    rgba(105, 210, 255, .45);
+
   pointer-events: none;
+
+  filter:
+    drop-shadow(0 0 3px rgba(70, 190, 255, .35));
 }
 
 .segment-hit.ready {
-  fill: rgba(70, 190, 255, .12);
-  stroke: rgba(120, 235, 255, .98);
+  fill: rgba(80, 205, 255, .105);
+
+  stroke:
+    rgba(125, 235, 255, .98);
+
   cursor: pointer;
+
   filter:
-    drop-shadow(0 0 4px rgba(70, 220, 255, .95))
-    drop-shadow(0 0 12px rgba(60, 190, 255, .75));
+    drop-shadow(0 0 4px rgba(75, 215, 255, .95))
+    drop-shadow(0 0 12px rgba(70, 190, 255, .65));
 }
 
 .segment-hit.ready:hover {
-  fill: rgba(110, 220, 255, .22);
+  fill: rgba(120, 225, 255, .18);
+
   filter:
-    drop-shadow(0 0 6px rgba(100, 235, 255, 1))
-    drop-shadow(0 0 18px rgba(80, 190, 255, .85));
+    drop-shadow(0 0 6px rgba(90, 225, 255, 1))
+    drop-shadow(0 0 16px rgba(70, 200, 255, .75));
 }
 
 /* =========================
-   COLORES DE RESULTADO
-========================= */
+   COLORES DE LOS BLOQUES
+   ========================= */
 
 .segment-colors {
   position: absolute;
   inset: 0;
-  z-index: 1;
   pointer-events: none;
+  z-index: 4;
 }
 
 .segment-color {
@@ -190,472 +218,12 @@ button {
 }
 
 .segment-color.visible {
-  opacity: .84;
+  opacity: .78;
 }
 
 .segment-color.red {
-  background: rgba(255, 35, 90, .82);
+  background: rgba(255, 45, 105, .78);
+
   filter:
-    drop-shadow(0 0 8px rgba(255, 35, 90, .95))
-    drop-shadow(0 0 20px rgba(255, 30, 90, .65));
-}
-
-.segment-color.yellow {
-  background: rgba(255, 210, 45, .78);
-  filter:
-    drop-shadow(0 0 8px rgba(255, 220, 60, .95))
-    drop-shadow(0 0 20px rgba(255, 210, 40, .6));
-}
-
-.segment-color.ice {
-  background: rgba(70, 215, 255, .72);
-  filter:
-    drop-shadow(0 0 8px rgba(70, 220, 255, .95))
-    drop-shadow(0 0 20px rgba(60, 200, 255, .65));
-}
-
-.segment-color.flash {
-  animation: segmentFlash 1.4s ease;
-}
-
-@keyframes segmentFlash {
-  0% {
-    opacity: .25;
-  }
-
-  35% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: .84;
-  }
-}
-
-/* =========================
-   CENTRO / H / CORAZÓN
-========================= */
-
-.wheel-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 27%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(5, 24, 52, .98),
-      rgba(2, 8, 23, .96)
-    );
-
-  border: 2px solid rgba(120, 225, 255, .9);
-
-  box-shadow:
-    0 0 10px rgba(70, 210, 255, .9),
-    0 0 25px rgba(60, 190, 255, .65),
-    0 0 48px rgba(70, 150, 255, .38),
-    inset 0 0 25px rgba(80, 150, 255, .28);
-
-  z-index: 12;
-}
-
-.heart-symbol {
-  font-size: clamp(38px, 9vw, 64px);
-  line-height: 1;
-  color: #ff3d83;
-
-  text-shadow:
-    0 0 6px #ff3d83,
-    0 0 14px rgba(255, 40, 110, 1),
-    0 0 28px rgba(255, 40, 110, .95),
-    0 0 45px rgba(255, 40, 110, .65);
-
-  transition: transform .3s ease;
-}
-
-.heart-button {
-  position: relative;
-  border: 1px solid rgba(115, 230, 255, .98);
-  border-radius: 999px;
-
-  padding: 7px 13px;
-
-  color: #f7fdff;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(35, 115, 155, .58),
-      rgba(15, 55, 100, .48)
-    );
-
-  font-size: clamp(8px, 2vw, 12px);
-  font-weight: 700;
-  letter-spacing: .7px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 5px rgba(90, 220, 255, .95),
-    0 0 13px rgba(70, 200, 255, .65),
-    inset 0 0 8px rgba(100, 220, 255, .28);
-
-  text-shadow:
-    0 0 5px rgba(150, 240, 255, .95);
-
-  backdrop-filter: blur(5px);
-}
-
-.heart-button:hover {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(55, 145, 190, .72),
-      rgba(20, 70, 120, .62)
-    );
-
-  box-shadow:
-    0 0 8px rgba(100, 230, 255, 1),
-    0 0 20px rgba(70, 210, 255, .85);
-}
-
-/* =========================
-   NOMBRES DE LOS 9 SEGMENTOS
-========================= */
-
-.segment-labels {
-  position: absolute;
-  left: 50%;
-  top: calc(24px + clamp(30px, 8vw, 56px) + 50px);
-  width: min(96vw, 680px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 15;
-}
-
-.label {
-  position: absolute;
-
-  transform: translate(-50%, -50%);
-
-  padding: 4px 8px;
-
-  border-radius: 999px;
-
-  white-space: nowrap;
-
-  color: rgba(240, 251, 255, .98);
-
-  font-size: clamp(8px, 2.5vw, 14px);
-  font-weight: 600;
-  letter-spacing: .35px;
-
-  background: rgba(2, 10, 28, .42);
-
-  border: 1px solid rgba(100, 215, 255, .42);
-
-  text-shadow:
-    0 0 5px rgba(80, 215, 255, 1),
-    0 0 12px rgba(70, 190, 255, .8);
-
-  box-shadow:
-    0 0 6px rgba(60, 200, 255, .25);
-
-  backdrop-filter: blur(4px);
-}
-
-/* Posiciones de los 9 bloques */
-
-.label-1 {
-  left: 29%;
-  top: 20%;
-}
-
-.label-2 {
-  left: 65%;
-  top: 20%;
-}
-
-.label-3 {
-  left: 82%;
-  top: 40%;
-}
-
-.label-4 {
-  left: 76%;
-  top: 70%;
-}
-
-.label-5 {
-  left: 50%;
-  top: 84%;
-}
-
-.label-6 {
-  left: 24%;
-  top: 76%;
-}
-
-.label-7 {
-  left: 10%;
-  top: 54%;
-}
-
-.label-8 {
-  left: 18%;
-  top: 31%;
-}
-
-.label-9 {
-  left: 50%;
-  top: 9%;
-}
-
-/* =========================
-   PAGOS
-========================= */
-
-.payments {
-  position: relative;
-  z-index: 30;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 10px;
-  flex-wrap: wrap;
-
-  margin: 4px auto 0;
-}
-
-.payment-button {
-  min-width: 92px;
-
-  padding: 7px 12px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(100, 215, 255, .5);
-
-  color: rgba(235, 250, 255, .95);
-
-  background: rgba(3, 15, 36, .58);
-
-  font-size: 11px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 7px rgba(60, 190, 255, .35);
-
-  text-shadow:
-    0 0 6px rgba(90, 210, 255, .75);
-
-  backdrop-filter: blur(5px);
-}
-
-.payment-button:hover {
-  background: rgba(30, 90, 135, .72);
-
-  box-shadow:
-    0 0 8px rgba(80, 210, 255, .75),
-    0 0 16px rgba(60, 180, 255, .45);
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-
-  background: rgba(0, 5, 18, .78);
-
-  backdrop-filter: blur(8px);
-}
-
-.modal-card {
-  position: relative;
-
-  width: min(92vw, 620px);
-  max-height: 88vh;
-
-  overflow-y: auto;
-
-  margin: 6vh auto 0;
-  padding: 24px 20px;
-
-  border-radius: 22px;
-
-  color: #ffffff;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 31, 65, .98),
-      rgba(18, 7, 48, .98)
-    );
-
-  border: 1px solid rgba(120, 220, 255, .65);
-
-  box-shadow:
-    0 0 15px rgba(70, 200, 255, .4),
-    0 0 40px rgba(80, 120, 255, .25);
-}
-
-.modal-close {
-  position: absolute;
-
-  top: 10px;
-  right: 14px;
-
-  width: 34px;
-  height: 34px;
-
-  border: 0;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 28px;
-
-  cursor: pointer;
-
-  text-shadow:
-    0 0 8px rgba(100, 220, 255, .8);
-}
-
-.modal-title {
-  margin: 0 35px 12px 0;
-
-  font-size: 24px;
-
-  text-shadow:
-    0 0 8px rgba(80, 210, 255, .8);
-}
-
-.modal-intro {
-  color: rgba(220, 240, 255, .86);
-  line-height: 1.45;
-}
-
-.question {
-  margin-top: 20px;
-}
-
-.question p {
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.answers {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-}
-
-.answer-button,
-.complete-button {
-  border: 1px solid rgba(120, 220, 255, .55);
-
-  border-radius: 999px;
-
-  padding: 9px 15px;
-
-  color: #ffffff;
-
-  background: rgba(30, 70, 110, .48);
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 6px rgba(60, 190, 255, .25);
-}
-
-.answer-button.selected {
-  background: rgba(90, 190, 235, .48);
-
-  border-color: rgba(190, 240, 255, .98);
-
-  box-shadow:
-    0 0 8px rgba(100, 220, 255, .7),
-    0 0 16px rgba(80, 190, 255, .35);
-}
-
-.complete-button {
-  width: 100%;
-
-  margin-top: 25px;
-
-  padding: 12px;
-
-  background: rgba(130, 55, 190, .5);
-
-  box-shadow:
-    0 0 9px rgba(170, 80, 255, .4);
-}
-
-.complete-button:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-/* =========================
-   MÓVIL
-========================= */
-
-@media (max-width: 480px) {
-
-  .interface {
-    padding-top: 18px;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-
-  .wheel-container {
-    width: 96vw;
-    margin-top: 20px;
-  }
-
-  .segment-labels {
-    width: 96vw;
-    top: calc(18px + clamp(30px, 8vw, 56px) + 44px);
-  }
-
-  .label {
-    font-size: 8.5px;
-    padding: 3px 6px;
-  }
-
-  .payments {
-    margin-top: 2px;
-  }
-
-  .payment-button {
-    min-width: 84px;
-    font-size: 10px;
-  }
-}
+    drop-shadow(0 0 8px rgba(255, 45, 105, .9))
+    drop-shadow(0 0 20
