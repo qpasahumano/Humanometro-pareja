@@ -317,11 +317,11 @@ button {
   position: absolute;
 
   /*
-    Más estrechos para que ningún contenido pueda invadir
-    las líneas divisorias de las porciones.
+    Tamaño reducido para mantener todo el contenido
+    dentro de cada porción y lejos de las divisorias.
   */
-  width: 16%;
-  height: 16%;
+  width: 13.5%;
+  height: 13.5%;
 
   border: 0;
   background: transparent;
@@ -334,7 +334,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 0;
 
   transition:
     opacity .35s ease,
@@ -373,7 +373,7 @@ button {
 
 .segment.available {
   opacity: 1;
-  animation: availablePulse 2.4s infinite;
+  animation: availablePulse 1.7s infinite;
 }
 
 .segment.active {
@@ -416,56 +416,77 @@ button {
   filter: drop-shadow(0 0 6px rgba(125,234,255,.62));
 }
 
+/*
+  El bloque disponible recibe además un pequeño halo
+  alrededor del contenido para que sea evidente que
+  es el siguiente bloque a tocar.
+*/
+.segment-1.available {
+  filter:
+    drop-shadow(0 0 4px rgba(92,236,255,.72))
+    drop-shadow(0 0 10px rgba(35,192,255,.42));
+}
+
+.segment-1.available::after {
+  opacity: .28;
+  background:
+    radial-gradient(
+      circle,
+      rgba(85,229,255,.22) 0%,
+      rgba(42,194,255,.10) 38%,
+      transparent 72%
+    );
+}
+
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
    =========================================================
    Los centros se llevan hacia el interior del círculo.
-   Cada bloque de contenido queda dentro de su sector,
-   evitando las líneas radiales.
+   Cada bloque queda separado de las líneas radiales.
    ========================================================= */
 
 .segment-1 {
   left: 30%;
-  top: 27%;
+  top: 28%;
 }
 
 .segment-2 {
   left: 50%;
-  top: 20%;
+  top: 24%;
 }
 
 .segment-3 {
   left: 70%;
-  top: 27%;
+  top: 28%;
 }
 
 .segment-4 {
-  left: 77%;
+  left: 74%;
   top: 50%;
 }
 
 .segment-5 {
-  left: 69%;
-  top: 73%;
+  left: 68%;
+  top: 70%;
 }
 
 .segment-6 {
-  left: 58%;
-  top: 79%;
+  left: 57%;
+  top: 75%;
 }
 
 .segment-7 {
-  left: 42%;
-  top: 79%;
+  left: 43%;
+  top: 75%;
 }
 
 .segment-8 {
-  left: 31%;
-  top: 73%;
+  left: 32%;
+  top: 70%;
 }
 
 .segment-9 {
-  left: 23%;
+  left: 26%;
   top: 50%;
 }
 
@@ -474,9 +495,9 @@ button {
    ========================================================= */
 
 .segment-number {
-  font-size: clamp(14px, 3vw, 21px);
+  font-size: clamp(13px, 2.7vw, 19px);
   font-weight: 500;
-  line-height: 1;
+  line-height: .95;
   width: 100%;
   text-align: center;
   color: #f8fdff;
@@ -488,9 +509,9 @@ button {
 
 .segment-name {
   margin-top: 1px;
-  font-size: clamp(7px, 1.45vw, 10px);
+  font-size: clamp(6px, 1.25vw, 9px);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1;
   width: 100%;
   text-align: center;
   color: #f5fbff;
@@ -502,9 +523,9 @@ button {
 
 .segment-icon-svg {
   display: block;
-  width: clamp(29px, 6.8vw, 44px);
-  height: clamp(24px, 5.6vw, 36px);
-  margin: 2px auto 0;
+  width: clamp(25px, 5.8vw, 38px);
+  height: clamp(21px, 4.8vw, 31px);
+  margin: 1px auto 0;
   overflow: visible;
   fill: none;
   stroke: #ffffff;
@@ -541,23 +562,41 @@ button {
 /* =========================================================
    SÍMBOLOS ZODIACALES
    =========================================================
-   Pequeños, azul/celeste luminoso y discretos.
-   Sin placas, círculos ni glow blanco/amarillo.
+   Pequeños, exclusivamente azul/celeste luminoso.
+   Sin amarillo, placas, círculos ni símbolos grandes.
    ========================================================= */
 
 .zodiac {
   position: absolute;
   z-index: 1;
-  color: #69ddff;
-  font-size: clamp(11px, 2.2vw, 16px);
+
+  color: #69ddff !important;
+
+  font-size: clamp(10px, 2vw, 15px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
   font-weight: 400;
   opacity: .82;
   pointer-events: none;
 
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  /*
+    Si el navegador renderiza algún signo como emoji
+    coloreado, este filtro lo lleva visualmente a
+    una gama azul/celeste.
+  */
+  filter:
+    grayscale(1)
+    sepia(1)
+    hue-rotate(155deg)
+    saturate(5)
+    brightness(1.25);
+
   text-shadow:
-    0 0 2px rgba(255,255,255,.72),
+    0 0 2px rgba(255,255,255,.55),
     0 0 5px rgba(73,216,255,.82),
     0 0 9px rgba(0,170,255,.48);
 }
@@ -697,14 +736,13 @@ button {
   gap: 1px;
 
   /*
-    Reducido considerablemente para integrarlo
-    dentro del corazón sin sobresalir.
+    Muy pequeño e integrado dentro del corazón.
   */
-  width: 6px;
-  height: 24px;
+  width: 5px;
+  height: 20px;
 
-  margin-left: 3px;
-  padding: 1px 1px 5px;
+  margin-left: 2px;
+  padding: 1px 1px 4px;
 
   border: 1px solid rgba(245,252,255,.72);
   border-radius: 5px 5px 6px 6px;
@@ -721,8 +759,8 @@ button {
   position: absolute;
   left: 50%;
   bottom: -3px;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   transform: translateX(-50%);
   border-radius: 50%;
   background: #ff347f;
@@ -733,7 +771,7 @@ button {
 
 .level-bars i {
   display: block;
-  width: 3px;
+  width: 2px;
   height: 2px;
   margin: 0 auto;
   border-radius: 4px;
@@ -754,7 +792,7 @@ button {
 .level-bars i:nth-child(3),
 .level-bars i:nth-child(4),
 .level-bars i:nth-child(5) {
-  width: 3px;
+  width: 2px;
 }
 
 /* =========================================================
@@ -880,8 +918,9 @@ button {
 }
 
 /*
-  Si los logos están incorporados como imágenes en el HTML,
-  se muestran completos, sin deformación.
+  Logos reales: cuando el HTML contiene las imágenes
+  originales de Mercado Pago, PayPal y Payoneer,
+  se muestran completas y sin deformación.
 */
 .payment-logo img {
   display: block;
@@ -891,11 +930,6 @@ button {
   object-position: center;
 }
 
-/*
-  Si las imágenes reales tienen estas clases,
-  cada logo conserva su proporción y queda limpio
-  dentro de la pastilla.
-*/
 .payment-logo.mercado img {
   width: 25px;
   height: 25px;
@@ -1344,13 +1378,16 @@ button {
 
 @keyframes availablePulse {
   0%, 100% {
-    filter: drop-shadow(0 0 2px rgba(65,222,255,.16));
+    filter:
+      drop-shadow(0 0 3px rgba(65,222,255,.28))
+      brightness(1);
   }
 
   50% {
     filter:
-      drop-shadow(0 0 7px rgba(65,222,255,.58))
-      brightness(1.15);
+      drop-shadow(0 0 8px rgba(65,222,255,.78))
+      drop-shadow(0 0 15px rgba(20,180,255,.42))
+      brightness(1.18);
   }
 }
 
@@ -1403,27 +1440,29 @@ button {
   }
 
   .segment {
-    width: 16%;
-    height: 16%;
+    width: 13.5%;
+    height: 13.5%;
   }
 
   .segment-name {
-    font-size: 7px;
+    font-size: 6.2px;
+    line-height: 1;
     margin-top: 1px;
   }
 
   .segment-number {
-    font-size: 15px;
+    font-size: 13px;
+    line-height: .95;
   }
 
   .segment-icon-svg {
-    width: 35px;
-    height: 28px;
+    width: 29px;
+    height: 24px;
     margin-top: 1px;
   }
 
   .zodiac {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .heart-core {
@@ -1437,8 +1476,8 @@ button {
   }
 
   .level-bars {
-    width: 5px;
-    height: 21px;
+    width: 4px;
+    height: 18px;
     margin-left: 2px;
   }
 
