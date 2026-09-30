@@ -149,7 +149,7 @@ button {
   border: 0;
   box-shadow: none;
 
-  visibility: hidden;
+  visibility: visible;
 }
 
 .registered {
@@ -349,7 +349,6 @@ button {
   transform: translate(-50%, -50%);
 }
 
-/* Sin círculos ni recuadros adicionales alrededor de cada bloque */
 .segment::after {
   display: none !important;
   content: none !important;
