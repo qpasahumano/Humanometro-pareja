@@ -149,7 +149,6 @@ button {
   border: 0;
   box-shadow: none;
 
-  /* Espacio reservado para el logo verdadero */
   visibility: hidden;
 }
 
@@ -310,11 +309,6 @@ button {
 
 .segment {
   position: absolute;
-
-  /*
-    Bloques más compactos para mantener todo el contenido
-    dentro de su propia porción y alejado de las líneas.
-  */
   width: 13.5%;
   height: 13.5%;
 
@@ -413,9 +407,6 @@ button {
 
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
-   =========================================================
-   Cada bloque queda centrado sobre el eje de su propia
-   porción, con separación suficiente respecto de las líneas.
    ========================================================= */
 
 .segment-1 {
@@ -424,38 +415,38 @@ button {
 }
 
 .segment-2 {
-  left: 50%;
-  top: 19%;
+  left: 45%;
+  top: 20%;
 }
 
 .segment-3 {
-  left: 69%;
-  top: 28%;
+  left: 65%;
+  top: 23%;
 }
 
 .segment-4 {
-  left: 77%;
-  top: 50%;
+  left: 80%;
+  top: 45%;
 }
 
 .segment-5 {
-  left: 68%;
-  top: 68%;
+  left: 77%;
+  top: 66%;
 }
 
 .segment-6 {
-  left: 58%;
-  top: 78%;
+  left: 61%;
+  top: 79%;
 }
 
 .segment-7 {
-  left: 42%;
-  top: 78%;
+  left: 39%;
+  top: 79%;
 }
 
 .segment-8 {
-  left: 32%;
-  top: 68%;
+  left: 23%;
+  top: 66%;
 }
 
 .segment-9 {
@@ -534,69 +525,62 @@ button {
 
 /* =========================================================
    SÍMBOLOS ZODIACALES
-   =========================================================
-   Blancos, definidos y sin glow intenso.
-   Se mantienen fuera de las líneas del anillo.
    ========================================================= */
 
 .zodiac {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   color: #ffffff;
   font-size: clamp(11px, 2.2vw, 16px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
   font-weight: 400;
-  opacity: .95;
+  opacity: 1;
   pointer-events: none;
 
-  /*
-    Glow reducido para que la forma del signo se lea
-    claramente como símbolo zodiacal.
-  */
   text-shadow:
-    0 0 1px rgba(255,255,255,.8),
-    0 0 3px rgba(255,255,255,.28);
+    0 0 1px #ffffff,
+    0 0 3px rgba(255,255,255,.32);
 }
 
 .zodiac-1 {
-  left: -3%;
-  top: 9%;
+  left: -1%;
+  top: 10%;
 }
 
 .zodiac-2 {
-  right: -3%;
-  top: 14%;
+  right: -1%;
+  top: 12%;
 }
 
 .zodiac-3 {
-  right: -3%;
-  top: 49%;
+  right: -1%;
+  top: 51%;
 }
 
 .zodiac-4 {
-  right: 10%;
-  bottom: -3%;
+  right: 11%;
+  bottom: -1%;
 }
 
 .zodiac-5 {
-  left: 44%;
-  bottom: -3%;
+  left: 45%;
+  bottom: -1%;
 }
 
 .zodiac-6 {
-  left: -3%;
-  bottom: 13%;
+  left: -1%;
+  bottom: 11%;
 }
 
 .zodiac-7 {
-  left: -3%;
-  top: 47%;
+  left: -1%;
+  top: 51%;
 }
 
 .zodiac-8 {
-  right: 44%;
-  top: -3%;
+  right: 45%;
+  top: -1%;
 }
 
 /* =========================================================
