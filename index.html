@@ -1,152 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#020817">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#020817"
+  >
+
   <title>Humanómetro Parejas</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
 
 <body>
 
   <main class="app">
 
-    <section class="interface">
+    <section
+      class="interface"
+      aria-label="Humanómetro Parejas"
+    >
 
-      <header class="title">
-        <div class="title-main">Humanómetro</div>
-        <div class="title-sub">PAREJAS</div>
-      </header>
+      <!--
+        IMAGEN VISUAL BASE.
+        Debe estar en la misma carpeta que este archivo.
+      -->
+      <img
+        class="interface-image"
+        src="interfaz-parejas-referencia.png"
+        alt="Humanómetro Parejas"
+        draggable="false"
+      >
 
-      <div class="subtitle">
-        Lectura de integración humana en el tiempo
-      </div>
+      <!--
+        CAPA INTERACTIVA DE LA RUEDA.
+        La geometría coincide con la rueda de la imagen.
+      -->
+      <svg
+        class="interaction-layer"
+        viewBox="0 0 1024 1536"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
 
+        <defs>
 
-      <div class="wheel-container">
+          <filter
+            id="segmentGlow"
+            x="-50%"
+            y="-50%"
+            width="200%"
+            height="200%"
+          >
 
-        <div class="wheel-glow"></div>
+            <feGaussianBlur
+              stdDeviation="7"
+              result="blur"
+            />
 
-        <svg
-          class="wheel-layer"
-          viewBox="0 0 1024 1024"
-          preserveAspectRatio="xMidYMid meet"
-          aria-label="Humanómetro Parejas">
+            <feMerge>
+              <feMergeNode in="blur"></feMergeNode>
+              <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
 
-          <g id="segmentColors"></g>
-          <g id="segmentHits"></g>
+          </filter>
 
-        </svg>
+        </defs>
 
+        <g id="segmentColors"></g>
 
-        <div class="segment-content">
+        <g id="segmentHits"></g>
 
-          <div class="segment-label segment-label-1">
-            <span class="segment-number">1</span>
-            <span class="segment-name">Trato</span>
-          </div>
-
-          <div class="segment-label segment-label-2">
-            <span class="segment-number">2</span>
-            <span class="segment-name">Comunicación</span>
-          </div>
-
-          <div class="segment-label segment-label-3">
-            <span class="segment-number">3</span>
-            <span class="segment-name">Conexión</span>
-          </div>
-
-          <div class="segment-label segment-label-4">
-            <span class="segment-number">4</span>
-            <span class="segment-name">Cuidado</span>
-          </div>
-
-          <div class="segment-label segment-label-5">
-            <span class="segment-number">5</span>
-            <span class="segment-name">Respeto</span>
-          </div>
-
-          <div class="segment-label segment-label-6">
-            <span class="segment-number">6</span>
-            <span class="segment-name">Aporte</span>
-          </div>
-
-          <div class="segment-label segment-label-7">
-            <span class="segment-number">7</span>
-            <span class="segment-name">Conflictos</span>
-          </div>
-
-          <div class="segment-label segment-label-8">
-            <span class="segment-number">8</span>
-            <span class="segment-name">Celos</span>
-          </div>
-
-          <div class="segment-label segment-label-9">
-            <span class="segment-number">9</span>
-            <span class="segment-name">Crisis</span>
-          </div>
-
-        </div>
+      </svg>
 
 
-        <div class="wheel-center">
-
-          <div
-            class="heart-symbol"
-            id="heartSymbol"
-            aria-hidden="true">
-            ♥
-          </div>
-
-          <div
-            class="center-letter"
-            aria-hidden="true">
-            H
-          </div>
-
-          <button
-            id="enableHeart"
-            class="heart-button"
-            type="button">
-            HABILITAR CORAZÓN
-          </button>
-
-        </div>
-
-      </div>
+      <!--
+        BOTÓN REAL SOBRE HABILITAR CORAZÓN.
+        La imagen ya contiene el diseño visual.
+      -->
+      <button
+        id="enableHeart"
+        class="hotspot heart-hotspot"
+        type="button"
+        aria-label="Habilitar corazón"
+      ></button>
 
 
-      <div class="payments">
+      <!--
+        MEDIOS DE PAGO.
+        Los botones visuales pertenecen a la imagen.
+      -->
 
-        <button
-          id="paymentMercado"
-          class="payment-button"
-          type="button">
-          Mercado Pago
-        </button>
+      <button
+        id="paymentMercado"
+        class="hotspot payment-hotspot payment-mercado"
+        type="button"
+        aria-label="Mercado Pago"
+      ></button>
 
-        <button
-          id="paymentPaypal"
-          class="payment-button"
-          type="button">
-          PayPal
-        </button>
+      <button
+        id="paymentPaypal"
+        class="hotspot payment-hotspot payment-paypal"
+        type="button"
+        aria-label="PayPal"
+      ></button>
 
-        <button
-          id="paymentPayoneer"
-          class="payment-button"
-          type="button">
-          Payoneer
-        </button>
+      <button
+        id="paymentPayoneer"
+        class="hotspot payment-hotspot payment-payoneer"
+        type="button"
+        aria-label="Payoneer"
+      ></button>
 
-      </div>
 
+      <!--
+        MODAL DE PREGUNTAS
+      -->
 
       <div
         id="questionModal"
         class="modal"
-        hidden>
+        hidden
+      >
 
         <div class="modal-backdrop"></div>
 
@@ -154,13 +139,15 @@
           class="modal-card"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="modalTitle">
+          aria-labelledby="modalTitle"
+        >
 
           <button
             id="closeModal"
             class="modal-close"
             type="button"
-            aria-label="Cerrar">
+            aria-label="Cerrar"
+          >
             ×
           </button>
 
@@ -170,11 +157,55 @@
 
       </div>
 
+
+      <!--
+        MODAL DE RESULTADO FINAL
+      -->
+
+      <div
+        id="finalModal"
+        class="modal"
+        hidden
+      >
+
+        <div class="modal-backdrop"></div>
+
+        <section
+          class="modal-card final-card"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="finalTitle"
+        >
+
+          <button
+            id="closeFinal"
+            class="modal-close"
+            type="button"
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+
+          <h2
+            id="finalTitle"
+            class="modal-title"
+          >
+            Lectura de tu vínculo
+          </h2>
+
+          <div id="finalResult"></div>
+
+        </section>
+
+      </div>
+
     </section>
 
   </main>
 
+
   <script src="script.js"></script>
 
 </body>
+
 </html>
