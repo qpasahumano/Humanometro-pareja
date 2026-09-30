@@ -305,7 +305,6 @@ button {
     drop-shadow(0 0 5px rgba(0,180,255,.5));
 }
 
-/* Anillo interior adicional eliminado */
 .segment-wheel::after {
   display: none;
 }
@@ -316,24 +315,33 @@ button {
 
 .segment {
   position: absolute;
-  width: 20%;
-  height: 21%;
+
+  /*
+    Más estrechos para que ningún contenido pueda invadir
+    las líneas divisorias de las porciones.
+  */
+  width: 16%;
+  height: 16%;
+
   border: 0;
   background: transparent;
   color: #f5fbff;
   cursor: pointer;
   z-index: 3;
   padding: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1px;
+
   transition:
     opacity .35s ease,
     filter .35s ease,
     transform .35s ease,
     text-shadow .35s ease;
+
   text-align: center;
   transform: translate(-50%, -50%);
 }
@@ -410,50 +418,54 @@ button {
 
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
+   =========================================================
+   Los centros se llevan hacia el interior del círculo.
+   Cada bloque de contenido queda dentro de su sector,
+   evitando las líneas radiales.
    ========================================================= */
 
 .segment-1 {
-  left: 28%;
-  top: 23%;
+  left: 30%;
+  top: 27%;
 }
 
 .segment-2 {
   left: 50%;
-  top: 15%;
+  top: 20%;
 }
 
 .segment-3 {
-  left: 72%;
-  top: 23%;
+  left: 70%;
+  top: 27%;
 }
 
 .segment-4 {
-  left: 84%;
+  left: 77%;
   top: 50%;
 }
 
 .segment-5 {
-  left: 76%;
-  top: 75%;
+  left: 69%;
+  top: 73%;
 }
 
 .segment-6 {
-  left: 61%;
-  top: 84%;
+  left: 58%;
+  top: 79%;
 }
 
 .segment-7 {
-  left: 39%;
-  top: 84%;
+  left: 42%;
+  top: 79%;
 }
 
 .segment-8 {
-  left: 24%;
-  top: 75%;
+  left: 31%;
+  top: 73%;
 }
 
 .segment-9 {
-  left: 16%;
+  left: 23%;
   top: 50%;
 }
 
@@ -528,63 +540,66 @@ button {
 
 /* =========================================================
    SÍMBOLOS ZODIACALES
+   =========================================================
+   Pequeños, azul/celeste luminoso y discretos.
+   Sin placas, círculos ni glow blanco/amarillo.
    ========================================================= */
 
 .zodiac {
   position: absolute;
-  z-index: 0;
-  color: rgba(255,255,255,.42);
-  font-size: clamp(18px, 3.4vw, 25px);
+  z-index: 1;
+  color: #69ddff;
+  font-size: clamp(11px, 2.2vw, 16px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
-  opacity: .58;
+  font-weight: 400;
+  opacity: .82;
   pointer-events: none;
 
-  /* Sin colores zodiacales */
   text-shadow:
     0 0 2px rgba(255,255,255,.72),
-    0 0 5px rgba(255,255,255,.52),
-    0 0 10px rgba(255,255,255,.28);
+    0 0 5px rgba(73,216,255,.82),
+    0 0 9px rgba(0,170,255,.48);
 }
 
 .zodiac-1 {
-  left: -4%;
-  top: 9%;
+  left: 1%;
+  top: 12%;
 }
 
 .zodiac-2 {
-  right: -4%;
-  top: 15%;
+  right: 1%;
+  top: 17%;
 }
 
 .zodiac-3 {
-  right: -5%;
+  right: 1%;
   top: 51%;
 }
 
 .zodiac-4 {
-  right: 10%;
-  bottom: -5%;
+  right: 13%;
+  bottom: 1%;
 }
 
 .zodiac-5 {
-  left: 43%;
-  bottom: -6%;
+  left: 44%;
+  bottom: 0%;
 }
 
 .zodiac-6 {
-  left: -5%;
-  bottom: 12%;
+  left: 1%;
+  bottom: 14%;
 }
 
 .zodiac-7 {
-  left: -4%;
-  top: 48%;
+  left: 1%;
+  top: 49%;
 }
 
 .zodiac-8 {
-  right: 42%;
-  top: -6%;
+  right: 44%;
+  top: 1%;
 }
 
 /* =========================================================
@@ -619,7 +634,6 @@ button {
   overflow: visible;
   pointer-events: none;
 
-  /* Línea LED fina con glow muy sutil */
   filter:
     drop-shadow(0 0 1px rgba(255,255,255,.9))
     drop-shadow(0 0 3px rgba(70,225,255,.62))
@@ -660,8 +674,14 @@ button {
   background-clip: text;
   color: transparent;
 
-  /* Los colores deben verse claramente */
-  text-shadow: none;
+  /*
+    Glow mínimo: solamente ayuda a separar
+    visualmente el degradado de la H.
+  */
+  text-shadow:
+    0 0 2px rgba(255,255,255,.42),
+    0 0 4px rgba(70,225,255,.28);
+
   filter: none;
 }
 
@@ -674,38 +694,47 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 2px;
-  width: 9px;
-  height: 35px;
-  margin-left: 5px;
-  padding: 2px 2px 8px;
-  border: 1px solid rgba(245,252,255,.9);
-  border-radius: 7px 7px 8px 8px;
-  background: rgba(255,255,255,.035);
+  gap: 1px;
+
+  /*
+    Reducido considerablemente para integrarlo
+    dentro del corazón sin sobresalir.
+  */
+  width: 6px;
+  height: 24px;
+
+  margin-left: 3px;
+  padding: 1px 1px 5px;
+
+  border: 1px solid rgba(245,252,255,.72);
+  border-radius: 5px 5px 6px 6px;
+
+  background: rgba(255,255,255,.025);
+
   box-shadow:
-    0 0 2px rgba(255,255,255,.75),
-    0 0 5px rgba(58,220,255,.38);
+    0 0 1px rgba(255,255,255,.65),
+    0 0 3px rgba(58,220,255,.28);
 }
 
 .level-bars::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -5px;
-  width: 10px;
-  height: 10px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
   transform: translateX(-50%);
   border-radius: 50%;
   background: #ff347f;
   box-shadow:
-    0 0 3px #fff,
-    0 0 6px rgba(255,52,127,.65);
+    0 0 2px #fff,
+    0 0 4px rgba(255,52,127,.55);
 }
 
 .level-bars i {
   display: block;
-  width: 4px;
-  height: 3px;
+  width: 3px;
+  height: 2px;
   margin: 0 auto;
   border-radius: 4px;
   background: linear-gradient(
@@ -716,28 +745,16 @@ button {
     #35eaff
   );
   box-shadow:
-    0 0 2px #fff,
-    0 0 4px rgba(45,220,255,.35);
+    0 0 1px #fff,
+    0 0 2px rgba(45,220,255,.3);
 }
 
-.level-bars i:nth-child(1) {
-  width: 4px;
-}
-
-.level-bars i:nth-child(2) {
-  width: 4px;
-}
-
-.level-bars i:nth-child(3) {
-  width: 4px;
-}
-
-.level-bars i:nth-child(4) {
-  width: 4px;
-}
-
+.level-bars i:nth-child(1),
+.level-bars i:nth-child(2),
+.level-bars i:nth-child(3),
+.level-bars i:nth-child(4),
 .level-bars i:nth-child(5) {
-  width: 4px;
+  width: 3px;
 }
 
 /* =========================================================
@@ -859,6 +876,39 @@ button {
   justify-content: center;
   font-weight: 900;
   font-size: 15px;
+  overflow: hidden;
+}
+
+/*
+  Si los logos están incorporados como imágenes en el HTML,
+  se muestran completos, sin deformación.
+*/
+.payment-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/*
+  Si las imágenes reales tienen estas clases,
+  cada logo conserva su proporción y queda limpio
+  dentro de la pastilla.
+*/
+.payment-logo.mercado img {
+  width: 25px;
+  height: 25px;
+}
+
+.payment-logo.paypal img {
+  width: 25px;
+  height: 25px;
+}
+
+.payment-logo.payoneer img {
+  width: 25px;
+  height: 25px;
 }
 
 .mercado {
@@ -1353,8 +1403,8 @@ button {
   }
 
   .segment {
-    width: 20%;
-    height: 21%;
+    width: 16%;
+    height: 16%;
   }
 
   .segment-name {
@@ -1373,7 +1423,7 @@ button {
   }
 
   .zodiac {
-    font-size: 19px;
+    font-size: 13px;
   }
 
   .heart-core {
@@ -1387,11 +1437,20 @@ button {
   }
 
   .level-bars {
-    height: 31px;
+    width: 5px;
+    height: 21px;
+    margin-left: 2px;
   }
 
   .level-bars i {
+    width: 2px !important;
     height: 2px;
+  }
+
+  .level-bars::after {
+    width: 5px;
+    height: 5px;
+    bottom: -3px;
   }
 
   .heart-button {
