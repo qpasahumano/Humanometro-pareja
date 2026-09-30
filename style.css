@@ -276,14 +276,46 @@ button {
   inset: 5%;
   border-radius: 50%;
   overflow: visible;
+
+  --segment-result-gradient:
+    conic-gradient(
+      from 300deg,
+      transparent 0deg 39.2deg,
+      rgba(2,9,28,.78) 39.2deg 40deg,
+
+      transparent 40deg 79.2deg,
+      rgba(2,9,28,.78) 79.2deg 80deg,
+
+      transparent 80deg 119.2deg,
+      rgba(2,9,28,.78) 119.2deg 120deg,
+
+      transparent 120deg 159.2deg,
+      rgba(2,9,28,.78) 159.2deg 160deg,
+
+      transparent 160deg 199.2deg,
+      rgba(2,9,28,.78) 199.2deg 200deg,
+
+      transparent 200deg 239.2deg,
+      rgba(2,9,28,.78) 239.2deg 240deg,
+
+      transparent 240deg 279.2deg,
+      rgba(2,9,28,.78) 279.2deg 280deg,
+
+      transparent 280deg 319.2deg,
+      rgba(2,9,28,.78) 319.2deg 320deg,
+
+      transparent 320deg 359.2deg,
+      rgba(2,9,28,.78) 359.2deg 360deg
+    );
 }
 
 .segment-wheel::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   border-radius: 50%;
+  pointer-events: none;
 
   background:
     repeating-conic-gradient(
@@ -314,7 +346,34 @@ button {
 }
 
 .segment-wheel::after {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: var(--segment-result-gradient);
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 20%,
+      #000 20.5% 100%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 20%,
+      #000 20.5% 100%
+    );
+
+  opacity: .95;
+
+  filter:
+    drop-shadow(0 0 4px rgba(255,255,255,.18))
+    drop-shadow(0 0 8px rgba(0,180,255,.18));
 }
 
 /* =========================================================
