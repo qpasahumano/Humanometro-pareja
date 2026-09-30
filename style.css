@@ -128,88 +128,12 @@ button {
   z-index: 2;
 }
 
-.logo-device {
-  position: relative;
+.logo-parejas {
+  display: block;
   width: 126px;
-  height: 92px;
+  height: 126px;
+  object-fit: contain;
   margin: 5px auto 2px;
-  border-radius: 22px;
-  border: 3px solid #47ff47;
-  box-shadow:
-    0 0 8px #39ff14,
-    0 0 20px #00eaff,
-    0 0 34px #ff00d9,
-    inset 0 0 18px rgba(48, 240, 255, .4);
-  background:
-    linear-gradient(135deg, rgba(17, 33, 72, .88), rgba(5, 14, 42, .95));
-}
-
-.logo-device::before {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border-radius: 16px;
-  border: 2px solid rgba(255,255,255,.8);
-  box-shadow:
-    0 0 10px #fff,
-    0 0 18px #ff19df;
-}
-
-.logo-device-inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  opacity: .95;
-}
-
-.mini-h {
-  font-size: 43px;
-  font-weight: 700;
-  color: #39eaff;
-  text-shadow: 0 0 7px #00cfff, 0 0 15px #00aaff;
-}
-
-.mini-exclamation {
-  font-size: 47px;
-  font-weight: 800;
-  color: #fff;
-  text-shadow:
-    0 0 6px #ff2a8d,
-    0 0 14px #ff00aa;
-}
-
-.mini-bar {
-  width: 3px;
-  border-radius: 5px;
-  margin-top: 17px;
-}
-
-.bar-1 {
-  height: 19px;
-  background: #29eaff;
-  box-shadow: 0 0 7px #29eaff;
-}
-
-.bar-2 {
-  height: 27px;
-  background: #55ff75;
-  box-shadow: 0 0 7px #55ff75;
-}
-
-.bar-3 {
-  height: 35px;
-  background: #ffe734;
-  box-shadow: 0 0 7px #ffe734;
-}
-
-.registered-top {
-  position: absolute;
-  top: -8px;
-  right: -25px;
-  font-size: 21px;
 }
 
 .registered {
@@ -1118,6 +1042,7 @@ button {
   0%, 100% {
     filter: drop-shadow(0 0 3px rgba(65,222,255,.2));
   }
+
   50% {
     filter:
       drop-shadow(0 0 10px rgba(65,222,255,.75))
@@ -1129,6 +1054,11 @@ button {
   .app {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .logo-parejas {
+    width: 126px;
+    height: 126px;
   }
 
   .wheel-shell {
@@ -1172,4 +1102,4 @@ button {
   .wheel-shell {
     width: 650px;
   }
-}
+  }
