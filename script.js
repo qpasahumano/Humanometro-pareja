@@ -1,1378 +1,620 @@
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --blue: #25aaff;
-  --electric: #55eaff;
-  --violet: #8e63ff;
-  --pink: #ff2c9c;
-  --hot-pink: #ff176d;
-  --green: #52ffb1;
-  --ice: #9beaff;
-  --yellow: #ffe35b;
-  --white: #f8fcff;
-  --deep: #02091c;
-  --deep-2: #06163b;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 50% 25%, rgba(16, 92, 190, .38), transparent 36%),
-    radial-gradient(circle at 8% 35%, rgba(25, 102, 255, .25), transparent 27%),
-    radial-gradient(circle at 92% 65%, rgba(132, 28, 224, .30), transparent 29%),
-    #02091c;
-  color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-}
-
-button {
-  font: inherit;
-}
-
-.space-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  overflow: hidden;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 20%, rgba(0, 93, 255, .15), transparent 30%),
-    linear-gradient(180deg, #010617 0%, #031331 48%, #02091c 100%);
-}
-
-.nebula {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(48px);
-  opacity: .58;
-  mix-blend-mode: screen;
-}
-
-.nebula-a {
-  width: 55vw;
-  height: 31vw;
-  top: 1%;
-  left: -15%;
-  background: rgba(20, 105, 255, .38);
-  transform: rotate(-25deg);
-}
-
-.nebula-b {
-  width: 48vw;
-  height: 34vw;
-  right: -14%;
-  top: 30%;
-  background: rgba(177, 26, 255, .32);
-  transform: rotate(25deg);
-}
-
-.nebula-c {
-  width: 58vw;
-  height: 29vw;
-  left: -17%;
-  bottom: 3%;
-  background: rgba(0, 163, 255, .27);
-  transform: rotate(20deg);
-}
-
-.stars {
-  position: absolute;
-  inset: 0;
-  background-repeat: repeat;
-  opacity: .82;
-}
-
-.stars-a {
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,.98) 0 1px, transparent 1.7px),
-    radial-gradient(circle, rgba(92,215,255,.92) 0 1px, transparent 1.8px);
-  background-size: 83px 91px, 127px 139px;
-  background-position: 13px 21px, 48px 72px;
-}
-
-.stars-b {
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,.82) 0 1.4px, transparent 2px),
-    radial-gradient(circle, rgba(170,106,255,.85) 0 1px, transparent 1.7px);
-  background-size: 173px 157px, 211px 197px;
-  background-position: 71px 31px, 101px 87px;
-  opacity: .58;
-}
-
-.stars-c {
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,.96) 0 1.5px, transparent 2px);
-  background-size: 271px 233px;
-  background-position: 42px 17px;
-  opacity: .58;
-}
-
-.app {
-  position: relative;
-  width: min(100%, 720px);
-  margin: 0 auto;
-  padding: 9px 12px 55px;
-}
-
-/* =========================================================
-   ENCABEZADO
-   ========================================================= */
-
-.brand-header {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.logo-device {
-  position: relative;
-  margin: 0 auto 1px;
-}
-
-.official-logo {
-  width: 94px;
-  height: 61px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.official-logo::before {
-  display: none;
-}
-
-.official-logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 0 4px rgba(255,255,255,.75))
-    drop-shadow(0 0 10px rgba(0,221,255,.72))
-    drop-shadow(0 0 18px rgba(255,0,190,.48));
-}
-
-.registered-top {
-  position: absolute;
-  top: 1px;
-  right: -7px;
-  font-size: 14px;
-  color: #ffffff;
-  text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px #46d9ff;
-}
-
-.registered {
-  font-size: .27em;
-  vertical-align: top;
-  margin-left: 3px;
-}
-
-.brand-name {
-  font-family:
-    "Trebuchet MS",
-    Arial,
-    Helvetica,
-    sans-serif;
-  font-size: clamp(31px, 8vw, 53px);
-  line-height: .94;
-  font-weight: 800;
-  letter-spacing: -.5px;
-  color: #f8fcff;
-  text-shadow:
-    0 0 4px #ffffff,
-    0 0 9px #46d9ff,
-    0 0 20px rgba(0,164,255,.92),
-    0 0 34px rgba(0,108,255,.52);
-}
-
-.brand-couple {
-  margin-top: 2px;
-  font-size: clamp(29px, 7vw, 47px);
-  font-family:
-    "Brush Script MT",
-    "Segoe Script",
-    cursive;
-  font-style: italic;
-  color: #ffb7ef;
-  letter-spacing: 1px;
-  line-height: .95;
-  text-shadow:
-    0 0 5px #ffb5ed,
-    0 0 12px #ff19c8,
-    0 0 24px rgba(255,0,187,.72);
-}
-
-.heart-small {
-  margin-left: 4px;
-}
-
-.brand-tagline {
-  margin: 5px auto 5px;
-  font-size: clamp(13px, 3.2vw, 18px);
-  line-height: 1.22;
-  font-weight: 600;
-  color: #f4f9ff;
-  text-shadow:
-    0 0 5px rgba(255,255,255,.65),
-    0 0 12px rgba(83,220,255,.3);
-}
-
-/* =========================================================
-   RECORRIDO
-   ========================================================= */
-
-.journey {
-  position: relative;
-}
-
-.journey-guide {
-  max-width: 500px;
-  margin: 0 auto 4px;
-  padding: 2px 10px;
-  text-align: center;
-  color: rgba(225,245,255,.74);
-  font-size: 11px;
-  line-height: 1.3;
-  opacity: .82;
-  transition: .35s ease;
-}
-
-.journey-guide.completed {
-  color: #72ffc6;
-  text-shadow:
-    0 0 7px rgba(114,255,198,.72);
-}
-
-/* =========================================================
-   RUEDA CENTRAL
-   ========================================================= */
-
-.wheel-shell {
-  position: relative;
-  width: min(88vw, 555px);
-  aspect-ratio: 1;
-  margin: 0 auto 8px;
-}
-
-.outer-ring,
-.inner-ring {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.outer-ring {
-  inset: 1%;
-  border: 1.5px solid rgba(75, 227, 255, .92);
-  box-shadow:
-    0 0 7px rgba(75, 227, 255, .95),
-    0 0 19px rgba(20, 128, 255, .64),
-    0 0 42px rgba(0,92,255,.26),
-    inset 0 0 20px rgba(0,149,255,.25);
-}
-
-.inner-ring {
-  inset: 8.5%;
-  border: 1px solid rgba(73, 205, 255, .65);
-  box-shadow:
-    0 0 14px rgba(41,195,255,.38),
-    inset 0 0 14px rgba(41,195,255,.18);
-}
-
-.radial-lines {
-  position: absolute;
-  inset: 7%;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.radial-line {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 1px;
-  height: 44%;
-  transform-origin: 50% 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(99,235,255,.08),
-    rgba(94,231,255,.72),
-    rgba(94,231,255,.12)
-  );
-  box-shadow:
-    0 0 5px rgba(79,225,255,.58);
-}
-
-.line-1 { transform: translate(-50%, -100%) rotate(0deg); }
-.line-2 { transform: translate(-50%, -100%) rotate(40deg); }
-.line-3 { transform: translate(-50%, -100%) rotate(80deg); }
-.line-4 { transform: translate(-50%, -100%) rotate(120deg); }
-.line-5 { transform: translate(-50%, -100%) rotate(160deg); }
-.line-6 { transform: translate(-50%, -100%) rotate(200deg); }
-.line-7 { transform: translate(-50%, -100%) rotate(240deg); }
-.line-8 { transform: translate(-50%, -100%) rotate(280deg); }
-.line-9 { transform: translate(-50%, -100%) rotate(320deg); }
-
-.segment-wheel {
-  position: absolute;
-  inset: 4%;
-  border-radius: 50%;
-  z-index: 2;
-}
-
-/* Cada bloque queda integrado radialmente a la rueda. */
-
-.segment {
-  position: absolute;
-  width: 27%;
-  height: 27%;
-  border: 0;
-  background:
-    radial-gradient(
-      circle,
-      rgba(25,151,255,.15) 0%,
-      rgba(10,75,145,.07) 46%,
-      transparent 72%
-    );
-  color: #f5fbff;
-  cursor: pointer;
-  z-index: 3;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition:
-    opacity .35s ease,
-    filter .35s ease,
-    transform .35s ease,
-    text-shadow .35s ease,
-    background .35s ease;
-  text-align: center;
-  border-radius: 50%;
-}
-
-.segment::after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  opacity: .45;
-  background:
-    radial-gradient(
-      circle,
-      rgba(0,190,255,.22),
-      transparent 67%
-    );
-  z-index: -1;
-  pointer-events: none;
-}
-
-.segment:hover {
-  transform: scale(1.045);
-}
-
-.segment.locked {
-  opacity: .34;
-  filter: saturate(.48);
-  cursor: not-allowed;
-}
-
-.segment.available {
-  opacity: 1;
-  animation: availablePulse 2.4s infinite;
-}
-
-.segment.active {
-  opacity: 1;
-  filter: brightness(1.35);
-  background:
-    radial-gradient(
-      circle,
-      rgba(45,218,255,.28),
-      rgba(18,105,203,.11) 45%,
-      transparent 73%
-    );
-  text-shadow:
-    0 0 7px #fff,
-    0 0 16px #4beaff,
-    0 0 26px #138dff;
-}
-
-.segment.completed {
-  opacity: 1;
-}
-
-.segment.completed .segment-state::after {
-  content: "✓";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  color: #02131f;
-  background: #67ffd0;
-  box-shadow:
-    0 0 7px #67ffd0,
-    0 0 15px rgba(103,255,208,.62);
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.segment.red {
-  filter:
-    drop-shadow(0 0 7px #ff187b)
-    brightness(1.06);
-}
-
-.segment.yellow {
-  filter:
-    drop-shadow(0 0 7px #ffe04d)
-    brightness(1.06);
-}
-
-.segment.ice {
-  filter:
-    drop-shadow(0 0 7px #7deaff)
-    brightness(1.06);
-}
-
-.segment-number {
-  font-size: clamp(19px, 4vw, 29px);
-  font-weight: 800;
-  line-height: 1;
-  color: #f9fdff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px rgba(65,220,255,.82);
-}
-
-.segment-name {
-  margin-top: 3px;
-  font-size: clamp(9px, 2vw, 14px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: .2px;
-  color: #ffffff;
-  text-shadow:
-    0 0 5px rgba(255,255,255,.8),
-    0 0 11px rgba(57,211,255,.72);
-}
-
-.segment-icon {
-  margin-top: 5px;
-  font-size: clamp(22px, 5vw, 35px);
-  line-height: 1;
-  color: #f7fcff;
-  text-shadow:
-    0 0 4px #fff,
-    0 0 10px #1fdfff,
-    0 0 19px rgba(31,223,255,.72);
-}
-
-.segment-state {
-  position: absolute;
-  bottom: -1px;
-  min-height: 18px;
-}
-
-/* Posiciones radiales corregidas */
-
-.segment-1 {
-  left: 5%;
-  top: 24%;
-}
-
-.segment-2 {
-  left: 36.5%;
-  top: 3%;
-}
-
-.segment-3 {
-  right: 5%;
-  top: 24%;
-}
-
-.segment-4 {
-  right: 1%;
-  top: 47%;
-}
-
-.segment-5 {
-  right: 8%;
-  bottom: 13%;
-}
-
-.segment-6 {
-  right: 29%;
-  bottom: 1%;
-}
-
-.segment-7 {
-  left: 36.5%;
-  bottom: 0;
-}
-
-.segment-8 {
-  left: 8%;
-  bottom: 13%;
-}
-
-.segment-9 {
-  left: 1%;
-  top: 47%;
-}
-
-/* =========================================================
-   CORAZÓN
-   ========================================================= */
-
-.heart-core {
-  position: absolute;
-  width: 29%;
-  aspect-ratio: 1;
-  left: 35.5%;
-  top: 35.5%;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.heart-shape {
-  position: relative;
-  width: 81%;
-  aspect-ratio: 1;
-  transform: rotate(-45deg);
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      #ff7098 0%,
-      #ff176d 40%,
-      #c80059 72%,
-      #30002e 100%
-    );
-  border-radius: 20% 0 20% 20%;
-  border: 2px solid #ff82b4;
-  box-shadow:
-    0 0 7px #fff,
-    0 0 15px #ff318d,
-    0 0 29px #ff005d,
-    0 0 53px rgba(255,0,115,.72),
-    inset 0 0 17px rgba(255,255,255,.42);
-}
-
-.heart-shape::before,
-.heart-shape::after {
-  content: "";
-  position: absolute;
-  width: 58%;
-  aspect-ratio: 1;
-  background: inherit;
-  border: inherit;
-  border-radius: 50%;
-}
-
-.heart-shape::before {
-  left: -4%;
-  top: -29%;
-}
-
-.heart-shape::after {
-  top: -4%;
-  right: -29%;
-}
-
-.hm-symbol {
-  position: absolute;
-  z-index: 4;
-  inset: 0;
-  transform: rotate(45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.h-letter {
-  font-family:
-    "Trebuchet MS",
-    Arial,
-    sans-serif;
-  font-size: clamp(40px, 9vw, 67px);
-  font-weight: 900;
-  color: #43eaff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #00cfff,
-    0 0 24px #009cff;
-}
-
-.exclamation {
-  font-size: clamp(43px, 10vw, 72px);
-  font-weight: 900;
-  margin-left: -4px;
-  color: #fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 9px #ff42b7,
-    0 0 20px #ff00a8;
-}
-
-.level-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-left: 3px;
-}
-
-.level-bars i {
-  display: block;
-  width: 12px;
-  height: 2px;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow:
-    0 0 5px #fff,
-    0 0 9px rgba(255,255,255,.7);
-}
-
-.level-bars i:nth-child(1) { width: 5px; }
-.level-bars i:nth-child(2) { width: 7px; }
-.level-bars i:nth-child(3) { width: 9px; }
-.level-bars i:nth-child(4) { width: 11px; }
-.level-bars i:nth-child(5) { width: 13px; }
-
-/* =========================================================
-   BOTÓN CORAZÓN
-   ========================================================= */
-
-.heart-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: min(88vw, 530px);
-  min-height: 56px;
-  margin: 6px auto 17px;
-  border: 1.5px solid #62eaff;
-  border-radius: 38px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(4,26,69,.84),
-      rgba(10,32,73,.76)
-    );
-  color: #f9fdff;
-  font-size: clamp(16px, 4vw, 23px);
-  font-weight: 800;
-  letter-spacing: .3px;
-  box-shadow:
-    0 0 7px #5beaff,
-    0 0 18px rgba(0,179,255,.67),
-    inset 0 0 14px rgba(53,210,255,.18);
-  cursor: pointer;
-  transition: .3s ease;
-}
-
-.heart-button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 11px #fff,
-    0 0 27px #26dfff,
-    0 0 45px rgba(0,155,255,.6);
-}
-
-.heart-button-icon {
-  font-size: 35px;
-  line-height: 1;
-}
-
-.heart-button.enabled {
-  border-color: #62ffc5;
-  box-shadow:
-    0 0 9px #62ffc5,
-    0 0 25px rgba(43,255,180,.55);
-}
-
-/* =========================================================
-   PAGOS
-   ========================================================= */
-
-.payment-panel {
-  width: min(88vw, 500px);
-  margin: 0 auto;
-}
-
-.payment-title {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  justify-content: center;
-  margin-bottom: 9px;
-  color: rgba(244,250,255,.9);
-  font-size: 11px;
-  letter-spacing: 1.8px;
-  text-shadow:
-    0 0 6px rgba(255,255,255,.4);
-}
-
-.payment-title span {
-  flex: 1;
-  max-width: 76px;
-  height: 1px;
-  background: rgba(79,212,255,.75);
-  box-shadow: 0 0 7px #1acaff;
-}
-
-.payment-options {
-  display: grid;
-  gap: 6px;
-}
-
-.payment-option {
-  width: 100%;
-  height: 51px;
-  border: 0;
-  border-radius: 28px;
-  background:
-    linear-gradient(
-      90deg,
-      #f2f8ff,
-      #dfeeff
-    );
-  color: #0b315f;
-  display: grid;
-  grid-template-columns: 42px 1fr 30px;
-  align-items: center;
-  text-align: left;
-  padding: 0 15px;
-  box-shadow:
-    0 0 9px rgba(116,218,255,.27),
-    inset 0 0 8px rgba(255,255,255,.8);
-  cursor: pointer;
-}
-
-.payment-option strong {
-  font-size: 16px;
-}
-
-.payment-logo {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 19px;
-}
-
-.mercado {
-  border-radius: 50%;
-  background: #e6f4ff;
-  color: #2363b6;
-}
-
-.paypal {
-  color: #1251a4;
-  font-size: 29px;
-}
-
-.payoneer {
-  color: #ff7846;
-  font-size: 30px;
-}
-
-.payment-arrow {
-  font-size: 27px;
-  text-align: right;
-}
-
-/* =========================================================
-   CIERRE
-   ========================================================= */
-
-.bottom-motto {
-  width: min(88vw, 530px);
-  margin: 13px auto 0;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 9px;
-  align-items: center;
-  text-align: center;
-}
-
-.bottom-motto span {
-  height: 1px;
-  background: rgba(68,213,255,.75);
-  box-shadow: 0 0 7px #16caff;
-}
-
-.bottom-motto div {
-  font-size: 24px;
-  color: #eaffff;
-  text-shadow:
-    0 0 8px #4cecff;
-}
-
-.bottom-motto p {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: rgba(234,248,255,.78);
-  letter-spacing: 2.5px;
-  font-size: 10px;
-}
-
-/* =========================================================
-   QUESTION PANEL
-   ========================================================= */
-
-.question-panel {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(0,125,255,.25),
-      transparent 35%
-    ),
-    rgba(1,7,23,.97);
-  overflow-y: auto;
-  padding: 18px 14px 50px;
-  backdrop-filter: blur(15px);
-}
-
-.question-panel-inner {
-  width: min(100%, 650px);
-  margin: 0 auto;
-  position: relative;
-}
-
-.close-question {
-  position: sticky;
-  top: 0;
-  float: right;
-  z-index: 4;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(82,221,255,.7);
-  border-radius: 50%;
-  background: rgba(4,19,50,.88);
-  color: white;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow:
-    0 0 13px rgba(25,204,255,.4);
-}
-
-.question-kicker {
-  padding-top: 6px;
-  color: #5cecff;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-shadow: 0 0 9px #1bdfff;
-}
-
-#questionTitle {
-  margin: 7px 0 4px;
-  font-size: clamp(29px, 7vw, 46px);
-  color: white;
-  text-shadow:
-    0 0 8px #4aeaff,
-    0 0 22px rgba(0,159,255,.7);
-}
-
-.question-subtitle {
-  margin: 0 0 20px;
-  color: rgba(234,248,255,.76);
-  font-size: 14px;
-}
-
-.question-progress {
-  margin-bottom: 22px;
-}
-
-#questionProgressText {
-  display: block;
-  margin-bottom: 7px;
-  color: #bfefff;
-  font-size: 12px;
-}
-
-.question-progress-track {
-  height: 5px;
-  border-radius: 10px;
-  background: rgba(91,207,255,.13);
-  overflow: hidden;
-}
-
-#questionProgressBar {
-  height: 100%;
-  width: 33.33%;
-  border-radius: inherit;
-  background:
-    linear-gradient(
-      90deg,
-      #1edcff,
-      #ff3bb7
-    );
-  box-shadow:
-    0 0 12px #20dfff;
-  transition: width .35s ease;
-}
-
-.questions-container {
-  display: grid;
-  gap: 16px;
-}
-
-.question-card {
-  padding: 19px;
-  border: 1px solid rgba(78,217,255,.35);
-  border-radius: 20px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8,30,68,.86),
-      rgba(3,14,36,.92)
-    );
-  box-shadow:
-    0 0 17px rgba(0,137,255,.15),
-    inset 0 0 18px rgba(38,176,255,.05);
-}
-
-.question-number {
-  color: #62eaff;
-  font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.question-text {
-  margin: 0;
-  color: #f7fbff;
-  font-size: clamp(17px, 4.2vw, 22px);
-  line-height: 1.45;
-}
-
-.answer-options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.answer {
-  min-height: 47px;
-  border-radius: 15px;
-  border: 1px solid rgba(100,220,255,.42);
-  background: rgba(10,34,71,.72);
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  transition: .25s ease;
-}
-
-.answer:hover {
-  transform: translateY(-1px);
-  border-color: #64eaff;
-  box-shadow:
-    0 0 12px rgba(40,211,255,.4);
-}
-
-.answer.selected.yes {
-  background: rgba(255,26,112,.23);
-  border-color: #ff397f;
-  box-shadow:
-    0 0 17px rgba(255,26,112,.42);
-}
-
-.answer.selected.maybe {
-  background: rgba(255,222,54,.18);
-  border-color: #ffe34f;
-  color: #fff6a8;
-  box-shadow:
-    0 0 17px rgba(255,224,65,.35);
-}
-
-.answer.selected.no {
-  background: rgba(88,219,255,.19);
-  border-color: #83eaff;
-  color: #d9f9ff;
-  box-shadow:
-    0 0 17px rgba(75,222,255,.4);
-}
-
-.continue-question {
-  width: 100%;
-  min-height: 54px;
-  margin-top: 6px;
-  border: 1px solid #54eaff;
-  border-radius: 28px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(8,67,112,.9),
-      rgba(92,12,101,.85)
-    );
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow:
-    0 0 12px rgba(40,224,255,.55),
-    inset 0 0 12px rgba(255,255,255,.08);
-}
-
-.continue-question:disabled {
-  opacity: .3;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* =========================================================
-   RESULTS
-   ========================================================= */
-
-.results-panel {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  overflow-y: auto;
-  background:
-    radial-gradient(
-      circle at 50% 8%,
-      rgba(0,121,255,.28),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      #020a20,
-      #020718 70%,
-      #050318
-    );
-  padding: 28px 14px 60px;
-}
-
-.results-inner {
-  width: min(100%, 680px);
-  margin: 0 auto;
-}
-
-.results-symbol {
-  width: 76px;
-  height: 76px;
-  margin: 0 auto 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #49eaff;
-  font-size: 27px;
-  font-weight: 900;
-  border: 2px solid #ff348c;
-  box-shadow:
-    0 0 12px #ff308c,
-    0 0 28px rgba(0,206,255,.55),
-    inset 0 0 17px rgba(255,30,123,.3);
-}
-
-.results-kicker {
-  text-align: center;
-  color: #65eaff;
-  letter-spacing: 3px;
-  font-size: 11px;
-}
-
-#resultTitle {
-  margin: 9px 0 5px;
-  text-align: center;
-  font-size: clamp(29px, 6.8vw, 46px);
-  text-shadow:
-    0 0 9px #fff,
-    0 0 20px #1cdcff;
-}
-
-.result-score {
-  text-align: center;
-  color: rgba(220,245,255,.75);
-  font-size: 13px;
-  margin-bottom: 22px;
-}
-
-.result-general-card,
-.comparison-card,
-.final-invitation {
-  border: 1px solid rgba(73,213,255,.38);
-  border-radius: 23px;
-  padding: 21px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8,31,70,.84),
-      rgba(3,13,34,.94)
-    );
-  box-shadow:
-    0 0 22px rgba(0,148,255,.13),
-    inset 0 0 18px rgba(49,204,255,.04);
-  margin-bottom: 20px;
-}
-
-.result-general-card h2,
-.segments-results > h2,
-.comparison-card h2 {
-  margin: 0 0 12px;
-  color: #66eaff;
-  font-size: 18px;
-}
-
-.result-general-card p,
-.result-general-card div,
-.comparison-card p,
-.final-invitation p {
-  color: rgba(242,249,255,.88);
-  font-size: 15px;
-  line-height: 1.65;
-}
-
-.segments-results {
-  margin-bottom: 20px;
-}
-
-.segment-result {
-  position: relative;
-  margin-bottom: 10px;
-  padding: 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(90,214,255,.25);
-  background: rgba(5,22,50,.75);
-  overflow: hidden;
-}
-
-.segment-result::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: #65eaff;
-  box-shadow: 0 0 13px currentColor;
-}
-
-.segment-result.red::before {
-  background: #ff277e;
-}
-
-.segment-result.yellow::before {
-  background: #ffe14d;
-}
-
-.segment-result.ice::before {
-  background: #8deaff;
-}
-
-.segment-result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.segment-result-title {
-  font-weight: 900;
-  color: white;
-}
-
-.segment-result-mark {
-  font-size: 20px;
-}
-
-.segment-result p {
-  margin: 7px 0 0;
-  color: rgba(235,248,255,.77);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.final-invitation {
-  border-color: rgba(255,54,171,.55);
-  box-shadow:
-    0 0 23px rgba(255,0,166,.13),
-    inset 0 0 24px rgba(255,0,166,.05);
-  max-height: 440px;
-  overflow-y: auto;
-}
-
-.final-invitation h2 {
-  margin: 0 0 15px;
-  color: #ffb7ed;
-  font-size: 22px;
-  text-shadow:
-    0 0 8px #ff3ac3,
-    0 0 18px rgba(255,0,179,.6);
-}
-
-.restart-button {
-  width: 100%;
-  min-height: 53px;
-  border: 1px solid #5ceaff;
-  border-radius: 30px;
-  background: rgba(7,34,70,.78);
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow:
-    0 0 15px rgba(43,213,255,.3);
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* =========================================================
-   ANIMACIONES
-   ========================================================= */
-
-@keyframes availablePulse {
-  0%, 100% {
-    filter:
-      drop-shadow(0 0 3px rgba(65,222,255,.22));
+"use strict";
+
+/*
+  HUMANÓMETRO PAREJAS
+
+  Escala:
+  Sí      = 2
+  A veces = 1
+  No      = 0
+
+  Cada bloque:
+  2 o 3 Sí          -> ROJO
+  2 o 3 No          -> CELESTE HIELO
+  2 o 3 A veces     -> AMARILLO
+  1 Sí + 1 A veces + 1 No
+                    -> la tercera respuesta funciona como tendencia
+
+  Resultado global:
+  27–54 -> Vínculo estable
+  18–26 -> Vínculo estable con aspectos a revisar
+   9–17 -> Vínculo inestable
+   0–8  -> Vínculo en alerta
+
+  El test es individual.
+  No cruza respuestas entre integrantes.
+*/
+
+const blocks = [
+  {
+    number: 1,
+    name: "TRATO",
+    subtitle: "Percepción del vínculo",
+    questions: [
+      "¿Existe entre ustedes un trato amable y considerado, especialmente cuando alguno necesita comprensión del otro?",
+      "Cuando alguno atraviesa un momento de enojo o malestar, ¿pueden seguir tratándose con respeto?",
+      "Cuando alguno necesita algo importante del otro, ¿el trato suele reflejar consideración por esa necesidad?"
+    ]
+  },
+  {
+    number: 2,
+    name: "COMUNICACIÓN",
+    subtitle: "Percepción del vínculo",
+    questions: [
+      "¿Pueden hablar entre ustedes de aquello que realmente les importa sin sentir que tienen que guardárselo?",
+      "Cuando tu pareja te habla de algo que sabés que es importante para ella, ¿intentás comprender lo que quiere transmitir antes de responder?",
+      "Cuando necesitan hablar de algo importante para la relación, ¿pueden hacerlo sin que alguno deje de escuchar, se cierre o evite la conversación?"
+    ]
+  },
+  {
+    number: 3,
+    name: "CONEXIÓN",
+    subtitle: "Percepción del vínculo",
+    questions: [
+      "Cuando uno de los dos necesita cercanía emocional, ¿el otro suele poder brindársela?",
+      "¿Encuentran momentos que les permitan sentirse realmente conectados, más allá de las obligaciones cotidianas?",
+      "Cuando atraviesan una etapa de distancia o desconexión, ¿suelen encontrar la manera de volver a acercarse?"
+    ]
+  },
+  {
+    number: 4,
+    name: "CUIDADO",
+    subtitle: "Autopercepción en el vínculo",
+    questions: [
+      "Cuando tu pareja atraviesa algo que sabés que le afecta, ¿tenés en cuenta cómo se encuentra antes de actuar o decidir?",
+      "Cuando tu pareja necesita apoyo, ¿procurás estar presente de una manera que realmente le resulte útil?",
+      "¿Hay acciones concretas de tu parte que respondan a necesidades importantes de tu pareja?"
+    ]
+  },
+  {
+    number: 5,
+    name: "RESPETO",
+    subtitle: "Autopercepción en el vínculo",
+    questions: [
+      "Cuando tu pareja piensa o siente algo diferente de vos sobre un tema importante, ¿podés respetar su manera de verlo?",
+      "Cuando tu pareja necesita espacio, tiempo o establece un límite, ¿podés respetarlo aunque no estés de acuerdo?",
+      "Cuando existe un desacuerdo sobre algo importante, ¿podés defender tu posición sin descalificar ni menospreciar a tu pareja?"
+    ]
+  },
+  {
+    number: 6,
+    name: "APORTE",
+    subtitle: "Autopercepción en el vínculo",
+    questions: [
+      "Cuando la relación necesita algo de vos, ¿procurás asumir tu parte para que el vínculo funcione?",
+      "¿Destinás tiempo, atención o energía a aspectos de la relación que sabés que son importantes para tu pareja?",
+      "Cuando tu pareja te señala algo que necesita de vos dentro de la relación, ¿procurás hacer algo concreto al respecto?"
+    ]
+  },
+  {
+    number: 7,
+    name: "CONFLICTOS",
+    subtitle: "Vivencias reales",
+    questions: [
+      "Cuando surge un conflicto por algo que realmente importa para alguno de los dos, ¿pueden abordarlo sin quedar atrapados en la misma discusión?",
+      "Después de una discusión que los afecta emocionalmente, ¿pueden encontrar una manera de volver a acercarse?",
+      "Cuando tienen un desacuerdo importante, ¿alguno de los dos suele priorizar comprender y resolver antes que demostrar que tiene razón?"
+    ]
+  },
+  {
+    number: 8,
+    name: "CELOS",
+    subtitle: "Vivencias reales",
+    questions: [
+      "Cuando una situación despierta celos o inseguridad en alguno de los dos, ¿pueden hablar de lo que ocurre sin convertirlo inmediatamente en una acusación?",
+      "Cuando alguno necesita seguridad respecto del vínculo, ¿pueden hablar de esa necesidad sin que termine transformándose en control?",
+      "Ante una situación que genera inseguridad, ¿pueden diferenciar lo que realmente ocurrió de aquello que cada uno imaginó o interpretó?"
+    ]
+  },
+  {
+    number: 9,
+    name: "CRISIS",
+    subtitle: "Vivencias reales",
+    questions: [
+      "Cuando atraviesan una situación que pone a prueba la relación, ¿pueden enfrentarla como pareja en lugar de enfrentarse entre ustedes?",
+      "Cuando uno de los dos atraviesa una dificultad importante, ¿el otro puede acompañarlo teniendo en cuenta lo que realmente necesita?",
+      "Después de atravesar una situación difícil, ¿pueden reconocer lo aprendido y utilizarlo para fortalecer el vínculo?"
+    ]
+  }
+];
+
+const responseOptions = [
+  {
+    key: "yes",
+    label: "Sí",
+    value: 2
+  },
+  {
+    key: "maybe",
+    label: "A veces",
+    value: 1
+  },
+  {
+    key: "no",
+    label: "No",
+    value: 0
+  }
+];
+
+const state = {
+  started: false,
+  currentBlock: 0,
+  answers: Array.from({ length: 9 }, () => [null, null, null]),
+  completed: Array(9).fill(false),
+  segmentResults: Array(9).fill(null)
+};
+
+const enableHeart = document.getElementById("enableHeart");
+const journeyGuide = document.getElementById("journeyGuide");
+const questionPanel = document.getElementById("questionPanel");
+const closeQuestion = document.getElementById("closeQuestion");
+const questionKicker = document.getElementById("questionKicker");
+const questionTitle = document.getElementById("questionTitle");
+const questionSubtitle = document.getElementById("questionSubtitle");
+const questionProgressText = document.getElementById("questionProgressText");
+const questionProgressBar = document.getElementById("questionProgressBar");
+const questionsContainer = document.getElementById("questionsContainer");
+const resultsPanel = document.getElementById("resultsPanel");
+const resultTitle = document.getElementById("resultTitle");
+const resultScore = document.getElementById("resultScore");
+const resultGeneral = document.getElementById("resultGeneral");
+const segmentResults = document.getElementById("segmentResults");
+const restartButton = document.getElementById("restartButton");
+const segments = [...document.querySelectorAll(".segment")];
+
+const generalResults = {
+  stable: {
+    title: "❤️ VÍNCULO ESTABLE",
+    text: `
+      <p>Las respuestas muestran una base sólida en la manera en que vivís el vínculo. Predominan experiencias de cercanía, consideración y reciprocidad.</p>
+      <p>La relación parece contar con recursos para comunicarse, acompañarse y atravesar las situaciones cotidianas sin perder de vista al otro. También aparece una valoración del vínculo que se sostiene tanto en lo que comparten como en la manera en que participás dentro de la relación.</p>
+      <p>Esto no significa que no existan diferencias, desacuerdos o momentos difíciles. La diferencia está en cómo esos momentos son transitados y en los recursos que aparecen en tus respuestas.</p>
+      <p>La lectura de cada segmento del corazón permite observar dónde esa fortaleza se manifiesta con mayor claridad y dónde todavía existen pequeños espacios para seguir construyendo.</p>
+    `
+  },
+
+  review: {
+    title: "🟡 VÍNCULO ESTABLE CON ASPECTOS A REVISAR",
+    text: `
+      <p>Las respuestas muestran una base de vínculo que se encuentra presente, aunque aparecen algunos aspectos que no se manifiestan de manera sostenida.</p>
+      <p>Hay áreas en las que aparece conexión y reciprocidad, mientras que otras parecen necesitar mayor atención. Esto puede estar relacionado con la comunicación, la manera de cuidarse, el respeto por las necesidades del otro o la forma en que atraviesan determinadas situaciones.</p>
+      <p>Las diferencias entre lo que cada persona vive también forman parte de cualquier vínculo. Observarlas puede ayudar a reconocer aquello que necesita mayor atención.</p>
+      <p>El corazón muestra dónde encontrás mayor estabilidad y dónde podría beneficiarse de una mirada más consciente.</p>
+    `
+  },
+
+  unstable: {
+    title: "🟠 VÍNCULO INESTABLE",
+    text: `
+      <p>Las respuestas muestran que el vínculo atraviesa diferentes niveles de conexión y que existen varios aspectos que no aparecen de manera sostenida.</p>
+      <p>Pueden aparecer dificultades relacionadas con la comunicación, el cuidado, el respeto, la participación dentro de la relación o la manera de afrontar conflictos, celos y momentos de crisis.</p>
+      <p>Este resultado no define a la pareja ni determina su futuro. Señala aspectos de tu experiencia del vínculo que merecen ser observados con mayor atención.</p>
+      <p>La lectura de los nueve segmentos permite mirar con mayor precisión dónde aparecen esas señales.</p>
+    `
+  },
+
+  alert: {
+    title: "🧊 VÍNCULO EN ALERTA",
+    text: `
+      <p>Las respuestas muestran una presencia importante de dificultades, desconexiones o aspectos que pueden estar afectando la manera en que vivís la relación.</p>
+      <p>La lectura puede involucrar distintos aspectos: comunicación, trato, conexión emocional, cuidado, respeto, aporte personal y la manera en que enfrentan conflictos, celos o situaciones de crisis.</p>
+      <p>Este resultado no pretende etiquetar la relación ni decidir por ustedes. Es una invitación a detenerse, mirar lo que está ocurriendo y reconocer qué aspectos del vínculo necesitan mayor atención.</p>
+    `
+  }
+};
+
+function initialize() {
+  segments.forEach((segment, index) => {
+    segment.addEventListener("click", () => {
+      if (!state.started && index !== 0) {
+        return;
+      }
+
+      if (state.completed[index]) {
+        openBlock(index);
+        return;
+      }
+
+      if (index === state.currentBlock) {
+        openBlock(index);
+      }
+    });
+  });
+
+  enableHeart.addEventListener("click", startTest);
+  closeQuestion.addEventListener("click", closeQuestionPanel);
+  restartButton.addEventListener("click", restartTest);
+
+  updateWheel();
+}
+
+function startTest() {
+  if (state.started) {
+    openBlock(state.currentBlock);
+    return;
   }
 
-  50% {
-    filter:
-      drop-shadow(0 0 11px rgba(65,222,255,.8))
-      brightness(1.22);
+  state.started = true;
+
+  enableHeart.classList.add("enabled");
+  enableHeart.querySelector("span:last-child").textContent = "CORAZÓN HABILITADO";
+
+  journeyGuide.textContent =
+    "El bloque 1 está disponible. Completá sus tres preguntas para continuar.";
+
+  openBlock(0);
+}
+
+function openBlock(index) {
+  if (!state.started) {
+    return;
+  }
+
+  if (index > 0 && !state.completed[index - 1] && !state.completed[index]) {
+    return;
+  }
+
+  state.currentBlock = index;
+
+  const block = blocks[index];
+
+  questionKicker.textContent = `BLOQUE ${block.number}`;
+  questionTitle.textContent = block.name;
+  questionSubtitle.textContent = block.subtitle;
+
+  renderQuestions(index);
+
+  questionPanel.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+
+  updateWheel();
+}
+
+function renderQuestions(blockIndex) {
+  const block = blocks[blockIndex];
+
+  questionsContainer.innerHTML = "";
+
+  block.questions.forEach((question, questionIndex) => {
+    const card = document.createElement("article");
+    card.className = "question-card";
+
+    const number = document.createElement("div");
+    number.className = "question-number";
+    number.textContent = `PREGUNTA ${blockIndex * 3 + questionIndex + 1}`;
+
+    const text = document.createElement("p");
+    text.className = "question-text";
+    text.textContent = question;
+
+    const answers = document.createElement("div");
+    answers.className = "answer-options";
+
+    responseOptions.forEach(option => {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = `answer ${option.key}`;
+      button.textContent = option.label;
+
+      if (state.answers[blockIndex][questionIndex] === option.key) {
+        button.classList.add("selected");
+      }
+
+      button.addEventListener("click", () => {
+        state.answers[blockIndex][questionIndex] = option.key;
+
+        answers.querySelectorAll(".answer").forEach(item => {
+          item.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+
+        updateQuestionButton(blockIndex);
+      });
+
+      answers.appendChild(button);
+    });
+
+    card.appendChild(number);
+    card.appendChild(text);
+    card.appendChild(answers);
+
+    questionsContainer.appendChild(card);
+  });
+
+  const continueButton = document.createElement("button");
+  continueButton.type = "button";
+  continueButton.className = "continue-question";
+  continueButton.id = "continueQuestion";
+  continueButton.textContent =
+    blockIndex === blocks.length - 1
+      ? "FINALIZAR Y VER MI LECTURA"
+      : "COMPLETAR BLOQUE";
+
+  continueButton.addEventListener("click", () => {
+    completeCurrentBlock(blockIndex);
+  });
+
+  questionsContainer.appendChild(continueButton);
+
+  updateQuestionProgress(blockIndex);
+  updateQuestionButton(blockIndex);
+}
+
+function updateQuestionButton(blockIndex) {
+  const button = document.getElementById("continueQuestion");
+
+  if (!button) {
+    return;
+  }
+
+  const complete = state.answers[blockIndex].every(answer => answer !== null);
+
+  button.disabled = !complete;
+}
+
+function updateQuestionProgress(blockIndex) {
+  const answered = state.answers[blockIndex].filter(
+    answer => answer !== null
+  ).length;
+
+  questionProgressText.textContent = `Pregunta ${answered} de 3`;
+  questionProgressBar.style.width = `${Math.max(33.33, answered / 3 * 100)}%`;
+}
+
+function completeCurrentBlock(index) {
+  const answers = state.answers[index];
+
+  if (!answers.every(answer => answer !== null)) {
+    return;
+  }
+
+  const result = calculateSegment(answers);
+
+  state.segmentResults[index] = result;
+  state.completed[index] = true;
+
+  questionPanel.classList.add("hidden");
+  document.body.style.overflow = "";
+
+  const nextIndex = index + 1;
+
+  if (nextIndex < blocks.length) {
+    state.currentBlock = nextIndex;
+
+    journeyGuide.textContent =
+      `Bloque ${index + 1} completado. El bloque ${nextIndex + 1} está habilitado.`;
+
+    journeyGuide.classList.add("completed");
+
+    updateWheel();
+
+    setTimeout(() => {
+      const next = segments[nextIndex];
+
+      next.classList.add("active");
+
+      setTimeout(() => {
+        next.classList.remove("active");
+      }, 1400);
+    }, 100);
+  } else {
+    journeyGuide.textContent =
+      "Recorrido completo. Tu lectura del Humanómetro está lista.";
+
+    updateWheel();
+
+    setTimeout(showResults, 550);
   }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+function calculateSegment(answerKeys) {
+  const yesCount = answerKeys.filter(value => value === "yes").length;
+  const maybeCount = answerKeys.filter(value => value === "maybe").length;
+  const noCount = answerKeys.filter(value => value === "no").length;
 
-@media (max-width: 520px) {
+  const score = answerKeys.reduce((total, key) => {
+    const option = responseOptions.find(item => item.key === key);
+    return total + option.value;
+  }, 0);
 
-  .app {
-    padding-left: 7px;
-    padding-right: 7px;
+  let color;
+
+  if (yesCount >= 2) {
+    color = "red";
+  } else if (noCount >= 2) {
+    color = "ice";
+  } else if (maybeCount >= 2) {
+    color = "yellow";
+  } else {
+    /*
+      Una respuesta de cada tipo:
+      la tercera respuesta funciona como tendencia diferenciadora.
+    */
+    const third = answerKeys[2];
+
+    if (third === "yes") {
+      color = "red";
+    } else if (third === "no") {
+      color = "ice";
+    } else {
+      color = "yellow";
+    }
   }
 
-  .official-logo {
-    width: 82px;
-    height: 53px;
-  }
-
-  .brand-name {
-    font-size: clamp(29px, 8vw, 45px);
-  }
-
-  .brand-couple {
-    font-size: clamp(27px, 7vw, 40px);
-  }
-
-  .brand-tagline {
-    font-size: 13px;
-    margin-bottom: 3px;
-  }
-
-  .journey-guide {
-    font-size: 10px;
-    margin-bottom: 2px;
-  }
-
-  .wheel-shell {
-    width: 94vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 4px;
-  }
-
-  .segment-name {
-    font-size: 8.5px;
-  }
-
-  .segment-number {
-    font-size: 20px;
-  }
-
-  .segment-icon {
-    font-size: 23px;
-    margin-top: 4px;
-  }
-
-  .segment-state {
-    bottom: -2px;
-  }
-
-  .heart-core {
-    width: 29%;
-    left: 35.5%;
-    top: 35.5%;
-  }
-
-  .heart-button {
-    min-height: 53px;
-    margin-top: 4px;
-    margin-bottom: 13px;
-  }
-
-  .heart-button-icon {
-    font-size: 32px;
-  }
-
-  .payment-option {
-    height: 48px;
-  }
-
-  .payment-option strong {
-    font-size: 15px;
-  }
-
-  .answer-options {
-    grid-template-columns: 1fr;
-  }
-
-  .answer {
-    min-height: 45px;
-  }
-
-  .results-panel {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+  return {
+    color,
+    score,
+    yesCount,
+    maybeCount,
+    noCount
+  };
 }
 
-@media (min-width: 521px) and (max-width: 720px) {
-
-  .wheel-shell {
-    width: min(86vw, 555px);
-  }
+function calculateGlobalScore() {
+  return state.answers.flat().reduce((total, answerKey) => {
+    const option = responseOptions.find(item => item.key === answerKey);
+    return total + option.value;
+  }, 0);
 }
 
-@media (min-width: 721px) {
-
-  .app {
-    padding-top: 20px;
+function getGeneralResult(score) {
+  if (score >= 27) {
+    return generalResults.stable;
   }
 
-  .wheel-shell {
-    width: 555px;
+  if (score >= 18) {
+    return generalResults.review;
   }
+
+  if (score >= 9) {
+    return generalResults.unstable;
+  }
+
+  return generalResults.alert;
 }
+
+function showResults() {
+  const score = calculateGlobalScore();
+  const result = getGeneralResult(score);
+
+  resultTitle.textContent = result.title;
+  resultScore.textContent = `Puntaje de tu recorrido: ${score} / 54`;
+
+  resultGeneral.innerHTML = result.text;
+
+  renderSegmentResults();
+
+  resultsPanel.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+
+  resultsPanel.scrollTop = 0;
+}
+
+function renderSegmentResults() {
+  segmentResults.innerHTML = "";
+
+  blocks.forEach((block, index) => {
+    const result = state.segmentResults[index];
+
+    if (!result) {
+      return;
+    }
+
+    const article = document.createElement("article");
+    article.className = `segment-result ${result.color}`;
+
+    const header = document.createElement("div");
+    header.className = "segment-result-header";
+
+    const title = document.createElement("div");
+    title.className = "segment-result-title";
+    title.textContent = `${block.number}. ${block.name}`;
+
+    const mark = document.createElement("div");
+    mark.className = "segment-result-mark";
+
+    if (result.color === "red") {
+      mark.textContent = "🔴";
+    } else if (result.color === "yellow") {
+      mark.textContent = "🟡";
+    } else {
+      mark.textContent = "🧊";
+    }
+
+    const description = document.createElement("p");
+
+    if (result.color === "red") {
+      description.textContent =
+        "Tus respuestas muestran una tendencia positiva en este aspecto del vínculo.";
+    } else if (result.color === "yellow") {
+      description.textContent =
+        "Tus respuestas muestran una tendencia intermedia. Este aspecto puede observarse con mayor atención.";
+    } else {
+      description.textContent =
+        "Tus respuestas muestran una señal que merece especial atención dentro de tu experiencia del vínculo.";
+    }
+
+    header.appendChild(title);
+    header.appendChild(mark);
+
+    article.appendChild(header);
+    article.appendChild(description);
+
+    segmentResults.appendChild(article);
+  });
+}
+
+function updateWheel() {
+  segments.forEach((segment, index) => {
+    segment.classList.remove("locked", "available", "completed", "active");
+    segment.classList.remove("red", "yellow", "ice");
+
+    if (!state.started) {
+      if (index === 0) {
+        segment.classList.add("available");
+      } else {
+        segment.classList.add("locked");
+      }
+
+      return;
+    }
+
+    if (state.completed[index]) {
+      segment.classList.add("completed");
+
+      const result = state.segmentResults[index];
+
+      if (result) {
+        segment.classList.add(result.color);
+      }
+
+      return;
+    }
+
+    if (index === state.currentBlock) {
+      segment.classList.add("available", "active");
+      return;
+    }
+
+    segment.classList.add("locked");
+  });
+}
+
+function closeQuestionPanel() {
+  questionPanel.classList.add("hidden");
+  document.body.style.overflow = "";
+  updateWheel();
+}
+
+function restartTest() {
+  state.started = false;
+  state.currentBlock = 0;
+  state.answers = Array.from({ length: 9 }, () => [null, null, null]);
+  state.completed = Array(9).fill(false);
+  state.segmentResults = Array(9).fill(null);
+
+  resultsPanel.classList.add("hidden");
+  questionPanel.classList.add("hidden");
+
+  enableHeart.classList.remove("enabled");
+  enableHeart.querySelector("span:last-child").textContent =
+    "HABILITAR CORAZÓN";
+
+  journeyGuide.textContent =
+    "Empezá por el bloque 1. Completá sus tres preguntas para habilitar el siguiente.";
+
+  journeyGuide.classList.remove("completed");
+
+  document.body.style.overflow = "";
+
+  updateWheel();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+initialize();
