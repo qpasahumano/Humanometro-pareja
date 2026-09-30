@@ -1,168 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#020817">
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#020b1e"
+  >
+
   <title>Humanómetro Parejas</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <main class="app" aria-label="Humanómetro Parejas">
+  <main id="app" class="app">
 
-    <div class="interface-wrap">
+    <!-- =====================================================
+         PANTALLA INICIAL
+         ===================================================== -->
 
-      <!-- IMAGEN BASE DE LA INTERFAZ -->
-      <img
-        class="interface-image"
-        src="interfaz-parejas-referencia.png"
-        alt="Humanómetro Parejas"
-        draggable="false"
-      >
+    <section
+      id="home"
+      class="screen screen-home"
+      aria-label="Humanómetro Parejas"
+    >
 
-      <!-- INDICACIÓN PROGRESIVA -->
-      <div
-        id="guidance"
-        class="guidance"
-        aria-live="polite"
-        hidden>
+      <div class="reference-wrap">
+
+        <img
+          id="referenceImage"
+          class="reference-image"
+          src="humanometro-parejas.png"
+          alt="Humanómetro Parejas"
+        >
+
+        <!-- BOTÓN HABILITAR CORAZÓN -->
+        <button
+          id="activateHeart"
+          class="hotspot hotspot-heart"
+          type="button"
+          aria-label="Habilitar corazón"
+        ></button>
+
+        <!-- MERCADO PAGO -->
+        <button
+          id="payMercado"
+          class="hotspot hotspot-mp"
+          type="button"
+          aria-label="Mercado Pago"
+        ></button>
+
+        <!-- PAYPAL -->
+        <button
+          id="payPaypal"
+          class="hotspot hotspot-paypal"
+          type="button"
+          aria-label="PayPal"
+        ></button>
+
+        <!-- PAYONEER -->
+        <button
+          id="payPayoneer"
+          class="hotspot hotspot-payoneer"
+          type="button"
+          aria-label="Payoneer"
+        ></button>
+
       </div>
 
-      <!-- CAPA INTERACTIVA DE LOS 9 SEGMENTOS -->
-      <svg
-        id="wheelLayer"
-        class="wheel-layer"
-        viewBox="0 0 1024 1536"
-        preserveAspectRatio="none"
-        aria-hidden="true">
-      </svg>
+    </section>
 
-      <!-- CORAZÓN / INICIO -->
-      <button
-        id="enableHeart"
-        class="hotspot heart-hotspot"
-        type="button"
-        aria-label="Habilitar corazón">
-      </button>
 
-      <!-- MEDIOS DE PAGO -->
-      <button
-        class="hotspot payment-hotspot payment-mercado"
-        type="button"
-        aria-label="Mercado Pago"
-        disabled>
-      </button>
+    <!-- =====================================================
+         TEST
+         ===================================================== -->
 
-      <button
-        class="hotspot payment-hotspot payment-paypal"
-        type="button"
-        aria-label="PayPal"
-        disabled>
-      </button>
+    <section
+      id="test"
+      class="screen screen-test hidden"
+    >
 
-      <button
-        class="hotspot payment-hotspot payment-payoneer"
-        type="button"
-        aria-label="Payoneer"
-        disabled>
-      </button>
+      <div class="test-shell">
 
-    </div>
+        <header class="test-header">
+
+          <div class="brand-mini">
+            HUMANÓMETRO
+            <span>PAREJAS</span>
+          </div>
+
+          <div
+            id="progressText"
+            class="progress-text"
+          >
+            1 / 9
+          </div>
+
+        </header>
+
+
+        <!-- AVISO / GUIADO -->
+        <div
+          id="guidedHint"
+          class="guided-hint"
+        >
+
+          <div class="hint-glow"></div>
+
+          <strong>
+            Empezá por el bloque 1.
+          </strong>
+
+          <span>
+            Completá sus tres preguntas para habilitar el siguiente.
+          </span>
+
+        </div>
+
+
+        <!-- BLOQUES -->
+        <section
+          id="blocks"
+          class="blocks"
+          aria-label="Bloques del Humanómetro Parejas"
+        ></section>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTADO
+         ===================================================== -->
+
+    <section
+      id="result"
+      class="screen screen-result hidden"
+    >
+
+      <div class="result-shell">
+
+        <div id="resultGeneral"></div>
+
+        <div id="segmentReadings"></div>
+
+
+        <!-- INVITACIÓN FINAL -->
+        <div
+          id="invitation"
+          class="invitation-box"
+        >
+
+          <h2>
+            ¿Y si tu pareja también se hace el Humanómetro?
+          </h2>
+
+          <div class="invitation-scroll">
+
+            <p>
+              Cada persona vive una relación desde su propia experiencia.
+              Por eso, es posible que ambos obtengan resultados diferentes.
+              No significa necesariamente que alguien esté equivocado:
+              pueden existir distintas percepciones, necesidades,
+              experiencias o maneras de interpretar lo que sucede dentro
+              del vínculo.
+            </p>
+
+            <p>
+              Si ambos quieren hacerlo, pueden compartir sus resultados
+              y conversar sobre aquello en lo que coinciden y aquello
+              que perciben de manera diferente. A veces, descubrir esa
+              diferencia también es una forma de conocerse mejor.
+            </p>
+
+            <p>
+              Invitá a tu pareja a hacer su propio Humanómetro y descubran
+              cuánto coinciden en la forma de vivir su vínculo.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
 
-  <!-- =========================
-       MODAL DE PREGUNTAS
-       ========================= -->
-
-  <div id="questionModal" class="modal" hidden>
-
-    <div class="modal-backdrop"></div>
-
-    <section
-      class="modal-card"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle">
-
-      <button
-        id="closeModal"
-        class="modal-close"
-        type="button"
-        aria-label="Cerrar">
-        ×
-      </button>
-
-      <div class="modal-kicker">
-        HUMANÓMETRO PAREJAS
-      </div>
-
-      <h2 id="modalTitle"></h2>
-
-      <p
-        id="modalSubtitle"
-        class="modal-subtitle">
-      </p>
-
-      <form id="questionForm">
-
-        <div id="questions"></div>
-
-        <button
-          class="continue-button"
-          type="submit">
-          COMPLETAR BLOQUE
-        </button>
-
-      </form>
-
-    </section>
-
-  </div>
-
-
-  <!-- =========================
-       MODAL RESULTADO FINAL
-       ========================= -->
-
-  <div id="finalModal" class="modal" hidden>
-
-    <div class="modal-backdrop"></div>
-
-    <section
-      class="modal-card final-card"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="finalTitle">
-
-      <button
-        id="closeFinal"
-        class="modal-close"
-        type="button"
-        aria-label="Cerrar">
-        ×
-      </button>
-
-      <div class="modal-kicker">
-        HUMANÓMETRO PAREJAS
-      </div>
-
-      <h2 id="finalTitle">
-        Tu lectura del vínculo
-      </h2>
-
-      <div id="finalResult"></div>
-
-    </section>
-
-  </div>
-
-
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
