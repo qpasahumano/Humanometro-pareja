@@ -10,65 +10,87 @@
 
 <body>
 
-  <main class="app" aria-label="Humanómetro Parejas">
+  <main class="app">
 
     <section class="interface">
 
-      <img
-        class="interface-image"
-        src="fondo_constelaciones.png"
-        alt="Humanómetro Parejas"
-        draggable="false"
-      >
-
-      <div
-        class="official-icon-slot"
-        aria-hidden="true">
+      <div class="title">
+        <div class="title-main">Humanómetro</div>
+        <div class="title-sub">PAREJAS</div>
       </div>
 
-      <svg
-        class="wheel-layer"
-        viewBox="0 0 1024 1536"
-        preserveAspectRatio="none"
-        aria-hidden="true">
-
-        <g id="segmentHits"></g>
-
-      </svg>
-
-      <div
-        id="segmentColors"
-        class="segment-colors"
-        aria-hidden="true">
+      <div class="subtitle">
+        Lectura de integración humana en el tiempo
       </div>
 
-      <button
-        id="enableHeart"
-        class="hotspot heart-hotspot"
-        type="button"
-        aria-label="Habilitar corazón">
-      </button>
+      <div class="wheel-container">
 
-      <button
-        id="paymentMercado"
-        class="hotspot payment-hotspot payment-mercado"
-        type="button"
-        aria-label="Mercado Pago">
-      </button>
+        <div class="wheel-glow"></div>
 
-      <button
-        id="paymentPaypal"
-        class="hotspot payment-hotspot payment-paypal"
-        type="button"
-        aria-label="PayPal">
-      </button>
+        <svg
+          class="wheel-layer"
+          viewBox="0 0 1024 1536"
+          preserveAspectRatio="none"
+          aria-label="Humanómetro Parejas">
 
-      <button
-        id="paymentPayoneer"
-        class="hotspot payment-hotspot payment-payoneer"
-        type="button"
-        aria-label="Payoneer">
-      </button>
+          <g id="segmentColors"></g>
+          <g id="segmentHits"></g>
+
+        </svg>
+
+        <div class="wheel-center">
+
+          <div class="heart-symbol" id="heartSymbol">♥</div>
+
+          <button
+            id="enableHeart"
+            class="heart-button"
+            type="button">
+            HABILITAR CORAZÓN
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="segment-labels">
+
+        <span class="label label-1">Trato</span>
+        <span class="label label-2">Comunicación</span>
+        <span class="label label-3">Conexión</span>
+        <span class="label label-4">Cuidado</span>
+        <span class="label label-5">Respeto</span>
+        <span class="label label-6">Aporte</span>
+        <span class="label label-7">Conflictos</span>
+        <span class="label label-8">Celos</span>
+        <span class="label label-9">Crisis</span>
+
+      </div>
+
+      <div class="payments">
+
+        <button
+          id="paymentMercado"
+          class="payment-button"
+          type="button">
+          Mercado Pago
+        </button>
+
+        <button
+          id="paymentPaypal"
+          class="payment-button"
+          type="button">
+          PayPal
+        </button>
+
+        <button
+          id="paymentPayoneer"
+          class="payment-button"
+          type="button">
+          Payoneer
+        </button>
+
+      </div>
 
       <div
         id="questionModal"
