@@ -305,19 +305,35 @@ button {
 
 /* =========================================================
    SEGMENTOS
+   REFERENCIA VISUAL: BLOQUE 3
    ========================================================= */
 
 .segment {
   position: absolute;
-  width: 13.5%;
-  height: 13.5%;
 
-  border: 0;
-  background: transparent;
+  /*
+   * Todos los segmentos utilizan ahora exactamente
+   * la misma estructura visual de bloque/botón.
+   */
+  width: 15%;
+  height: 15%;
+  min-width: 54px;
+  min-height: 54px;
+
+  border: 1px solid rgba(91, 221, 255, .38);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 49, 86, .72),
+      rgba(4, 22, 52, .58)
+    );
+
   color: #f5fbff;
   cursor: pointer;
   z-index: 3;
-  padding: 0;
+  padding: 5px 4px;
 
   display: flex;
   flex-direction: column;
@@ -329,29 +345,41 @@ button {
     opacity .35s ease,
     filter .35s ease,
     transform .35s ease,
-    text-shadow .35s ease;
+    text-shadow .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
 
   text-align: center;
+
+  box-shadow:
+    0 0 7px rgba(48, 205, 255, .18),
+    inset 0 0 9px rgba(72, 220, 255, .06);
+
   transform: translate(-50%, -50%);
 }
 
 .segment::after {
   content: "";
   position: absolute;
-  inset: -4px;
-  border-radius: 50%;
+  inset: 0;
+  border-radius: inherit;
   opacity: .10;
   background:
     radial-gradient(
-      circle,
-      rgba(0,190,255,.08),
-      transparent 68%
+      circle at 50% 45%,
+      rgba(0,190,255,.18),
+      transparent 70%
     );
   z-index: -1;
+  pointer-events: none;
 }
 
 .segment:hover {
   transform: translate(-50%, -50%) scale(1.03);
+  border-color: rgba(103, 231, 255, .72);
+  box-shadow:
+    0 0 10px rgba(48, 211, 255, .32),
+    inset 0 0 10px rgba(72, 220, 255, .08);
 }
 
 .segment.locked {
@@ -368,6 +396,11 @@ button {
 .segment.active {
   opacity: 1;
   filter: brightness(1.2);
+  border-color: rgba(111, 237, 255, .92);
+  box-shadow:
+    0 0 9px rgba(70, 225, 255, .5),
+    inset 0 0 12px rgba(65, 220, 255, .12);
+
   text-shadow:
     0 0 4px #fff,
     0 0 10px #4beaff,
@@ -393,64 +426,63 @@ button {
   font-weight: 900;
 }
 
-.segment.red {
-  filter: drop-shadow(0 0 6px rgba(255,24,123,.62));
-}
-
-.segment.yellow {
-  filter: drop-shadow(0 0 6px rgba(255,224,77,.48));
-}
-
+/*
+ * Los antiguos colores individuales quedan neutralizados
+ * para que los nueve bloques mantengan la misma apariencia.
+ */
+.segment.red,
+.segment.yellow,
 .segment.ice {
-  filter: drop-shadow(0 0 6px rgba(125,234,255,.62));
+  filter: none;
 }
 
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
+   Separadas para evitar que los bloques se pisen.
    ========================================================= */
 
 .segment-1 {
-  left: 30%;
+  left: 27%;
   top: 27%;
 }
 
 .segment-2 {
-  left: 45%;
+  left: 50%;
   top: 20%;
 }
 
 .segment-3 {
-  left: 65%;
-  top: 23%;
+  left: 73%;
+  top: 27%;
 }
 
 .segment-4 {
-  left: 80%;
-  top: 45%;
+  left: 82%;
+  top: 50%;
 }
 
 .segment-5 {
-  left: 77%;
-  top: 66%;
+  left: 73%;
+  top: 73%;
 }
 
 .segment-6 {
-  left: 61%;
-  top: 79%;
+  left: 50%;
+  top: 80%;
 }
 
 .segment-7 {
-  left: 39%;
-  top: 79%;
+  left: 27%;
+  top: 73%;
 }
 
 .segment-8 {
-  left: 23%;
-  top: 66%;
+  left: 18%;
+  top: 50%;
 }
 
 .segment-9 {
-  left: 23%;
+  left: 27%;
   top: 50%;
 }
 
@@ -525,62 +557,77 @@ button {
 
 /* =========================================================
    SÍMBOLOS ZODIACALES
+   Todos uniformes y ubicados en zonas aéreas.
    ========================================================= */
 
 .zodiac {
   position: absolute;
-  z-index: 3;
-  color: #ffffff;
+  z-index: 1;
+
+  color: #ffffff !important;
+
   font-size: clamp(11px, 2.2vw, 16px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
   font-weight: 400;
-  opacity: 1;
+
+  opacity: .82;
   pointer-events: none;
 
+  /*
+   * Sin colores individuales.
+   * Sólo blanco + glow celeste muy suave.
+   */
   text-shadow:
-    0 0 1px #ffffff,
-    0 0 3px rgba(255,255,255,.32);
+    0 0 2px rgba(255,255,255,.95),
+    0 0 5px rgba(92,224,255,.48),
+    0 0 9px rgba(48,190,255,.22);
+
+  filter: none !important;
 }
 
+/*
+ * Se mantienen fuera del área ocupada por los bloques
+ * y fuera de las líneas radiales principales.
+ */
 .zodiac-1 {
-  left: -1%;
-  top: 10%;
+  left: 3%;
+  top: 7%;
 }
 
 .zodiac-2 {
-  right: -1%;
-  top: 12%;
+  right: 3%;
+  top: 7%;
 }
 
 .zodiac-3 {
-  right: -1%;
-  top: 51%;
+  right: 2%;
+  top: 43%;
 }
 
 .zodiac-4 {
-  right: 11%;
-  bottom: -1%;
+  right: 7%;
+  bottom: 4%;
 }
 
 .zodiac-5 {
-  left: 45%;
-  bottom: -1%;
+  left: 47%;
+  bottom: 1%;
 }
 
 .zodiac-6 {
-  left: -1%;
-  bottom: 11%;
+  left: 7%;
+  bottom: 4%;
 }
 
 .zodiac-7 {
-  left: -1%;
-  top: 51%;
+  left: 2%;
+  top: 43%;
 }
 
 .zodiac-8 {
-  right: 45%;
-  top: -1%;
+  right: 47%;
+  top: 1%;
 }
 
 /* =========================================================
@@ -1367,8 +1414,12 @@ button {
   }
 
   .segment {
-    width: 13.5%;
-    height: 13.5%;
+    width: 15%;
+    height: 15%;
+    min-width: 50px;
+    min-height: 50px;
+    padding: 4px 3px;
+    border-radius: 14px;
   }
 
   .segment-name {
