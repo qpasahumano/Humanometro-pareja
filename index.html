@@ -14,14 +14,15 @@
 
     <section class="interface">
 
-      <div class="title">
+      <header class="title">
         <div class="title-main">Humanómetro</div>
         <div class="title-sub">PAREJAS</div>
-      </div>
+      </header>
 
       <div class="subtitle">
         Lectura de integración humana en el tiempo
       </div>
+
 
       <div class="wheel-container">
 
@@ -29,8 +30,8 @@
 
         <svg
           class="wheel-layer"
-          viewBox="0 0 1024 1536"
-          preserveAspectRatio="none"
+          viewBox="0 0 1024 1024"
+          preserveAspectRatio="xMidYMid meet"
           aria-label="Humanómetro Parejas">
 
           <g id="segmentColors"></g>
@@ -38,9 +39,71 @@
 
         </svg>
 
+
+        <div class="segment-content">
+
+          <div class="segment-label segment-label-1">
+            <span class="segment-number">1</span>
+            <span class="segment-name">Trato</span>
+          </div>
+
+          <div class="segment-label segment-label-2">
+            <span class="segment-number">2</span>
+            <span class="segment-name">Comunicación</span>
+          </div>
+
+          <div class="segment-label segment-label-3">
+            <span class="segment-number">3</span>
+            <span class="segment-name">Conexión</span>
+          </div>
+
+          <div class="segment-label segment-label-4">
+            <span class="segment-number">4</span>
+            <span class="segment-name">Cuidado</span>
+          </div>
+
+          <div class="segment-label segment-label-5">
+            <span class="segment-number">5</span>
+            <span class="segment-name">Respeto</span>
+          </div>
+
+          <div class="segment-label segment-label-6">
+            <span class="segment-number">6</span>
+            <span class="segment-name">Aporte</span>
+          </div>
+
+          <div class="segment-label segment-label-7">
+            <span class="segment-number">7</span>
+            <span class="segment-name">Conflictos</span>
+          </div>
+
+          <div class="segment-label segment-label-8">
+            <span class="segment-number">8</span>
+            <span class="segment-name">Celos</span>
+          </div>
+
+          <div class="segment-label segment-label-9">
+            <span class="segment-number">9</span>
+            <span class="segment-name">Crisis</span>
+          </div>
+
+        </div>
+
+
         <div class="wheel-center">
 
-          <div class="heart-symbol" id="heartSymbol">♥</div>
+          <div
+            class="heart-symbol"
+            id="heartSymbol"
+            aria-hidden="true">
+            ♥
+          </div>
+
+          <div
+            class="center-letter"
+            aria-hidden="true">
+            H
+          </div>
 
           <button
             id="enableHeart"
@@ -53,19 +116,6 @@
 
       </div>
 
-      <div class="segment-labels">
-
-        <span class="label label-1">Trato</span>
-        <span class="label label-2">Comunicación</span>
-        <span class="label label-3">Conexión</span>
-        <span class="label label-4">Cuidado</span>
-        <span class="label label-5">Respeto</span>
-        <span class="label label-6">Aporte</span>
-        <span class="label label-7">Conflictos</span>
-        <span class="label label-8">Celos</span>
-        <span class="label label-9">Crisis</span>
-
-      </div>
 
       <div class="payments">
 
@@ -91,6 +141,7 @@
         </button>
 
       </div>
+
 
       <div
         id="questionModal"
