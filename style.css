@@ -137,20 +137,13 @@ button {
   z-index: 5;
 }
 
-/* =========================================================
-   LOGO SUPERIOR
-   =========================================================
-   El espacio original se conserva para no mover nada.
-   El logo se integra visualmente mediante screen + halo.
-   ========================================================= */
-
 .logo-parejas {
   display: block;
-  width: 78px;
-  height: 78px;
+  width: clamp(76px, 20vw, 92px);
+  height: clamp(76px, 20vw, 92px);
   object-fit: contain;
   object-position: center;
-  margin: 0 auto -4px;
+  margin: 0 auto -8px;
   padding: 0;
   background: transparent;
   border: 0;
@@ -158,24 +151,16 @@ button {
 
   visibility: visible;
 
-  /*
-    El modo screen hace que las zonas oscuras/negras
-    de la pequeña placa de la imagen se integren con
-    el fondo espacial en lugar de verse como un recuadro.
-  */
   mix-blend-mode: screen;
 
-  /*
-    Halo luminoso alrededor del logo.
-    No altera su posición ni ocupa espacio adicional.
-  */
   filter:
     brightness(1.08)
     contrast(1.05)
-    drop-shadow(0 0 2px rgba(255,255,255,.82))
-    drop-shadow(0 0 5px rgba(76,226,255,.75))
-    drop-shadow(0 0 10px rgba(0,178,255,.58))
-    drop-shadow(0 0 17px rgba(255,55,194,.30));
+    drop-shadow(0 0 2px rgba(255,255,255,.88))
+    drop-shadow(0 0 5px rgba(76,226,255,.78))
+    drop-shadow(0 0 11px rgba(0,178,255,.60))
+    drop-shadow(0 0 18px rgba(255,55,194,.32))
+    drop-shadow(0 0 27px rgba(80,220,255,.18));
 
   opacity: .98;
 }
@@ -335,6 +320,14 @@ button {
 /* =========================================================
    SEGMENTOS
    ========================================================= */
+
+/*
+   IMPORTANTE:
+   Los segmentos son solamente contenido visual.
+   No tienen recuadro, fondo, borde ni cápsula.
+   Cada uno queda centrado dentro de su propia
+   porción de la rueda.
+*/
 
 .segment {
   position: absolute;
@@ -1362,24 +1355,10 @@ button {
   }
 
   .logo-parejas {
-    width: 72px;
-    height: 72px;
+    width: clamp(72px, 21vw, 86px);
+    height: clamp(72px, 21vw, 86px);
     margin-top: 0;
-    margin-bottom: -3px;
-
-    /*
-      Mantiene el mismo espacio que ya tenía reservado
-      el encabezado, pero adapta la presencia visual
-      del logo al teléfono.
-    */
-    mix-blend-mode: screen;
-    filter:
-      brightness(1.08)
-      contrast(1.05)
-      drop-shadow(0 0 2px rgba(255,255,255,.82))
-      drop-shadow(0 0 5px rgba(76,226,255,.72))
-      drop-shadow(0 0 10px rgba(0,178,255,.52))
-      drop-shadow(0 0 15px rgba(255,55,194,.26));
+    margin-bottom: -6px;
   }
 
   .brand-name {
@@ -1519,8 +1498,9 @@ button {
   }
 
   .logo-parejas {
-    width: 72px;
-    height: 72px;
+    width: 82px;
+    height: 82px;
+    margin-bottom: -7px;
   }
 
   .brand-name {
