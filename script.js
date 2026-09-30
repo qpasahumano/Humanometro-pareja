@@ -163,6 +163,7 @@ const resultGeneral = document.getElementById("resultGeneral");
 const segmentResults = document.getElementById("segmentResults");
 const restartButton = document.getElementById("restartButton");
 const segments = [...document.querySelectorAll(".segment")];
+const segmentWheel = document.querySelector(".segment-wheel");
 
 const generalResults = {
   stable: {
@@ -582,6 +583,47 @@ function updateWheel() {
 
     segment.classList.add("locked");
   });
+
+  updateSegmentColorWheel();
+}
+
+function updateSegmentColorWheel() {
+  if (!segmentWheel) {
+    return;
+  }
+
+  const separator = "rgba(2,9,28,.78)";
+  const transparent = "rgba(2,9,28,0)";
+
+  const resultColors = {
+    red: "rgba(255,39,126,.70)",
+    yellow: "rgba(255,225,77,.66)",
+    ice: "rgba(125,234,255,.70)"
+  };
+
+  const colors = state.segmentResults.map(result => {
+    if (!result) {
+      return transparent;
+    }
+
+    return resultColors[result.color] || transparent;
+  });
+
+  const stops = [];
+
+  colors.forEach((color, index) => {
+    const start = index * 40;
+    const end = start + 39.2;
+    const separatorEnd = start + 40;
+
+    stops.push(`${color} ${start}deg ${end}deg`);
+    stops.push(`${separator} ${end}deg ${separatorEnd}deg`);
+  });
+
+  segmentWheel.style.setProperty(
+    "--segment-result-gradient",
+    `conic-gradient(from 300deg, ${stops.join(", ")})`
+  );
 }
 
 function closeQuestionPanel() {
