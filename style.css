@@ -1,94 +1,173 @@
-* { box-sizing: border-box; }
-
-:root {
-  --ice: #8bdcff;
-  --ice-bright: #e8f9ff;
-  --passion: #ff2e67;
-  --yellow: #ffe14d;
-  --distance: #8fdcff;
-  --deep: #020817;
-  --white: #f8fbff;
+* {
+  box-sizing: border-box;
 }
 
-html, body { margin: 0; min-height: 100%; background: #000; }
-body { min-height: 100vh; overflow-x: hidden; font-family: Arial, Helvetica, sans-serif; color: var(--white); }
-body.modal-open { overflow: hidden; }
-
-.app { width: 100%; min-height: 100vh; display: flex; justify-content: center; background: #000; }
-.interface-wrap { position: relative; width: min(100vw, 1024px); line-height: 0; overflow: hidden; }
-.interface-image { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
-
-.wheel-layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.segment-hit { pointer-events: auto; fill: transparent; stroke: transparent; stroke-width: 4; cursor: pointer; outline: none; transition: fill .25s ease, filter .25s ease, stroke .25s ease; }
-.segment-hit.active { fill: rgba(255,255,255,.055); stroke: var(--ice-bright); filter: drop-shadow(0 0 5px var(--ice)) drop-shadow(0 0 15px rgba(126,220,255,.95)); animation: segmentPulse 1.25s ease-in-out infinite; }
-.segment-hit.completed { fill: rgba(255,255,255,.025); }
-.segment-hit.completed.passion { stroke: rgba(255,47,103,.9); filter: drop-shadow(0 0 6px var(--passion)) drop-shadow(0 0 14px rgba(255,47,103,.65)); }
-.segment-hit.completed.intermittent { stroke: rgba(255,225,77,.95); filter: drop-shadow(0 0 6px var(--yellow)) drop-shadow(0 0 14px rgba(255,225,77,.62)); }
-.segment-hit.completed.distance { stroke: rgba(143,220,255,.9); filter: drop-shadow(0 0 6px var(--distance)) drop-shadow(0 0 14px rgba(143,220,255,.62)); }
-.segment-hit:focus-visible { stroke: white; filter: drop-shadow(0 0 8px white); }
-
-@keyframes segmentPulse {
-  0%,100% { opacity: .72; }
-  50% { opacity: 1; }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #02091b;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.hotspot { position: absolute; border: 0; padding: 0; background: transparent; cursor: pointer; }
-.heart-hotspot { left: 15.2%; top: 69.5%; width: 69.7%; height: 6.8%; border-radius: 999px; }
-.heart-hotspot:not(:disabled) { animation: heartPulse 1.35s ease-in-out infinite; }
-.heart-hotspot:focus-visible { outline: 2px solid white; outline-offset: 3px; }
-.heart-hotspot.used { animation: none; cursor: default; }
-
-.payment-hotspot { left: 29%; width: 42%; height: 3.5%; border-radius: 999px; opacity: 0; }
-.payment-mercado { top: 80.2%; }
-.payment-paypal { top: 84.0%; }
-.payment-payoneer { top: 87.8%; }
-
-@keyframes heartPulse {
-  0%,100% { box-shadow: 0 0 0 rgba(126,220,255,0); }
-  50% { box-shadow: 0 0 24px rgba(126,220,255,.16); }
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.guidance { position: fixed; z-index: 30; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); transform: translate(-50%, 18px); width: min(92vw, 620px); padding: 11px 16px; border: 1px solid rgba(139,220,255,.7); border-radius: 999px; background: rgba(1,10,27,.82); color: #fff; text-align: center; font-size: 14px; line-height: 1.25; box-shadow: 0 0 12px rgba(139,220,255,.45), 0 0 28px rgba(139,220,255,.18); backdrop-filter: blur(8px); opacity: 0; transition: opacity .25s ease, transform .25s ease; }
-.guidance.show { opacity: 1; transform: translate(-50%, 0); }
-
-.modal[hidden] { display: none; }
-.modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; }
-.modal-backdrop { position: absolute; inset: 0; background: rgba(0,4,14,.78); backdrop-filter: blur(7px); }
-.modal-card { position: relative; z-index: 1; width: min(100%, 720px); max-height: min(92vh, 900px); overflow: auto; padding: 24px 20px 22px; border: 1px solid rgba(139,220,255,.65); border-radius: 24px; background: radial-gradient(circle at 50% 0%, rgba(25,91,155,.3), transparent 38%), linear-gradient(160deg, rgba(3,19,46,.98), rgba(1,8,22,.98)); box-shadow: 0 0 18px rgba(139,220,255,.45), 0 0 55px rgba(20,109,255,.22); }
-.final-card { max-height: 90vh; }
-.modal-close { position: sticky; float: right; top: 0; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; background: rgba(0,0,0,.35); color: white; font-size: 27px; cursor: pointer; z-index: 2; }
-.modal-kicker { font-size: 11px; letter-spacing: 2.4px; color: var(--ice); text-shadow: 0 0 8px rgba(139,220,255,.75); }
-.modal-card h2 { margin: 6px 48px 4px 0; font-size: clamp(24px, 5vw, 38px); line-height: 1.05; text-shadow: 0 0 9px rgba(255,255,255,.35); }
-.modal-subtitle { margin: 0 0 20px; color: rgba(255,255,255,.78); font-weight: 700; }
-
-.question-item { padding: 18px 0 20px; border-top: 1px solid rgba(139,220,255,.16); }
-.question-item:first-child { border-top: 0; }
-.question-text { margin: 0 0 15px; font-size: clamp(17px, 3.7vw, 21px); line-height: 1.42; color: #f8fbff; }
-.question-text span { color: var(--ice); font-weight: 800; }
-.answers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.answers label { position: relative; }
-.answers input { position: absolute; opacity: 0; pointer-events: none; }
-.answers span { display: block; padding: 12px 8px; border: 1px solid rgba(139,220,255,.55); border-radius: 12px; text-align: center; font-weight: 800; font-size: 13px; color: #fff; background: rgba(6,30,59,.65); cursor: pointer; }
-.answers input:checked + span { border-color: #fff; background: rgba(139,220,255,.18); box-shadow: 0 0 9px rgba(139,220,255,.65), inset 0 0 14px rgba(139,220,255,.12); }
-.continue-button { width: 100%; margin-top: 14px; padding: 15px; border: 1px solid var(--ice-bright); border-radius: 999px; background: transparent; color: white; font-weight: 900; letter-spacing: 1.3px; box-shadow: 0 0 9px rgba(139,220,255,.55), inset 0 0 15px rgba(139,220,255,.08); cursor: pointer; }
-.continue-button:active { transform: scale(.99); }
-
-.result-box, .segments-result { margin-top: 14px; padding: 17px; border: 1px solid rgba(139,220,255,.25); border-radius: 18px; background: rgba(1,12,30,.65); }
-.result-heading { margin-bottom: 10px; font-size: 22px; font-weight: 900; text-shadow: 0 0 8px rgba(139,220,255,.35); }
-.result-box p { margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.9); }
-.result-box p:last-child { margin-bottom: 0; }
-.segments-result h3, .invitation-box h3 { margin: 0 0 12px; font-size: 18px; }
-.result-segment { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.09); line-height: 1.2; }
-.result-segment:first-of-type { border-top: 0; }
-.result-segment div { display: flex; gap: 9px; align-items: center; }
-.result-segment small { color: rgba(255,255,255,.68); }
-.invitation-scroll { max-height: 210px; overflow-y: auto; padding-right: 8px; }
-.invitation-scroll p { font-size: 14px; }
-
-@media (max-width: 560px) {
-  .modal { padding: 9px; }
-  .modal-card { padding: 19px 15px 17px; border-radius: 20px; }
-  .answers { gap: 6px; }
-  .answers span { font-size: 11px; padding: 11px 4px; }
-  .guidance { font-size: 12px; border-radius: 16px; }
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================================
+   APLICACIÓN
+   ========================================================= */
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(20, 91, 190, 0.18), transparent 42%),
+    #02091b;
+}
+
+.interface {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Imagen visual principal.
+   Debe ser la interfaz final subida para Humanómetro Parejas. */
+
+.interface-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* =========================================================
+   CAPAS INTERACTIVAS
+   ========================================================= */
+
+.interaction-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wheel-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* =========================================================
+   SEGMENTOS DEL CORAZÓN
+   ========================================================= */
+
+.segment-hit {
+  position: absolute;
+  z-index: 10;
+  display: block;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  outline: none;
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease,
+    transform 0.25s ease;
+}
+
+/*
+   Los hotspots se colocan sobre los nueve sectores
+   de la rueda de la interfaz final.
+
+   Orden:
+   1 Trato
+   2 Comunicación
+   3 Conexión
+   4 Cuidado
+   5 Respeto
+   6 Aporte
+   7 Conflictos
+   8 Celos
+   9 Crisis
+*/
+
+.segment-hit:nth-child(1) {
+  left: 21%;
+  top: 27%;
+  width: 28%;
+  height: 25%;
+  clip-path: polygon(
+    0% 48%,
+    31% 0%,
+    73% 0%,
+    100% 100%,
+    42% 100%
+  );
+}
+
+.segment-hit:nth-child(2) {
+  left: 42%;
+  top: 24%;
+  width: 22%;
+  height: 27%;
+  clip-path: polygon(
+    15% 0%,
+    83% 0%,
+    100% 100%,
+    0% 100%
+  );
+}
+
+.segment-hit:nth-child(3) {
+  left: 57%;
+  top: 27%;
+  width: 28%;
+  height: 25%;
+  clip-path: polygon(
+    27% 0%,
+    72% 0%,
+    100% 48%,
+    58% 100%,
+    0% 100%
+  );
+}
+
+.segment-hit:nth-child(4) {
+  left: 67%;
+  top: 43%;
+  width: 22%;
+  height: 25%;
+  clip-path: polygon(
+    31% 0%,
+    100% 30%,
+    
