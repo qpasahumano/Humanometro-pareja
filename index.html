@@ -1,3 +1,4 @@
+"closeQuestion"
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,8 +25,8 @@
     <header class="brand-header">
 
       <img
-        src="logo_humanometro_parejas.png"
-        alt="Humanómetro Parejas"
+        src="logo_humanometro_parejas_transparente.png"
+        alt="Humanómetro"
         class="logo-parejas"
       >
 
@@ -156,14 +157,16 @@
           </button>
 
           <div class="heart-core" id="heartCore">
-            <div class="heart-shape">
-              <div class="hm-symbol">
-                <span class="h-letter">H</span>
-                <span class="exclamation">!</span>
-                <span class="level-bars">
-                  <i></i><i></i><i></i><i></i><i></i>
-                </span>
-              </div>
+            <svg class="heart-led" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M50 88 C44 82 10 61 10 34 C10 14 34 7 50 27 C66 7 90 14 90 34 C90 61 56 82 50 88 Z"></path>
+            </svg>
+
+            <div class="hm-symbol">
+              <span class="h-letter">H</span>
+              <span class="thermometer" aria-hidden="true"></span>
+              <span class="level-bars">
+                <i></i><i></i><i></i><i></i><i></i>
+              </span>
             </div>
           </div>
 
@@ -248,7 +251,13 @@
 
       <div class="results-inner">
 
-        <div class="results-symbol">H!</div>
+        <div class="results-symbol">
+          <span class="h-letter results-h-letter">H</span>
+          <span class="thermometer results-thermometer" aria-hidden="true"></span>
+          <span class="level-bars results-level-bars">
+            <i></i><i></i><i></i><i></i><i></i>
+          </span>
+        </div>
 
         <div class="results-kicker">
           LECTURA DE TU VÍNCULO
@@ -328,4 +337,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+          </html>
