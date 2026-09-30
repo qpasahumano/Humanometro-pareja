@@ -142,6 +142,10 @@ button {
   height: 92px;
   object-fit: contain;
   margin: 0 auto -2px;
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  z-index: 5;
   filter:
     drop-shadow(0 0 5px rgba(255,255,255,.85))
     drop-shadow(0 0 13px rgba(58,220,255,.75));
@@ -253,6 +257,44 @@ button {
   position: absolute;
   inset: 4%;
   border-radius: 50%;
+  pointer-events: none;
+}
+
+/* =========================================================
+   9 DIVISIONES RADIALES IGUALES
+   ========================================================= */
+
+.segment-wheel::before {
+  content: "";
+  position: absolute;
+  inset: 1.5%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    repeating-conic-gradient(
+      from -110deg,
+      transparent 0deg 39.25deg,
+      rgba(83, 228, 255, .82) 39.25deg 40deg
+    );
+  filter:
+    drop-shadow(0 0 3px rgba(255,255,255,.75))
+    drop-shadow(0 0 7px rgba(39,215,255,.85))
+    drop-shadow(0 0 14px rgba(0,157,255,.55));
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 27%,
+      #000 27.4% 96%,
+      transparent 96.5%
+    );
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 27%,
+      #000 27.4% 96%,
+      transparent 96.5%
+    );
 }
 
 /* =========================================================
@@ -261,11 +303,11 @@ button {
 
 .segment {
   position: absolute;
-  width: 27%;
-  height: 27%;
+  width: 25%;
+  height: 25%;
   border: 0;
   background: transparent;
-  color: #f5fbff;
+  color: #f8fcff;
   cursor: pointer;
   z-index: 3;
   padding: 2px;
@@ -273,12 +315,19 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0;
   transition:
     opacity .35s ease,
     filter .35s ease,
     transform .35s ease,
     text-shadow .35s ease;
   text-align: center;
+  transform: translate(-50%, -50%);
+  text-shadow:
+    0 0 4px #fff,
+    0 0 9px #55eaff,
+    0 0 18px rgba(0,174,255,.9);
+  pointer-events: auto;
 }
 
 .segment::after {
@@ -286,7 +335,7 @@ button {
   position: absolute;
   inset: -10px;
   border-radius: 50%;
-  opacity: .38;
+  opacity: .28;
   background:
     radial-gradient(
       circle,
@@ -297,7 +346,7 @@ button {
 }
 
 .segment:hover {
-  transform: scale(1.04);
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 .segment.locked {
@@ -313,7 +362,7 @@ button {
 
 .segment.active {
   opacity: 1;
-  filter: brightness(1.35);
+  filter: brightness(1.2);
   text-shadow:
     0 0 7px #fff,
     0 0 16px #4beaff,
@@ -322,6 +371,13 @@ button {
 
 .segment.completed {
   opacity: 1;
+}
+
+/* TODOS LOS SEGMENTOS COMPARTEN EL MISMO TRATAMIENTO */
+.segment.red,
+.segment.yellow,
+.segment.ice {
+  filter: none;
 }
 
 .segment.completed .segment-state::after {
@@ -339,24 +395,17 @@ button {
   font-weight: 900;
 }
 
-.segment.red {
-  filter: drop-shadow(0 0 10px #ff187b);
-}
-
-.segment.yellow {
-  filter: drop-shadow(0 0 10px #ffe04d);
-}
-
-.segment.ice {
-  filter: drop-shadow(0 0 10px #7deaff);
-}
-
 .segment-number {
   font-size: clamp(20px, 4.5vw, 31px);
   font-weight: 800;
   line-height: 1;
   width: 100%;
   text-align: center;
+  color: #f8fcff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 9px #55eaff,
+    0 0 18px rgba(0,174,255,.9);
 }
 
 .segment-name {
@@ -366,66 +415,73 @@ button {
   line-height: 1.05;
   width: 100%;
   text-align: center;
+  color: #f8fcff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 9px #55eaff,
+    0 0 18px rgba(0,174,255,.9);
 }
 
 .segment-icon {
   margin-top: 5px;
   font-size: clamp(23px, 5vw, 36px);
   line-height: 1;
-  color: #62eaff;
+  color: #f8fcff;
   text-shadow:
     0 0 4px #fff,
-    0 0 10px #32ddff,
-    0 0 21px rgba(0,174,255,.95);
+    0 0 9px #55eaff,
+    0 0 18px rgba(0,174,255,.9);
 }
 
 /* =========================================================
-   POSICIONES EXACTAS DE LAS 9 PORCIONES
+   POSICIONES EXACTAS — 9 PUNTOS EQUIDISTANTES
+   =========================================================
+   Los centros están separados exactamente 40°.
    ========================================================= */
 
 .segment-1 {
-  left: 6%;
-  top: 18%;
+  left: 50%;
+  top: 11%;
 }
 
 .segment-2 {
-  left: 36.5%;
-  top: 2%;
+  left: 75.1%;
+  top: 20.1%;
 }
 
 .segment-3 {
-  right: 5%;
-  top: 18%;
+  left: 88.4%;
+  top: 43.2%;
 }
 
 .segment-4 {
-  right: 0;
-  top: 45%;
+  left: 83.8%;
+  top: 69.5%;
 }
 
 .segment-5 {
-  right: 7%;
-  bottom: 14%;
+  left: 63.3%;
+  top: 86.6%;
 }
 
 .segment-6 {
-  right: 28%;
-  bottom: 0;
+  left: 36.7%;
+  top: 86.6%;
 }
 
 .segment-7 {
-  left: 36%;
-  bottom: 0;
+  left: 16.2%;
+  top: 69.5%;
 }
 
 .segment-8 {
-  left: 7%;
-  bottom: 14%;
+  left: 11.6%;
+  top: 43.2%;
 }
 
 .segment-9 {
-  left: 0;
-  top: 45%;
+  left: 24.9%;
+  top: 20.1%;
 }
 
 /* =========================================================
@@ -435,59 +491,60 @@ button {
 .zodiac {
   position: absolute;
   z-index: 2;
-  color: #4bdfff;
+  color: rgba(248,252,255,.52);
   font-size: clamp(21px, 4vw, 29px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
-  opacity: .96;
+  opacity: .78;
+  pointer-events: none;
   text-shadow:
-    0 0 3px #fff,
-    0 0 8px #39dfff,
-    0 0 17px #08bfff,
-    0 0 28px rgba(0,174,255,.85);
+    0 0 3px rgba(255,255,255,.95),
+    0 0 8px rgba(255,255,255,.75),
+    0 0 17px rgba(90,220,255,.72),
+    0 0 28px rgba(0,174,255,.5);
 }
 
-/* posiciones según la composición circular deseada */
+/* Distribuidos por fuera de la rueda */
 
 .zodiac-1 {
-  left: 9%;
-  top: 29%;
+  left: 7%;
+  top: 5%;
 }
 
 .zodiac-2 {
-  right: 9%;
-  top: 28%;
+  right: 7%;
+  top: 6%;
 }
 
 .zodiac-3 {
-  right: 4%;
-  bottom: 35%;
+  right: -1%;
+  top: 35%;
 }
 
 .zodiac-4 {
-  left: 50%;
-  bottom: 1%;
-  transform: translateX(-50%);
+  right: 5%;
+  bottom: 5%;
 }
 
 .zodiac-5 {
-  left: 4%;
-  bottom: 31%;
+  left: 47%;
+  bottom: -1%;
+  transform: translateX(-50%);
 }
 
 .zodiac-6 {
-  left: 6%;
-  top: 50%;
+  left: 5%;
+  bottom: 7%;
 }
 
 .zodiac-7 {
-  right: 8%;
-  top: 54%;
+  left: -1%;
+  top: 35%;
 }
 
 .zodiac-8 {
-  left: 46%;
-  top: 1%;
+  left: 45%;
+  top: -1%;
 }
 
 /* =========================================================
@@ -513,20 +570,19 @@ button {
   transform: rotate(-45deg);
   background:
     radial-gradient(
-      circle at 35% 25%,
-      #ff547f,
-      #ff005e 45%,
-      #c80059 75%,
-      #31002e
+      circle at 50% 40%,
+      rgba(255,37,132,.18),
+      rgba(10,15,44,.88) 68%,
+      rgba(3,8,25,.96)
     );
   border-radius: 20% 0 20% 20%;
-  border: 3px solid #ff6ca8;
+  border: 3px solid #ff318d;
   box-shadow:
-    0 0 8px #fff,
-    0 0 18px #ff318d,
-    0 0 34px #ff005d,
-    0 0 65px rgba(255, 0, 115, .72),
-    inset 0 0 20px rgba(255,255,255,.4);
+    0 0 5px #fff,
+    0 0 13px #ff318d,
+    0 0 27px #ff005d,
+    0 0 48px rgba(255, 0, 115, .72),
+    inset 0 0 18px rgba(255,45,144,.24);
 }
 
 .heart-shape::before,
@@ -535,7 +591,13 @@ button {
   position: absolute;
   width: 58%;
   aspect-ratio: 1;
-  background: inherit;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255,37,132,.16),
+      rgba(10,15,44,.9) 68%,
+      rgba(3,8,25,.96)
+    );
   border: inherit;
   border-radius: 50%;
 }
@@ -564,11 +626,13 @@ button {
   font-family: Georgia, serif;
   font-size: clamp(40px, 9vw, 72px);
   font-weight: 700;
-  color: #43eaff;
+  color: #ecfcff;
+  -webkit-text-stroke: 1px #45eaff;
   text-shadow:
-    0 0 5px #fff,
-    0 0 13px #00cfff,
-    0 0 25px #009cff;
+    0 0 4px #fff,
+    0 0 9px #43eaff,
+    0 0 18px #00cfff,
+    0 0 30px rgba(0,159,255,.95);
 }
 
 .exclamation {
@@ -1225,8 +1289,8 @@ button {
   }
 
   .segment {
-    width: 27%;
-    height: 27%;
+    width: 25%;
+    height: 25%;
   }
 
   .segment-name {
