@@ -1,131 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
-
+  <meta name="theme-color" content="#020817">
   <meta
-    name="theme-color"
-    content="#020817"
+    name="description"
+    content="Humanómetro Parejas — Lectura de integración humana en el tiempo."
   >
-
   <title>Humanómetro Parejas</title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <main class="app">
 
-    <section
-      class="interface"
-      aria-label="Humanómetro Parejas"
-    >
+    <section class="interface">
 
-      <!--
-        IMAGEN VISUAL BASE.
-        Debe estar en la misma carpeta que este archivo.
-      -->
-      <img
-        class="interface-image"
-        src="interfaz-parejas-referencia.png"
-        alt="Humanómetro Parejas"
-        draggable="false"
-      >
+      <!-- ENCABEZADO -->
 
-      <!--
-        CAPA INTERACTIVA DE LA RUEDA.
-        La geometría coincide con la rueda de la imagen.
-      -->
-      <svg
-        class="interaction-layer"
-        viewBox="0 0 1024 1536"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
+      <header class="header">
 
-        <defs>
+        <div class="brand-mark" aria-label="Humanómetro">
+          <span class="brand-h">H</span>
+          <span class="brand-mark-line">!</span>
+        </div>
 
-          <filter
-            id="segmentGlow"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
+        <div class="title-main">
+          Humanómetro
+        </div>
+
+        <div class="title-sub">
+          PAREJAS<span class="title-heart">♥</span>
+        </div>
+
+        <div class="subtitle">
+          Una mirada a cómo estás viviendo<br>
+          hoy tu vínculo.
+        </div>
+
+      </header>
+
+
+      <!-- RUEDA -->
+
+      <section class="wheel-section">
+
+        <div class="wheel-aura"></div>
+
+        <svg
+          id="wheel"
+          class="wheel"
+          viewBox="0 0 1000 1000"
+          role="img"
+          aria-label="Humanómetro Parejas">
+
+          <defs>
+
+            <filter id="glowBlue" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur
+                stdDeviation="7"
+                result="blur"
+              />
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+
+            <filter id="glowWhite" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur
+                stdDeviation="4"
+                result="blur"
+              />
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+
+            <filter id="glowPink" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur
+                stdDeviation="8"
+                result="blur"
+              />
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+
+            <radialGradient id="centerGradient">
+              <stop
+                offset="0%"
+                stop-color="#081d42"
+              />
+              <stop
+                offset="70%"
+                stop-color="#030b20"
+              />
+              <stop
+                offset="100%"
+                stop-color="#010611"
+              />
+            </radialGradient>
+
+            <linearGradient
+              id="heartGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stop-color="#ff006f"
+              />
+              <stop
+                offset="45%"
+                stop-color="#ff1595"
+              />
+              <stop
+                offset="100%"
+                stop-color="#7a00ff"
+              />
+            </linearGradient>
+
+          </defs>
+
+          <g id="wheelStars"></g>
+          <g id="segmentColors"></g>
+          <g id="segmentLines"></g>
+          <g id="segmentContent"></g>
+
+          <circle
+            class="wheel-ring outer"
+            cx="500"
+            cy="500"
+            r="390"
+          />
+
+          <circle
+            class="wheel-ring inner-glow"
+            cx="500"
+            cy="500"
+            r="185"
+          />
+
+          <!-- CORAZÓN CENTRAL -->
+
+          <path
+            id="heartShape"
+            class="heart-shape"
+            d="
+              M500 685
+              C475 662 325 565 325 455
+              C325 378 416 350 466 407
+              C481 424 491 441 500 456
+              C509 441 519 424 534 407
+              C584 350 675 378 675 455
+              C675 565 525 662 500 685 Z
+            "
+          />
+
+          <g class="center-logo">
+
+            <text
+              x="468"
+              y="512"
+              class="center-h"
+            >
+              H
+            </text>
+
+            <text
+              x="530"
+              y="512"
+              class="center-exclamation"
+            >
+              !
+            </text>
+
+          </g>
+
+        </svg>
+
+      </section>
+
+
+      <!-- BOTÓN CORAZÓN -->
+
+      <section class="heart-action">
+
+        <button
+          id="enableHeart"
+          class="heart-button"
+          type="button"
+        >
+
+          <span class="heart-button-symbol">♥</span>
+
+          <span>
+            HABILITAR CORAZÓN
+          </span>
+
+        </button>
+
+      </section>
+
+
+      <!-- MEDIOS DE PAGO -->
+
+      <section class="payment-section">
+
+        <div class="payment-heading">
+
+          <span></span>
+
+          <strong>
+            ELEGÍ TU MEDIO DE PAGO:
+          </strong>
+
+          <span></span>
+
+        </div>
+
+        <div class="payments">
+
+          <button
+            id="paymentMercado"
+            class="payment-button mercado"
+            type="button"
           >
+            <span class="payment-logo mercado-logo">
+              MP
+            </span>
 
-            <feGaussianBlur
-              stdDeviation="7"
-              result="blur"
-            />
+            <span class="payment-name">
+              Mercado Pago
+            </span>
 
-            <feMerge>
-              <feMergeNode in="blur"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-
-          </filter>
-
-        </defs>
-
-        <g id="segmentColors"></g>
-
-        <g id="segmentHits"></g>
-
-      </svg>
+            <span class="payment-arrow">
+              ›
+            </span>
+          </button>
 
 
-      <!--
-        BOTÓN REAL SOBRE HABILITAR CORAZÓN.
-        La imagen ya contiene el diseño visual.
-      -->
-      <button
-        id="enableHeart"
-        class="hotspot heart-hotspot"
-        type="button"
-        aria-label="Habilitar corazón"
-      ></button>
+          <button
+            id="paymentPaypal"
+            class="payment-button paypal"
+            type="button"
+          >
+            <span class="payment-logo paypal-logo">
+              P
+            </span>
+
+            <span class="payment-name">
+              PayPal
+            </span>
+
+            <span class="payment-arrow">
+              ›
+            </span>
+          </button>
 
 
-      <!--
-        MEDIOS DE PAGO.
-        Los botones visuales pertenecen a la imagen.
-      -->
+          <button
+            id="paymentPayoneer"
+            class="payment-button payoneer"
+            type="button"
+          >
+            <span class="payment-logo payoneer-logo">
+              ◯
+            </span>
 
-      <button
-        id="paymentMercado"
-        class="hotspot payment-hotspot payment-mercado"
-        type="button"
-        aria-label="Mercado Pago"
-      ></button>
+            <span class="payment-name">
+              Payoneer
+            </span>
 
-      <button
-        id="paymentPaypal"
-        class="hotspot payment-hotspot payment-paypal"
-        type="button"
-        aria-label="PayPal"
-      ></button>
+            <span class="payment-arrow">
+              ›
+            </span>
+          </button>
 
-      <button
-        id="paymentPayoneer"
-        class="hotspot payment-hotspot payment-payoneer"
-        type="button"
-        aria-label="Payoneer"
-      ></button>
+        </div>
+
+      </section>
 
 
-      <!--
-        MODAL DE PREGUNTAS
-      -->
+      <!-- MODAL -->
 
       <div
         id="questionModal"
@@ -157,55 +324,11 @@
 
       </div>
 
-
-      <!--
-        MODAL DE RESULTADO FINAL
-      -->
-
-      <div
-        id="finalModal"
-        class="modal"
-        hidden
-      >
-
-        <div class="modal-backdrop"></div>
-
-        <section
-          class="modal-card final-card"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="finalTitle"
-        >
-
-          <button
-            id="closeFinal"
-            class="modal-close"
-            type="button"
-            aria-label="Cerrar"
-          >
-            ×
-          </button>
-
-          <h2
-            id="finalTitle"
-            class="modal-title"
-          >
-            Lectura de tu vínculo
-          </h2>
-
-          <div id="finalResult"></div>
-
-        </section>
-
-      </div>
-
     </section>
 
   </main>
 
-
   <script src="script.js"></script>
 
 </body>
-
 </html>
