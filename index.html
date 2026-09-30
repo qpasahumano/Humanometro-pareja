@@ -10,119 +10,158 @@
 
 <body>
 
-  <main class="app">
+  <main class="app" aria-label="Humanómetro Parejas">
 
-    <section class="interface">
+    <div class="interface-wrap">
 
-      <div class="title">
-        <div class="title-main">Humanómetro</div>
-        <div class="title-sub">PAREJAS</div>
-      </div>
+      <!-- IMAGEN BASE DE LA INTERFAZ -->
+      <img
+        class="interface-image"
+        src="interfaz-parejas-referencia.png"
+        alt="Humanómetro Parejas"
+        draggable="false"
+      >
 
-      <div class="subtitle">
-        Lectura de integración humana en el tiempo
-      </div>
-
-      <div class="wheel-container">
-
-        <div class="wheel-glow"></div>
-
-        <svg
-          class="wheel-layer"
-          viewBox="0 0 1024 1536"
-          preserveAspectRatio="none"
-          aria-label="Humanómetro Parejas">
-
-          <g id="segmentColors"></g>
-          <g id="segmentHits"></g>
-
-        </svg>
-
-        <div class="wheel-center">
-
-          <div class="heart-symbol" id="heartSymbol">♥</div>
-
-          <button
-            id="enableHeart"
-            class="heart-button"
-            type="button">
-            HABILITAR CORAZÓN
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="segment-labels">
-
-        <span class="label label-1">Trato</span>
-        <span class="label label-2">Comunicación</span>
-        <span class="label label-3">Conexión</span>
-        <span class="label label-4">Cuidado</span>
-        <span class="label label-5">Respeto</span>
-        <span class="label label-6">Aporte</span>
-        <span class="label label-7">Conflictos</span>
-        <span class="label label-8">Celos</span>
-        <span class="label label-9">Crisis</span>
-
-      </div>
-
-      <div class="payments">
-
-        <button
-          id="paymentMercado"
-          class="payment-button"
-          type="button">
-          Mercado Pago
-        </button>
-
-        <button
-          id="paymentPaypal"
-          class="payment-button"
-          type="button">
-          PayPal
-        </button>
-
-        <button
-          id="paymentPayoneer"
-          class="payment-button"
-          type="button">
-          Payoneer
-        </button>
-
-      </div>
-
+      <!-- INDICACIÓN PROGRESIVA -->
       <div
-        id="questionModal"
-        class="modal"
+        id="guidance"
+        class="guidance"
+        aria-live="polite"
         hidden>
-
-        <div class="modal-backdrop"></div>
-
-        <section
-          class="modal-card"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modalTitle">
-
-          <button
-            id="closeModal"
-            class="modal-close"
-            type="button"
-            aria-label="Cerrar">
-            ×
-          </button>
-
-          <div id="modalContent"></div>
-
-        </section>
-
       </div>
 
-    </section>
+      <!-- CAPA INTERACTIVA DE LOS 9 SEGMENTOS -->
+      <svg
+        id="wheelLayer"
+        class="wheel-layer"
+        viewBox="0 0 1024 1536"
+        preserveAspectRatio="none"
+        aria-hidden="true">
+      </svg>
+
+      <!-- CORAZÓN / INICIO -->
+      <button
+        id="enableHeart"
+        class="hotspot heart-hotspot"
+        type="button"
+        aria-label="Habilitar corazón">
+      </button>
+
+      <!-- MEDIOS DE PAGO -->
+      <button
+        class="hotspot payment-hotspot payment-mercado"
+        type="button"
+        aria-label="Mercado Pago"
+        disabled>
+      </button>
+
+      <button
+        class="hotspot payment-hotspot payment-paypal"
+        type="button"
+        aria-label="PayPal"
+        disabled>
+      </button>
+
+      <button
+        class="hotspot payment-hotspot payment-payoneer"
+        type="button"
+        aria-label="Payoneer"
+        disabled>
+      </button>
+
+    </div>
 
   </main>
 
+
+  <!-- =========================
+       MODAL DE PREGUNTAS
+       ========================= -->
+
+  <div id="questionModal" class="modal" hidden>
+
+    <div class="modal-backdrop"></div>
+
+    <section
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle">
+
+      <button
+        id="closeModal"
+        class="modal-close"
+        type="button"
+        aria-label="Cerrar">
+        ×
+      </button>
+
+      <div class="modal-kicker">
+        HUMANÓMETRO PAREJAS
+      </div>
+
+      <h2 id="modalTitle"></h2>
+
+      <p
+        id="modalSubtitle"
+        class="modal-subtitle">
+      </p>
+
+      <form id="questionForm">
+
+        <div id="questions"></div>
+
+        <button
+          class="continue-button"
+          type="submit">
+          COMPLETAR BLOQUE
+        </button>
+
+      </form>
+
+    </section>
+
+  </div>
+
+
+  <!-- =========================
+       MODAL RESULTADO FINAL
+       ========================= -->
+
+  <div id="finalModal" class="modal" hidden>
+
+    <div class="modal-backdrop"></div>
+
+    <section
+      class="modal-card final-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="finalTitle">
+
+      <button
+        id="closeFinal"
+        class="modal-close"
+        type="button"
+        aria-label="Cerrar">
+        ×
+      </button>
+
+      <div class="modal-kicker">
+        HUMANÓMETRO PAREJAS
+      </div>
+
+      <h2 id="finalTitle">
+        Tu lectura del vínculo
+      </h2>
+
+      <div id="finalResult"></div>
+
+    </section>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
 
 </body>
