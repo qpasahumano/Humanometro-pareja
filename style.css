@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+html {
+  background: #020817;
+}
+
 body {
   min-height: 100vh;
   min-height: 100dvh;
@@ -20,7 +24,7 @@ body {
     #020817
     url("fondo_constelaciones.png")
     center top / cover
-    no-repeat fixed;
+    no-repeat;
 }
 
 button {
@@ -40,63 +44,95 @@ button {
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  padding: 28px 16px 36px;
+  padding: 24px 12px 24px;
   background: transparent;
 }
 
+/* =========================
+   TÍTULO
+   ========================= */
+
 .title {
   position: relative;
-  z-index: 20;
+  z-index: 30;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 4px;
   text-shadow:
-    0 0 12px rgba(100, 210, 255, .8),
-    0 0 28px rgba(160, 80, 255, .45);
+    0 0 6px rgba(100, 220, 255, .9),
+    0 0 15px rgba(100, 210, 255, .75),
+    0 0 30px rgba(80, 170, 255, .45);
 }
 
 .title-main {
   font-size: clamp(30px, 8vw, 54px);
   font-weight: 700;
   letter-spacing: 2px;
+  color: rgba(235, 250, 255, .98);
 }
 
 .title-sub {
-  margin-top: 3px;
+  margin-top: 2px;
   font-size: clamp(15px, 4vw, 23px);
+  font-weight: 600;
   letter-spacing: 7px;
-  color: #d8c9ff;
+  color: rgba(255, 190, 245, .96);
+  text-shadow:
+    0 0 7px rgba(255, 80, 205, .95),
+    0 0 18px rgba(255, 70, 190, .7),
+    0 0 32px rgba(180, 80, 255, .45);
 }
 
 .subtitle {
   position: relative;
-  z-index: 20;
+  z-index: 30;
   max-width: 500px;
-  margin: 9px auto 0;
+  margin: 8px auto 0;
   text-align: center;
-  font-size: clamp(11px, 3vw, 16px);
-  letter-spacing: 1px;
-  color: rgba(220, 240, 255, .82);
+  font-size: clamp(10px, 3vw, 16px);
+  letter-spacing: .8px;
+  color: rgba(225, 245, 255, .88);
+  text-shadow:
+    0 0 7px rgba(100, 210, 255, .55);
 }
+
+/* =========================
+   RUEDA
+   ========================= */
 
 .wheel-container {
   position: relative;
   width: min(94vw, 620px);
-  aspect-ratio: 1 / 1;
-  margin: 32px auto 0;
+
+  /*
+    La proporción del SVG es 1024 x 1536.
+    Mantener esta proporción evita que la rueda
+    se convierta en óvalo.
+  */
+  aspect-ratio: 1024 / 1536;
+
+  margin: 20px auto 0;
 }
 
 .wheel-glow {
   position: absolute;
-  inset: 8%;
+  left: 7%;
+  right: 7%;
+  top: 16%;
+  bottom: 16%;
   border-radius: 50%;
+
   background:
     radial-gradient(
       circle,
-      rgba(110, 210, 255, .16) 0%,
-      rgba(100, 80, 255, .10) 45%,
-      transparent 72%
+      rgba(75, 205, 255, .20) 0%,
+      rgba(80, 150, 255, .13) 35%,
+      rgba(100, 80, 255, .08) 58%,
+      transparent 74%
     );
-  filter: blur(16px);
+
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .wheel-layer {
@@ -105,40 +141,73 @@ button {
   width: 100%;
   height: 100%;
   overflow: visible;
+  z-index: 5;
 }
 
+/* =========================
+   DIVISIONES LED
+   ========================= */
+
 .segment-hit {
-  fill: rgba(255, 255, 255, .035);
-  stroke: rgba(180, 225, 255, .42);
-  stroke-width: 3;
+  fill: rgba(70, 190, 255, .035);
+
+  stroke:
+    rgba(105, 220, 255, .78);
+
+  stroke-width: 5;
+
   transition:
     fill .3s ease,
     stroke .3s ease,
     filter .3s ease;
+
+  filter:
+    drop-shadow(0 0 3px rgba(70, 205, 255, .55))
+    drop-shadow(0 0 8px rgba(70, 190, 255, .30));
 }
 
 .segment-hit.locked {
-  fill: rgba(255, 255, 255, .018);
-  stroke: rgba(160, 190, 220, .18);
+  fill: rgba(60, 170, 230, .025);
+
+  stroke:
+    rgba(105, 210, 255, .45);
+
   pointer-events: none;
+
+  filter:
+    drop-shadow(0 0 3px rgba(70, 190, 255, .35));
 }
 
 .segment-hit.ready {
-  fill: rgba(100, 210, 255, .11);
-  stroke: rgba(140, 235, 255, .85);
+  fill: rgba(80, 205, 255, .105);
+
+  stroke:
+    rgba(125, 235, 255, .98);
+
   cursor: pointer;
+
   filter:
-    drop-shadow(0 0 5px rgba(90, 220, 255, .75));
+    drop-shadow(0 0 4px rgba(75, 215, 255, .95))
+    drop-shadow(0 0 12px rgba(70, 190, 255, .65));
 }
 
 .segment-hit.ready:hover {
-  fill: rgba(150, 225, 255, .2);
+  fill: rgba(120, 225, 255, .18);
+
+  filter:
+    drop-shadow(0 0 6px rgba(90, 225, 255, 1))
+    drop-shadow(0 0 16px rgba(70, 200, 255, .75));
 }
+
+/* =========================
+   COLORES DE LOS BLOQUES
+   ========================= */
 
 .segment-colors {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 4;
 }
 
 .segment-color {
@@ -149,317 +218,12 @@ button {
 }
 
 .segment-color.visible {
-  opacity: .86;
+  opacity: .78;
 }
 
 .segment-color.red {
-  background: rgba(255, 45, 95, .82);
+  background: rgba(255, 45, 105, .78);
+
   filter:
-    drop-shadow(0 0 12px rgba(255, 50, 110, .8));
-}
-
-.segment-color.yellow {
-  background: rgba(255, 215, 70, .78);
-  filter:
-    drop-shadow(0 0 12px rgba(255, 220, 80, .75));
-}
-
-.segment-color.ice {
-  background: rgba(105, 220, 255, .72);
-  filter:
-    drop-shadow(0 0 12px rgba(100, 220, 255, .75));
-}
-
-.segment-color.flash {
-  animation: segmentFlash 1.4s ease;
-}
-
-@keyframes segmentFlash {
-  0% {
-    opacity: .25;
-  }
-
-  35% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: .86;
-  }
-}
-
-.wheel-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 29%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  background:
-    radial-gradient(
-      circle,
-      rgba(3, 18, 45, .96),
-      rgba(2, 8, 23, .92)
-    );
-  border: 2px solid rgba(180, 230, 255, .75);
-  box-shadow:
-    0 0 18px rgba(80, 200, 255, .45),
-    inset 0 0 24px rgba(90, 120, 255, .2);
-  z-index: 10;
-}
-
-.heart-symbol {
-  font-size: clamp(32px, 8vw, 54px);
-  line-height: 1;
-  color: rgba(255, 100, 165, .95);
-  text-shadow:
-    0 0 12px rgba(255, 70, 150, .9),
-    0 0 28px rgba(255, 70, 150, .55);
-}
-
-.heart-button {
-  border: 1px solid rgba(160, 225, 255, .75);
-  border-radius: 999px;
-  padding: 7px 12px;
-  color: #ffffff;
-  background: rgba(30, 90, 130, .42);
-  font-size: clamp(8px, 2vw, 12px);
-  letter-spacing: .7px;
-  cursor: pointer;
-  backdrop-filter: blur(5px);
-}
-
-.heart-button:hover {
-  background: rgba(60, 140, 190, .6);
-}
-
-.segment-labels {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(94vw, 620px);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.label {
-  position: absolute;
-  z-index: 30;
-  transform: translate(-50%, -50%);
-  padding: 5px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-  color: rgba(235, 248, 255, .95);
-  font-size: clamp(9px, 2.7vw, 14px);
-  letter-spacing: .4px;
-  background: rgba(2, 10, 28, .48);
-  border: 1px solid rgba(170, 220, 255, .3);
-  text-shadow: 0 0 8px rgba(100, 220, 255, .8);
-  backdrop-filter: blur(4px);
-}
-
-.label-1 {
-  left: 31%;
-  top: 18%;
-}
-
-.label-2 {
-  left: 63%;
-  top: 17%;
-}
-
-.label-3 {
-  left: 83%;
-  top: 39%;
-}
-
-.label-4 {
-  left: 78%;
-  top: 69%;
-}
-
-.label-5 {
-  left: 51%;
-  top: 85%;
-}
-
-.label-6 {
-  left: 22%;
-  top: 78%;
-}
-
-.label-7 {
-  left: 10%;
-  top: 54%;
-}
-
-.label-8 {
-  left: 17%;
-  top: 30%;
-}
-
-.label-9 {
-  left: 50%;
-  top: 8%;
-}
-
-.payments {
-  position: relative;
-  z-index: 30;
-  display: flex;
-  justify-content: center;
-  gap: 9px;
-  flex-wrap: wrap;
-  margin: 8px auto 0;
-}
-
-.payment-button {
-  min-width: 92px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(180, 220, 255, .38);
-  color: rgba(235, 248, 255, .9);
-  background: rgba(3, 15, 36, .55);
-  font-size: 11px;
-  cursor: pointer;
-  backdrop-filter: blur(5px);
-}
-
-.payment-button:hover {
-  background: rgba(30, 70, 110, .7);
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 5, 18, .76);
-  backdrop-filter: blur(8px);
-}
-
-.modal-card {
-  position: relative;
-  width: min(92vw, 620px);
-  max-height: 88vh;
-  overflow-y: auto;
-  margin: 6vh auto 0;
-  padding: 24px 20px;
-  border-radius: 22px;
-  color: #ffffff;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 31, 65, .97),
-      rgba(18, 7, 48, .97)
-    );
-  border: 1px solid rgba(180, 225, 255, .45);
-  box-shadow:
-    0 0 35px rgba(70, 160, 255, .25);
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border: 0;
-  background: transparent;
-  color: #ffffff;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.modal-title {
-  margin: 0 35px 12px 0;
-  font-size: 24px;
-}
-
-.modal-intro {
-  color: rgba(220, 240, 255, .82);
-  line-height: 1.45;
-}
-
-.question {
-  margin-top: 20px;
-}
-
-.question p {
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.answers {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-}
-
-.answer-button,
-.complete-button {
-  border: 1px solid rgba(180, 225, 255, .45);
-  border-radius: 999px;
-  padding: 9px 15px;
-  color: #ffffff;
-  background: rgba(30, 70, 110, .42);
-  cursor: pointer;
-}
-
-.answer-button.selected {
-  background: rgba(90, 190, 235, .42);
-  border-color: rgba(190, 240, 255, .95);
-  box-shadow: 0 0 12px rgba(100, 220, 255, .35);
-}
-
-.complete-button {
-  width: 100%;
-  margin-top: 25px;
-  padding: 12px;
-  background: rgba(130, 55, 190, .45);
-}
-
-.complete-button:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-@media (max-width: 480px) {
-
-  .interface {
-    padding-top: 20px;
-  }
-
-  .wheel-container {
-    margin-top: 25px;
-  }
-
-  .segment-labels {
-    width: 94vw;
-  }
-
-  .label {
-    font-size: 9px;
-    padding: 4px 6px;
-  }
-
-  .payments {
-    margin-top: 0;
-  }
-
-}
+    drop-shadow(0 0 8px rgba(255, 45, 105, .9))
+    drop-shadow(0 0 20
