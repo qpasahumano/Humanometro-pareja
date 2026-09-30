@@ -24,14 +24,11 @@
 
     <header class="brand-header">
 
-      <div class="logo-device" aria-label="Humanómetro">
-        <div class="logo-device-inner">
-          <span class="mini-h">H</span>
-          <span class="mini-bar bar-1"></span>
-          <span class="mini-bar bar-2"></span>
-          <span class="mini-bar bar-3"></span>
-          <span class="mini-exclamation">!</span>
-        </div>
+      <div class="logo-device official-logo" aria-label="Humanómetro">
+        <img
+          src="logo_humanometro_parejas.png"
+          alt="Humanómetro"
+        >
         <span class="registered registered-top">®</span>
       </div>
 
@@ -59,16 +56,19 @@
       <div class="wheel-shell">
 
         <div class="outer-ring"></div>
-        <div class="inner-ring"></div>
+        <div class="radial-lines" aria-hidden="true">
+          <span class="radial-line line-1"></span>
+          <span class="radial-line line-2"></span>
+          <span class="radial-line line-3"></span>
+          <span class="radial-line line-4"></span>
+          <span class="radial-line line-5"></span>
+          <span class="radial-line line-6"></span>
+          <span class="radial-line line-7"></span>
+          <span class="radial-line line-8"></span>
+          <span class="radial-line line-9"></span>
+        </div>
 
-        <div class="zodiac zodiac-1">♊</div>
-        <div class="zodiac zodiac-2">♋</div>
-        <div class="zodiac zodiac-3">♌</div>
-        <div class="zodiac zodiac-4">♍</div>
-        <div class="zodiac zodiac-5">♎</div>
-        <div class="zodiac zodiac-6">♐</div>
-        <div class="zodiac zodiac-7">♑</div>
-        <div class="zodiac zodiac-8">♒</div>
+        <div class="inner-ring"></div>
 
         <div class="segment-wheel" id="segmentWheel">
 
@@ -78,7 +78,7 @@
                   aria-label="Bloque 1 Trato">
             <span class="segment-number">1</span>
             <span class="segment-name">TRATO</span>
-            <span class="segment-icon">♡</span>
+            <span class="segment-icon icon-trato">♡</span>
             <span class="segment-state"></span>
           </button>
 
@@ -88,7 +88,7 @@
                   aria-label="Bloque 2 Comunicación">
             <span class="segment-number">2</span>
             <span class="segment-name">COMUNICACIÓN</span>
-            <span class="segment-icon">◌</span>
+            <span class="segment-icon icon-comunicacion">◌</span>
             <span class="segment-state"></span>
           </button>
 
@@ -98,7 +98,7 @@
                   aria-label="Bloque 3 Conexión">
             <span class="segment-number">3</span>
             <span class="segment-name">CONEXIÓN</span>
-            <span class="segment-icon">♡</span>
+            <span class="segment-icon icon-conexion">♡</span>
             <span class="segment-state"></span>
           </button>
 
@@ -108,7 +108,7 @@
                   aria-label="Bloque 4 Cuidado">
             <span class="segment-number">4</span>
             <span class="segment-name">CUIDADO</span>
-            <span class="segment-icon">♧</span>
+            <span class="segment-icon icon-cuidado">♧</span>
             <span class="segment-state"></span>
           </button>
 
@@ -118,7 +118,7 @@
                   aria-label="Bloque 5 Respeto">
             <span class="segment-number">5</span>
             <span class="segment-name">RESPETO</span>
-            <span class="segment-icon">♧</span>
+            <span class="segment-icon icon-respeto">♧</span>
             <span class="segment-state"></span>
           </button>
 
@@ -128,7 +128,7 @@
                   aria-label="Bloque 6 Aporte">
             <span class="segment-number">6</span>
             <span class="segment-name">APORTE</span>
-            <span class="segment-icon">❧</span>
+            <span class="segment-icon icon-aporte">❧</span>
             <span class="segment-state"></span>
           </button>
 
@@ -138,7 +138,7 @@
                   aria-label="Bloque 7 Conflictos">
             <span class="segment-number">7</span>
             <span class="segment-name">CONFLICTOS</span>
-            <span class="segment-icon">ϟ</span>
+            <span class="segment-icon icon-conflictos">ϟ</span>
             <span class="segment-state"></span>
           </button>
 
@@ -148,7 +148,7 @@
                   aria-label="Bloque 8 Celos">
             <span class="segment-number">8</span>
             <span class="segment-name">CELOS</span>
-            <span class="segment-icon">◉</span>
+            <span class="segment-icon icon-celos">◉</span>
             <span class="segment-state"></span>
           </button>
 
@@ -158,7 +158,7 @@
                   aria-label="Bloque 9 Crisis">
             <span class="segment-number">9</span>
             <span class="segment-name">CRISIS</span>
-            <span class="segment-icon">ϟ</span>
+            <span class="segment-icon icon-crisis">ϟ</span>
             <span class="segment-state"></span>
           </button>
 
@@ -168,7 +168,11 @@
                 <span class="h-letter">H</span>
                 <span class="exclamation">!</span>
                 <span class="level-bars">
-                  <i></i><i></i><i></i><i></i><i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
                 </span>
               </div>
             </div>
@@ -183,6 +187,7 @@
       </button>
 
       <section class="payment-panel" aria-label="Medios de pago">
+
         <div class="payment-title">
           <span></span>
           ELEGÍ TU MEDIO DE PAGO:
@@ -190,6 +195,7 @@
         </div>
 
         <div class="payment-options">
+
           <button type="button" class="payment-option">
             <span class="payment-logo mercado">M</span>
             <strong>mercado pago</strong>
@@ -207,6 +213,7 @@
             <strong>Payoneer</strong>
             <span class="payment-arrow">›</span>
           </button>
+
         </div>
       </section>
 
@@ -228,7 +235,9 @@
         </button>
 
         <div class="question-kicker" id="questionKicker"></div>
+
         <h2 id="questionTitle"></h2>
+
         <p class="question-subtitle" id="questionSubtitle"></p>
 
         <div class="question-progress">
@@ -250,7 +259,9 @@
 
         <div class="results-symbol">H!</div>
 
-        <div class="results-kicker">LECTURA DE TU VÍNCULO</div>
+        <div class="results-kicker">
+          LECTURA DE TU VÍNCULO
+        </div>
 
         <h1 id="resultTitle"></h1>
 
@@ -323,5 +334,6 @@
   </main>
 
   <script src="script.js"></script>
+
 </body>
 </html>
