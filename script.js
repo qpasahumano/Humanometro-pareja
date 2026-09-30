@@ -21,57 +21,57 @@ const segmentDefs = [
 const questions = {
 
   1: [
-    "¿Existe entre ustedes un trato amable y considerado, especialmente cuando alguno necesita comprensión del otro?",
-    "Cuando alguno atraviesa un momento de enojo o malestar, ¿pueden seguir tratándose con respeto?",
-    "Cuando alguno necesita algo importante del otro, ¿el trato suele reflejar consideración por esa necesidad?"
+    "¿Te sentís tratado/a con consideración dentro de tu vínculo?",
+    "¿Sentís que existe reciprocidad en el trato cotidiano?",
+    "¿Podés expresar lo que necesitás sin sentir que el otro te desvaloriza?"
   ],
 
   2: [
-    "¿Pueden hablar entre ustedes de aquello que realmente les importa sin sentir que tienen que guardárselo?",
-    "Cuando tu pareja te habla de algo que sabés que es importante para ella, ¿intentás comprender lo que quiere transmitir antes de responder?",
-    "Cuando necesitan hablar de algo importante para la relación, ¿pueden hacerlo sin que alguno deje de escuchar, se cierre o evite la conversación?"
+    "¿Sentís que pueden hablar de lo importante con libertad?",
+    "¿Sentís que tu pareja escucha lo que querés comunicar?",
+    "¿La comunicación entre ustedes suele ser clara?"
   ],
 
   3: [
-    "Cuando uno de los dos necesita cercanía emocional, ¿el otro suele poder brindársela?",
-    "¿Encuentran momentos que les permitan sentirse realmente conectados, más allá de las obligaciones cotidianas?",
-    "Cuando atraviesan una etapa de distancia o desconexión, ¿suelen encontrar la manera de volver a acercarse?"
+    "¿Sentís cercanía emocional con tu pareja?",
+    "¿Existe conexión más allá de la rutina?",
+    "¿Sentís que pueden encontrarse emocionalmente?"
   ],
 
   4: [
-    "Cuando tu pareja atraviesa algo que sabés que le afecta, ¿tenés en cuenta cómo se encuentra antes de actuar o decidir?",
-    "Cuando tu pareja necesita apoyo, ¿procurás estar presente de una manera que realmente le resulte útil?",
-    "¿Hay acciones concretas de tu parte que respondan a necesidades importantes de tu pareja?"
+    "¿Sentís que existe cuidado mutuo?",
+    "¿Tu pareja tiene en cuenta cómo estás?",
+    "¿Sentís que el vínculo contempla las necesidades de ambos?"
   ],
 
   5: [
-    "Cuando tu pareja piensa o siente algo diferente de vos sobre un tema importante, ¿podés respetar su manera de verlo?",
-    "Cuando tu pareja necesita espacio, tiempo o establece un límite, ¿podés respetarlo aunque no estés de acuerdo?",
-    "Cuando existe un desacuerdo sobre algo importante, ¿podés defender tu posición sin descalificar ni menospreciar a tu pareja?"
+    "¿Sentís respeto por tus límites?",
+    "¿Podés ser vos mismo/a dentro de la relación?",
+    "¿Las diferencias pueden expresarse sin perder el respeto?"
   ],
 
   6: [
-    "Cuando la relación necesita algo de vos, ¿procurás asumir tu parte para que el vínculo funcione?",
-    "¿Destinás tiempo, atención o energía a aspectos de la relación que sabés que son importantes para tu pareja?",
-    "Cuando tu pareja te señala algo que necesita de vos dentro de la relación, ¿procurás hacer algo concreto al respecto?"
+    "¿Sentís que ambos aportan al vínculo?",
+    "¿Percibís participación de ambos en la construcción de la relación?",
+    "¿Sentís que tu presencia tiene un valor activo en la pareja?"
   ],
 
   7: [
-    "Cuando surge un conflicto por algo que realmente importa para alguno de los dos, ¿pueden abordarlo sin quedar atrapados en la misma discusión?",
-    "Después de una discusión que los afecta emocionalmente, ¿pueden encontrar una manera de volver a acercarse?",
-    "Cuando tienen un desacuerdo importante, ¿alguno de los dos suele priorizar comprender y resolver antes que demostrar que tiene razón?"
+    "¿Pueden atravesar los conflictos sin dañarse innecesariamente?",
+    "¿Después de un conflicto logran volver a encontrarse?",
+    "¿Sentís que existe voluntad de resolver y no solamente de ganar una discusión?"
   ],
 
   8: [
-    "Cuando una situación despierta celos o inseguridad en alguno de los dos, ¿pueden hablar de lo que ocurre sin convertirlo inmediatamente en una acusación?",
-    "Cuando alguno necesita seguridad respecto del vínculo, ¿pueden hablar de esa necesidad sin que termine transformándose en control?",
-    "Ante una situación que genera inseguridad, ¿pueden diferenciar lo que realmente ocurrió de aquello que cada uno imaginó o interpretó?"
+    "¿Sentís seguridad respecto de la confianza dentro del vínculo?",
+    "¿Los celos interfieren con frecuencia en la relación?",
+    "¿Podés vivir el vínculo sin sentir una vigilancia constante?"
   ],
 
   9: [
-    "Cuando atraviesan una situación que pone a prueba la relación, ¿pueden enfrentarla como pareja en lugar de enfrentarse entre ustedes?",
-    "Cuando uno de los dos atraviesa una dificultad importante, ¿el otro puede acompañarlo teniendo en cuenta lo que realmente necesita?",
-    "Después de atravesar una situación difícil, ¿pueden reconocer lo aprendido y utilizarlo para fortalecer el vínculo?"
+    "¿Cuando aparece una crisis pueden actuar como equipo?",
+    "¿Sentís que existe disposición para atravesar momentos difíciles?",
+    "¿Las crisis terminan alejándolos o pueden convertirse en una oportunidad de revisión?"
   ]
 
 };
@@ -79,14 +79,11 @@ const questions = {
 
 const state = {
   heartEnabled: false,
-
   unlockedSegment: 0,
-
   answers: Array.from(
     { length: 9 },
     () => Array(3).fill(null)
   ),
-
   colors: Array(9).fill(null)
 };
 
@@ -107,17 +104,11 @@ const closeModal =
   document.getElementById("closeModal");
 
 
-/*
-  Geometría circular.
-  El SVG ahora utiliza un viewBox cuadrado
-  para impedir que la rueda se deforme.
-*/
-
 const CENTER_X = 512;
-const CENTER_Y = 512;
+const CENTER_Y = 768;
 
 const INNER_RADIUS = 150;
-const OUTER_RADIUS = 450;
+const OUTER_RADIUS = 430;
 
 const SEGMENTS = 9;
 
@@ -145,7 +136,6 @@ function sectorPath(index) {
   const end =
     start + STEP;
 
-
   const [x1, y1] =
     point(
       CENTER_X,
@@ -153,7 +143,6 @@ function sectorPath(index) {
       INNER_RADIUS,
       start
     );
-
 
   const [x2, y2] =
     point(
@@ -163,7 +152,6 @@ function sectorPath(index) {
       start
     );
 
-
   const [x3, y3] =
     point(
       CENTER_X,
@@ -171,7 +159,6 @@ function sectorPath(index) {
       OUTER_RADIUS,
       end
     );
-
 
   const [x4, y4] =
     point(
@@ -181,19 +168,12 @@ function sectorPath(index) {
       end
     );
 
-
   return `
     M ${x1} ${y1}
     L ${x2} ${y2}
-    A ${OUTER_RADIUS}
-      ${OUTER_RADIUS}
-      0 0 1
-      ${x3} ${y3}
+    A ${OUTER_RADIUS} ${OUTER_RADIUS} 0 0 1 ${x3} ${y3}
     L ${x4} ${y4}
-    A ${INNER_RADIUS}
-      ${INNER_RADIUS}
-      0 0 0
-      ${x1} ${y1}
+    A ${INNER_RADIUS} ${INNER_RADIUS} 0 0 0 ${x1} ${y1}
     Z
   `;
 }
@@ -209,28 +189,23 @@ function buildSegmentHotspots() {
         "path"
       );
 
-
     path.classList.add(
       "segment-hit",
       "locked"
     );
 
-
     path.dataset.segment =
       String(def.id);
-
 
     path.setAttribute(
       "d",
       sectorPath(def.id - 1)
     );
 
-
     path.addEventListener(
       "click",
       () => openSegment(def.id)
     );
-
 
     segmentHits.appendChild(path);
 
@@ -243,33 +218,27 @@ function resultColor(values) {
 
   const counts = {
 
-    red:
-      values.filter(
-        value => value === COLORS.red
-      ).length,
+    red: values.filter(
+      value => value === COLORS.red
+    ).length,
 
-    yellow:
-      values.filter(
-        value => value === COLORS.yellow
-      ).length,
+    yellow: values.filter(
+      value => value === COLORS.yellow
+    ).length,
 
-    ice:
-      values.filter(
-        value => value === COLORS.ice
-      ).length
+    ice: values.filter(
+      value => value === COLORS.ice
+    ).length
 
   };
-
 
   if (counts.red === 3) {
     return COLORS.red;
   }
 
-
   if (counts.ice === 3) {
     return COLORS.ice;
   }
-
 
   return COLORS.yellow;
 }
@@ -284,7 +253,6 @@ function clipForSegment(id) {
 
   const end =
     start + STEP;
-
 
   const points = [
 
@@ -325,12 +293,11 @@ function clipForSegment(id) {
 
   ];
 
-
   return `polygon(
     ${points
       .map(
         ([x, y]) =>
-          `${x / 10.24}% ${y / 10.24}%`
+          `${x / 10.24}% ${y / 15.36}%`
       )
       .join(",")}
   )`;
@@ -344,7 +311,6 @@ function paintSegment(id, color) {
       `segment-color-${id}`
     );
 
-
   if (!layer) {
 
     layer =
@@ -357,24 +323,17 @@ function paintSegment(id, color) {
 
   }
 
-
   layer.className =
     `segment-color ${color} visible flash`;
-
 
   layer.style.clipPath =
     clipForSegment(id);
 
-
   window.setTimeout(
     () => {
-
-      layer.classList.remove(
-        "flash"
-      );
-
+      layer.classList.remove("flash");
     },
-    1500
+    1400
   );
 
 }
@@ -389,17 +348,14 @@ function refreshUnlocks() {
       const id =
         Number(path.dataset.segment);
 
-
       const unlocked =
         state.heartEnabled &&
         id === state.unlockedSegment;
-
 
       path.classList.toggle(
         "locked",
         !unlocked
       );
-
 
       path.classList.toggle(
         "ready",
@@ -417,45 +373,33 @@ function openSegment(id) {
     !state.heartEnabled ||
     id !== state.unlockedSegment
   ) {
-
     return;
-
   }
-
 
   const def =
     segmentDefs.find(
       item => item.id === id
     );
 
-
   const saved =
     state.answers[id - 1];
 
-
   const answers =
     [...saved];
-
 
   modalContent.innerHTML = `
 
     <h2
       id="modalTitle"
       class="modal-title">
-
       ${id}. ${def.name}
-
     </h2>
 
-
     <p class="modal-intro">
-
       Respondé las tres preguntas.
       Al completar este segmento,
       el bloque adoptará el color correspondiente.
-
     </p>
-
 
     ${questions[id]
       .map(
@@ -467,7 +411,6 @@ function openSegment(id) {
               ${index + 1}. ${question}
             </p>
 
-
             <div class="answers">
 
               <button
@@ -475,66 +418,50 @@ function openSegment(id) {
                 type="button"
                 data-index="${index}"
                 data-answer="red">
-
                 Sí
-
               </button>
-
 
               <button
                 class="answer-button"
                 type="button"
                 data-index="${index}"
                 data-answer="yellow">
-
                 Tal vez
-
               </button>
-
 
               <button
                 class="answer-button"
                 type="button"
                 data-index="${index}"
                 data-answer="ice">
-
                 No
-
               </button>
 
             </div>
 
           </div>
-
         `
       )
       .join("")}
-
 
     <button
       id="saveSegment"
       class="complete-button"
       type="button"
       disabled>
-
       Completar bloque ${id}
-
     </button>
-
   `;
-
 
   const answerButtons =
     modalContent.querySelectorAll(
       ".answer-button"
     );
 
-
   const saveButton =
     modalContent.querySelector(
       "#saveSegment"
     );
-
 
   function refreshSaveButton() {
 
@@ -545,24 +472,17 @@ function openSegment(id) {
 
   }
 
-
   answerButtons.forEach(button => {
 
     const index =
       Number(button.dataset.index);
 
-
     if (
       answers[index] ===
       button.dataset.answer
     ) {
-
-      button.classList.add(
-        "selected"
-      );
-
+      button.classList.add("selected");
     }
-
 
     button.addEventListener(
       "click",
@@ -573,22 +493,13 @@ function openSegment(id) {
             `.answer-button[data-index="${index}"]`
           )
           .forEach(item => {
-
-            item.classList.remove(
-              "selected"
-            );
-
+            item.classList.remove("selected");
           });
 
-
-        button.classList.add(
-          "selected"
-        );
-
+        button.classList.add("selected");
 
         answers[index] =
           button.dataset.answer;
-
 
         refreshSaveButton();
 
@@ -596,7 +507,6 @@ function openSegment(id) {
     );
 
   });
-
 
   saveButton.addEventListener(
     "click",
@@ -607,51 +517,38 @@ function openSegment(id) {
           value => value === null
         )
       ) {
-
         return;
-
       }
-
 
       const color =
         resultColor(answers);
 
-
       state.answers[id - 1] =
         answers;
 
-
       state.colors[id - 1] =
         color;
-
 
       paintSegment(
         id,
         color
       );
 
-
       modal.hidden = true;
-
 
       if (
         id === state.unlockedSegment &&
         state.unlockedSegment < SEGMENTS
       ) {
-
         state.unlockedSegment += 1;
-
       }
-
 
       refreshUnlocks();
 
     }
   );
 
-
   modal.hidden = false;
-
 }
 
 
@@ -663,25 +560,15 @@ document
 
       state.heartEnabled = true;
 
-
       if (
         state.unlockedSegment === 0
       ) {
-
         state.unlockedSegment = 1;
-
       }
 
-
-      const heart =
-        document.getElementById(
-          "heartSymbol"
-        );
-
-
-      heart.style.transform =
-        "scale(1.12)";
-
+      document
+        .getElementById("heartSymbol")
+        .style.transform = "scale(1.12)";
 
       refreshUnlocks();
 
@@ -692,9 +579,7 @@ document
 closeModal.addEventListener(
   "click",
   () => {
-
     modal.hidden = true;
-
   }
 );
 
@@ -708,9 +593,7 @@ modal.addEventListener(
         "modal-backdrop"
       )
     ) {
-
       modal.hidden = true;
-
     }
 
   }
@@ -743,5 +626,4 @@ modal.addEventListener(
 
 
 buildSegmentHotspots();
-
 refreshUnlocks();
