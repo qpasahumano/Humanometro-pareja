@@ -308,14 +308,6 @@ button {
    SEGMENTOS
    ========================================================= */
 
-/*
-   IMPORTANTE:
-   Los segmentos son solamente contenido visual.
-   No tienen recuadro, fondo, borde ni cápsula.
-   Cada uno queda centrado dentro de su propia
-   porción de la rueda.
-*/
-
 .segment {
   position: absolute;
 
