@@ -255,7 +255,6 @@ button {
     inset 0 0 13px rgba(0, 149, 255, .11);
 }
 
-/* El anillo interior queda eliminado visualmente */
 .inner-ring {
   display: none;
 }
@@ -267,10 +266,6 @@ button {
   overflow: visible;
 }
 
-/*
-  Únicamente permanecen las líneas divisorias
-  de las nueve porciones.
-*/
 .segment-wheel::before {
   content: "";
   position: absolute;
@@ -317,8 +312,8 @@ button {
   position: absolute;
 
   /*
-    Tamaño reducido para mantener todo el contenido
-    dentro de cada porción y lejos de las divisorias.
+    Bloques más compactos para mantener todo el contenido
+    dentro de su propia porción y alejado de las líneas.
   */
   width: 13.5%;
   height: 13.5%;
@@ -349,9 +344,9 @@ button {
 .segment::after {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -4px;
   border-radius: 50%;
-  opacity: .12;
+  opacity: .10;
   background:
     radial-gradient(
       circle,
@@ -373,7 +368,7 @@ button {
 
 .segment.available {
   opacity: 1;
-  animation: availablePulse 1.7s infinite;
+  animation: availablePulse 2.4s infinite;
 }
 
 .segment.active {
@@ -416,77 +411,55 @@ button {
   filter: drop-shadow(0 0 6px rgba(125,234,255,.62));
 }
 
-/*
-  El bloque disponible recibe además un pequeño halo
-  alrededor del contenido para que sea evidente que
-  es el siguiente bloque a tocar.
-*/
-.segment-1.available {
-  filter:
-    drop-shadow(0 0 4px rgba(92,236,255,.72))
-    drop-shadow(0 0 10px rgba(35,192,255,.42));
-}
-
-.segment-1.available::after {
-  opacity: .28;
-  background:
-    radial-gradient(
-      circle,
-      rgba(85,229,255,.22) 0%,
-      rgba(42,194,255,.10) 38%,
-      transparent 72%
-    );
-}
-
 /* =========================================================
    POSICIONES DE LAS 9 PORCIONES
    =========================================================
-   Los centros se llevan hacia el interior del círculo.
-   Cada bloque queda separado de las líneas radiales.
+   Cada bloque queda centrado sobre el eje de su propia
+   porción, con separación suficiente respecto de las líneas.
    ========================================================= */
 
 .segment-1 {
   left: 30%;
-  top: 28%;
+  top: 27%;
 }
 
 .segment-2 {
   left: 50%;
-  top: 24%;
+  top: 19%;
 }
 
 .segment-3 {
-  left: 70%;
+  left: 69%;
   top: 28%;
 }
 
 .segment-4 {
-  left: 74%;
+  left: 77%;
   top: 50%;
 }
 
 .segment-5 {
   left: 68%;
-  top: 70%;
+  top: 68%;
 }
 
 .segment-6 {
-  left: 57%;
-  top: 75%;
+  left: 58%;
+  top: 78%;
 }
 
 .segment-7 {
-  left: 43%;
-  top: 75%;
+  left: 42%;
+  top: 78%;
 }
 
 .segment-8 {
   left: 32%;
-  top: 70%;
+  top: 68%;
 }
 
 .segment-9 {
-  left: 26%;
+  left: 23%;
   top: 50%;
 }
 
@@ -497,7 +470,7 @@ button {
 .segment-number {
   font-size: clamp(13px, 2.7vw, 19px);
   font-weight: 500;
-  line-height: .95;
+  line-height: 1;
   width: 100%;
   text-align: center;
   color: #f8fdff;
@@ -509,9 +482,9 @@ button {
 
 .segment-name {
   margin-top: 1px;
-  font-size: clamp(6px, 1.25vw, 9px);
+  font-size: clamp(6.5px, 1.3vw, 9px);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.02;
   width: 100%;
   text-align: center;
   color: #f5fbff;
@@ -523,8 +496,8 @@ button {
 
 .segment-icon-svg {
   display: block;
-  width: clamp(25px, 5.8vw, 38px);
-  height: clamp(21px, 4.8vw, 31px);
+  width: clamp(27px, 6vw, 40px);
+  height: clamp(22px, 5vw, 33px);
   margin: 1px auto 0;
   overflow: visible;
   fill: none;
@@ -562,83 +535,68 @@ button {
 /* =========================================================
    SÍMBOLOS ZODIACALES
    =========================================================
-   Pequeños, exclusivamente azul/celeste luminoso.
-   Sin amarillo, placas, círculos ni símbolos grandes.
+   Blancos, definidos y sin glow intenso.
+   Se mantienen fuera de las líneas del anillo.
    ========================================================= */
 
 .zodiac {
   position: absolute;
   z-index: 1;
-
-  color: #69ddff !important;
-
-  font-size: clamp(10px, 2vw, 15px);
+  color: #ffffff;
+  font-size: clamp(11px, 2.2vw, 16px);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1;
   font-weight: 400;
-  opacity: .82;
+  opacity: .95;
   pointer-events: none;
 
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-
   /*
-    Si el navegador renderiza algún signo como emoji
-    coloreado, este filtro lo lleva visualmente a
-    una gama azul/celeste.
+    Glow reducido para que la forma del signo se lea
+    claramente como símbolo zodiacal.
   */
-  filter:
-    grayscale(1)
-    sepia(1)
-    hue-rotate(155deg)
-    saturate(5)
-    brightness(1.25);
-
   text-shadow:
-    0 0 2px rgba(255,255,255,.55),
-    0 0 5px rgba(73,216,255,.82),
-    0 0 9px rgba(0,170,255,.48);
+    0 0 1px rgba(255,255,255,.8),
+    0 0 3px rgba(255,255,255,.28);
 }
 
 .zodiac-1 {
-  left: 1%;
-  top: 12%;
+  left: -3%;
+  top: 9%;
 }
 
 .zodiac-2 {
-  right: 1%;
-  top: 17%;
+  right: -3%;
+  top: 14%;
 }
 
 .zodiac-3 {
-  right: 1%;
-  top: 51%;
+  right: -3%;
+  top: 49%;
 }
 
 .zodiac-4 {
-  right: 13%;
-  bottom: 1%;
+  right: 10%;
+  bottom: -3%;
 }
 
 .zodiac-5 {
   left: 44%;
-  bottom: 0%;
+  bottom: -3%;
 }
 
 .zodiac-6 {
-  left: 1%;
-  bottom: 14%;
+  left: -3%;
+  bottom: 13%;
 }
 
 .zodiac-7 {
-  left: 1%;
-  top: 49%;
+  left: -3%;
+  top: 47%;
 }
 
 .zodiac-8 {
   right: 44%;
-  top: 1%;
+  top: -3%;
 }
 
 /* =========================================================
@@ -713,10 +671,6 @@ button {
   background-clip: text;
   color: transparent;
 
-  /*
-    Glow mínimo: solamente ayuda a separar
-    visualmente el degradado de la H.
-  */
   text-shadow:
     0 0 2px rgba(255,255,255,.42),
     0 0 4px rgba(70,225,255,.28);
@@ -735,14 +689,11 @@ button {
   justify-content: flex-end;
   gap: 1px;
 
-  /*
-    Muy pequeño e integrado dentro del corazón.
-  */
-  width: 5px;
-  height: 20px;
+  width: 6px;
+  height: 24px;
 
-  margin-left: 2px;
-  padding: 1px 1px 4px;
+  margin-left: 3px;
+  padding: 1px 1px 5px;
 
   border: 1px solid rgba(245,252,255,.72);
   border-radius: 5px 5px 6px 6px;
@@ -759,8 +710,8 @@ button {
   position: absolute;
   left: 50%;
   bottom: -3px;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   transform: translateX(-50%);
   border-radius: 50%;
   background: #ff347f;
@@ -771,7 +722,7 @@ button {
 
 .level-bars i {
   display: block;
-  width: 2px;
+  width: 3px;
   height: 2px;
   margin: 0 auto;
   border-radius: 4px;
@@ -792,7 +743,7 @@ button {
 .level-bars i:nth-child(3),
 .level-bars i:nth-child(4),
 .level-bars i:nth-child(5) {
-  width: 2px;
+  width: 3px;
 }
 
 /* =========================================================
@@ -917,11 +868,6 @@ button {
   overflow: hidden;
 }
 
-/*
-  Logos reales: cuando el HTML contiene las imágenes
-  originales de Mercado Pago, PayPal y Payoneer,
-  se muestran completas y sin deformación.
-*/
 .payment-logo img {
   display: block;
   width: 100%;
@@ -1378,16 +1324,13 @@ button {
 
 @keyframes availablePulse {
   0%, 100% {
-    filter:
-      drop-shadow(0 0 3px rgba(65,222,255,.28))
-      brightness(1);
+    filter: drop-shadow(0 0 2px rgba(65,222,255,.16));
   }
 
   50% {
     filter:
-      drop-shadow(0 0 8px rgba(65,222,255,.78))
-      drop-shadow(0 0 15px rgba(20,180,255,.42))
-      brightness(1.18);
+      drop-shadow(0 0 7px rgba(65,222,255,.58))
+      brightness(1.15);
   }
 }
 
@@ -1445,24 +1388,22 @@ button {
   }
 
   .segment-name {
-    font-size: 6.2px;
-    line-height: 1;
+    font-size: 6.5px;
     margin-top: 1px;
   }
 
   .segment-number {
-    font-size: 13px;
-    line-height: .95;
+    font-size: 14px;
   }
 
   .segment-icon-svg {
-    width: 29px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     margin-top: 1px;
   }
 
   .zodiac {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .heart-core {
@@ -1476,8 +1417,8 @@ button {
   }
 
   .level-bars {
-    width: 4px;
-    height: 18px;
+    width: 5px;
+    height: 21px;
     margin-left: 2px;
   }
 
