@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#020817">
+  <title>Humanómetro Parejas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main class="app" aria-label="Humanómetro Parejas">
+
+    <section class="interface">
+
+      <img
+        class="interface-image"
+        src="interfaz_parejas_sin_icono_seamless.png"
+        alt="Humanómetro Parejas"
+        draggable="false"
+      >
+
+      <!-- Espacio reservado para colocar posteriormente el ícono oficial -->
+      <div
+        class="official-icon-slot"
+        aria-hidden="true">
+      </div>
+
+      <!-- Capa interactiva de los 9 bloques -->
+      <svg
+        class="wheel-layer"
+        viewBox="0 0 1024 1536"
+        preserveAspectRatio="none"
+        aria-hidden="true">
+
+        <g id="segmentHits"></g>
+
+      </svg>
+
+      <!-- Capas de color de los bloques -->
+      <div
+        id="segmentColors"
+        class="segment-colors"
+        aria-hidden="true">
+      </div>
+
+      <!-- Botón HABILITAR CORAZÓN -->
+      <button
+        id="enableHeart"
+        class="hotspot heart-hotspot"
+        type="button"
+        aria-label="Habilitar corazón">
+      </button>
+
+      <!-- Botones de pago preparados para conexión posterior -->
+      <button
+        id="paymentMercado"
+        class="hotspot payment-hotspot payment-mercado"
+        type="button"
+        aria-label="Mercado Pago">
+      </button>
+
+      <button
+        id="paymentPaypal"
+        class="hotspot payment-hotspot payment-paypal"
+        type="button"
+        aria-label="PayPal">
+      </button>
+
+      <button
+        id="paymentPayoneer"
+        class="hotspot payment-hotspot payment-payoneer"
+        type="button"
+        aria-label="Payoneer">
+      </button>
+
+      <!-- Ventana de preguntas -->
+      <div
+        id="questionModal"
+        class="modal"
+        hidden>
+
+        <div class="modal-backdrop"></div>
+
+        <section
+          class="modal-card"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalTitle">
+
+          <button
+            id="closeModal"
+            class="modal-close"
+            type="button"
+            aria-label="Cerrar">
+            ×
+          </button>
+
+          <div id="modalContent"></div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
