@@ -163,7 +163,6 @@ const resultGeneral = document.getElementById("resultGeneral");
 const segmentResults = document.getElementById("segmentResults");
 const restartButton = document.getElementById("restartButton");
 const segments = [...document.querySelectorAll(".segment")];
-const segmentWheel = document.querySelector(".segment-wheel");
 
 const generalResults = {
   stable: {
@@ -314,6 +313,7 @@ function renderQuestions(blockIndex) {
         button.classList.add("selected");
 
         updateQuestionButton(blockIndex);
+        updateQuestionProgress(blockIndex);
       });
 
       answers.appendChild(button);
@@ -431,10 +431,6 @@ function calculateSegment(answerKeys) {
   } else if (maybeCount >= 2) {
     color = "yellow";
   } else {
-    /*
-      Una respuesta de cada tipo:
-      la tercera respuesta funciona como tendencia diferenciadora.
-    */
     const third = answerKeys[2];
 
     if (third === "yes") {
@@ -549,7 +545,42 @@ function renderSegmentResults() {
   });
 }
 
+function getWheelSegmentColor(color) {
+  if (color === "red") {
+    return "rgba(255, 35, 119, .82)";
+  }
+
+  if (color === "yellow") {
+    return "rgba(255, 220, 65, .76)";
+  }
+
+  if (color === "ice") {
+    return "rgba(57, 190, 255, .78)";
+  }
+
+  return "transparent";
+}
+
 function updateWheel() {
+  const wheel = document.querySelector(".segment-wheel");
+
+  if (wheel) {
+    for (let index = 1; index <= 9; index++) {
+      wheel.style.setProperty(`--seg${index}-color`, "transparent");
+    }
+
+    state.segmentResults.forEach((result, index) => {
+      if (!result) {
+        return;
+      }
+
+      wheel.style.setProperty(
+        `--seg${index + 1}-color`,
+        getWheelSegmentColor(result.color)
+      );
+    });
+  }
+
   segments.forEach((segment, index) => {
     segment.classList.remove("locked", "available", "completed", "active");
     segment.classList.remove("red", "yellow", "ice");
@@ -583,47 +614,6 @@ function updateWheel() {
 
     segment.classList.add("locked");
   });
-
-  updateSegmentColorWheel();
-}
-
-function updateSegmentColorWheel() {
-  if (!segmentWheel) {
-    return;
-  }
-
-  const separator = "rgba(2,9,28,.78)";
-  const transparent = "rgba(2,9,28,0)";
-
-  const resultColors = {
-    red: "rgba(255,39,126,.70)",
-    yellow: "rgba(255,225,77,.66)",
-    ice: "rgba(125,234,255,.70)"
-  };
-
-  const colors = state.segmentResults.map(result => {
-    if (!result) {
-      return transparent;
-    }
-
-    return resultColors[result.color] || transparent;
-  });
-
-  const stops = [];
-
-  colors.forEach((color, index) => {
-    const start = index * 40;
-    const end = start + 39.2;
-    const separatorEnd = start + 40;
-
-    stops.push(`${color} ${start}deg ${end}deg`);
-    stops.push(`${separator} ${end}deg ${separatorEnd}deg`);
-  });
-
-  segmentWheel.style.setProperty(
-    "--segment-result-gradient",
-    `conic-gradient(from 300deg, ${stops.join(", ")})`
-  );
 }
 
 function closeQuestionPanel() {
