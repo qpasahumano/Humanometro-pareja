@@ -4,8 +4,8 @@
 
 .logo-parejas {
   display: block;
-  width: clamp(62px, 16vw, 76px);
-  height: clamp(62px, 16vw, 76px);
+  width: clamp(50px, 13vw, 62px);
+  height: clamp(50px, 13vw, 62px);
 
   object-fit: contain;
   object-position: center;
@@ -274,21 +274,21 @@ button {
 }
 
 /* =========================================================
-   ANILLO EXTERIOR — AZUL NEÓN FINO Y UNIFORME
+   ANILLO EXTERIOR — AZUL NEÓN FINO Y TRANSPARENTE
    ========================================================= */
 
 .outer-ring {
   inset: 2.8%;
   z-index: 2;
 
-  border: 1px solid #25eaff;
+  border: 1px solid rgba(37,234,255,.55);
 
   background: transparent;
 
   box-shadow:
-    0 0 2px #25eaff,
-    0 0 5px rgba(37,234,255,.82),
-    0 0 9px rgba(37,234,255,.48);
+    0 0 2px rgba(37,234,255,.62),
+    0 0 5px rgba(37,234,255,.46),
+    0 0 9px rgba(37,234,255,.26);
 
   filter: none;
   opacity: 1;
@@ -1515,8 +1515,8 @@ button {
   }
 
   .logo-parejas {
-    width: clamp(58px, 17vw, 72px);
-    height: clamp(58px, 17vw, 72px);
+    width: clamp(48px, 14vw, 60px);
+    height: clamp(48px, 14vw, 60px);
     margin-top: 0;
     margin-bottom: -5px;
   }
@@ -1740,8 +1740,8 @@ button {
   }
 
   .logo-parejas {
-    width: 70px;
-    height: 70px;
+    width: 58px;
+    height: 58px;
     margin-bottom: -6px;
   }
 
