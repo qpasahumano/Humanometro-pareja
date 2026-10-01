@@ -19,9 +19,9 @@
      COLORES DE LAS PORCIONES / LÍNEAS LED
      ======================================================= */
 
-  --couple-red: #ff304d;
-  --couple-yellow: #ffd83d;
-  --couple-ice: #4bdfff;
+  --couple-red: #ff2b2b;
+  --couple-yellow: #ffdc37;
+  --couple-ice: #74eaff;
 }
 
 html {
@@ -261,72 +261,25 @@ button {
   pointer-events: none;
 }
 
-/* =========================================================
-   ANILLO EXTERIOR SEGMENTADO
-   Cada tramo del anillo conserva el color de su porción.
-   ========================================================= */
-
 .outer-ring {
   inset: 2.8%;
   z-index: 2;
-
-  border: 0;
-  background:
-    conic-gradient(
-      from 300deg,
-
-      var(--couple-red) 0deg 40deg,
-      var(--couple-ice) 40deg 80deg,
-      var(--couple-yellow) 80deg 120deg,
-      var(--couple-ice) 120deg 160deg,
-      var(--couple-red) 160deg 200deg,
-      var(--couple-yellow) 200deg 240deg,
-      var(--couple-ice) 240deg 280deg,
-      var(--couple-red) 280deg 320deg,
-      var(--couple-yellow) 320deg 360deg
-    );
-
-  -webkit-mask:
-    radial-gradient(
-      circle,
-      transparent 0 calc(100% - 4px),
-      #000 calc(100% - 3px) 100%
-    );
-
-  mask:
-    radial-gradient(
-      circle,
-      transparent 0 calc(100% - 4px),
-      #000 calc(100% - 3px) 100%
-    );
-
-  filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.95))
-    drop-shadow(0 0 4px rgba(255,255,255,.42))
-    drop-shadow(0 0 8px rgba(70,220,255,.24));
-
-  opacity: 1;
+  border: 2px solid rgba(45, 199, 255, .98);
+  box-shadow:
+    0 0 5px rgba(70, 226, 255, .9),
+    0 0 12px rgba(20, 153, 255, .55),
+    inset 0 0 13px rgba(0, 149, 255, .11);
 }
 
 .inner-ring {
   display: none;
 }
 
-/* =========================================================
-   RUEDA DE SEGMENTOS
-   ========================================================= */
-
 .segment-wheel {
   position: absolute;
   inset: 5%;
   border-radius: 50%;
   overflow: visible;
-
-  /*
-    Los colores permanecen transparentes mientras la porción
-    está pendiente. Al completarse, cada una recibe su propio
-    color LED translúcido.
-  */
 
   --seg1-color: transparent;
   --seg2-color: transparent;
@@ -339,23 +292,31 @@ button {
   --seg9-color: transparent;
 
   /*
-    Líneas individuales de cada porción.
+    Cada porción conserva su propia línea.
+    Los colores corresponden a la referencia:
+    1,5,8 = rojo vivo
+    3,6,9 = amarillo vivo
+    2,4,7 = celeste hielo
   */
 
-  --seg1-line: rgba(255,48,77,.20);
-  --seg2-line: rgba(75,223,255,.20);
-  --seg3-line: rgba(255,216,61,.20);
-  --seg4-line: rgba(75,223,255,.20);
-  --seg5-line: rgba(255,48,77,.20);
-  --seg6-line: rgba(255,216,61,.20);
-  --seg7-line: rgba(75,223,255,.20);
-  --seg8-line: rgba(255,48,77,.20);
-  --seg9-line: rgba(255,216,61,.20);
+  --seg1-line: rgba(255,43,43,.42);
+  --seg2-line: rgba(116,234,255,.42);
+  --seg3-line: rgba(255,220,55,.42);
+  --seg4-line: rgba(116,234,255,.42);
+  --seg5-line: rgba(255,43,43,.42);
+  --seg6-line: rgba(255,220,55,.42);
+  --seg7-line: rgba(116,234,255,.42);
+  --seg8-line: rgba(255,43,43,.42);
+  --seg9-line: rgba(255,220,55,.42);
 }
 
-/* =========================================================
+/*
    LÍNEAS INDIVIDUALES DE CADA PORCIÓN
-   ========================================================= */
+
+   Cada bloque posee sus dos líneas personales.
+   En cada unión quedan dos líneas independientes:
+   una pertenece al bloque anterior y otra al siguiente.
+*/
 
 .segment-wheel::before {
   content: "";
@@ -419,17 +380,21 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: 1;
+  opacity: .96;
 
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.95))
+    drop-shadow(0 0 1px rgba(255,255,255,.88))
     drop-shadow(0 0 2.5px rgba(255,255,255,.42))
-    drop-shadow(0 0 5px rgba(255,255,255,.18));
+    drop-shadow(0 0 5px rgba(80,220,255,.30));
 }
 
-/* =========================================================
-   COLORACIÓN TRANSLÚCIDA DE LOS SEGMENTOS
-   ========================================================= */
+/*
+   COLORACIÓN PROGRESIVA DE LOS SEGMENTOS
+
+   Cada bloque completado recibe un color intenso pero
+   translúcido, permitiendo que continúe visible el fondo
+   espacial y las estrellas.
+*/
 
 .segment-wheel::after {
   content: "";
@@ -441,7 +406,6 @@ button {
   background:
     conic-gradient(
       from 300deg,
-
       var(--seg1-color) 0deg 40deg,
       var(--seg2-color) 40deg 80deg,
       var(--seg3-color) 80deg 120deg,
@@ -467,67 +431,52 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: 1;
+  opacity: .88;
 
   filter:
-    saturate(1.45)
-    brightness(1.04)
-    drop-shadow(0 0 4px rgba(255,255,255,.12));
+    saturate(1.35)
+    drop-shadow(0 0 3px rgba(255,255,255,.20))
+    drop-shadow(0 0 7px rgba(80,225,255,.30));
 }
 
 /* =========================================================
-   COLORES REALES DE CADA PORCIÓN AL COMPLETARSE
+   LUMINOSIDAD DE LÍNEAS AL COMPLETAR CADA PORCIÓN
    ========================================================= */
 
-/* ROJO LED — 1 / 5 / 8 */
-
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-color: rgba(255,48,77,.38) !important;
-  --seg1-line: rgba(255,48,77,1) !important;
+  --seg1-line: rgba(255,43,43,.94);
 }
-
-.segment-wheel:has(.segment-5.completed) {
-  --seg5-color: rgba(255,48,77,.38) !important;
-  --seg5-line: rgba(255,48,77,1) !important;
-}
-
-.segment-wheel:has(.segment-8.completed) {
-  --seg8-color: rgba(255,48,77,.38) !important;
-  --seg8-line: rgba(255,48,77,1) !important;
-}
-
-/* AMARILLO LED — 3 / 6 / 9 */
-
-.segment-wheel:has(.segment-3.completed) {
-  --seg3-color: rgba(255,216,61,.36) !important;
-  --seg3-line: rgba(255,216,61,1) !important;
-}
-
-.segment-wheel:has(.segment-6.completed) {
-  --seg6-color: rgba(255,216,61,.36) !important;
-  --seg6-line: rgba(255,216,61,1) !important;
-}
-
-.segment-wheel:has(.segment-9.completed) {
-  --seg9-color: rgba(255,216,61,.36) !important;
-  --seg9-line: rgba(255,216,61,1) !important;
-}
-
-/* CELESTE HIELO ELÉCTRICO — 2 / 4 / 7 */
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-color: rgba(75,223,255,.34) !important;
-  --seg2-line: rgba(75,223,255,1) !important;
+  --seg2-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-3.completed) {
+  --seg3-line: rgba(255,220,55,.94);
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-color: rgba(75,223,255,.34) !important;
-  --seg4-line: rgba(75,223,255,1) !important;
+  --seg4-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-5.completed) {
+  --seg5-line: rgba(255,43,43,.94);
+}
+
+.segment-wheel:has(.segment-6.completed) {
+  --seg6-line: rgba(255,220,55,.94);
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-color: rgba(75,223,255,.34) !important;
-  --seg7-line: rgba(75,223,255,1) !important;
+  --seg7-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-8.completed) {
+  --seg8-line: rgba(255,43,43,.94);
+}
+
+.segment-wheel:has(.segment-9.completed) {
+  --seg9-line: rgba(255,220,55,.94);
 }
 
 /* =========================================================
@@ -615,37 +564,25 @@ button {
   font-weight: 900;
 }
 
-/*
-   ROJO VIVO
-*/
-
 .segment.red {
   filter:
     saturate(1.35)
-    drop-shadow(0 0 5px rgba(255,48,77,.68))
-    drop-shadow(0 0 11px rgba(255,48,77,.28));
+    drop-shadow(0 0 5px rgba(255,43,43,.68))
+    drop-shadow(0 0 11px rgba(255,43,43,.28));
 }
-
-/*
-   AMARILLO VIVO
-*/
 
 .segment.yellow {
   filter:
     saturate(1.28)
-    drop-shadow(0 0 5px rgba(255,216,61,.62))
-    drop-shadow(0 0 11px rgba(255,216,61,.28));
+    drop-shadow(0 0 5px rgba(255,220,55,.62))
+    drop-shadow(0 0 11px rgba(255,220,55,.28));
 }
-
-/*
-   CELESTE HIELO
-*/
 
 .segment.ice {
   filter:
     saturate(1.25)
-    drop-shadow(0 0 5px rgba(75,223,255,.68))
-    drop-shadow(0 0 11px rgba(75,223,255,.30));
+    drop-shadow(0 0 5px rgba(116,234,255,.68))
+    drop-shadow(0 0 11px rgba(116,234,255,.30));
 }
 
 /* =========================================================
@@ -1719,6 +1656,11 @@ button {
   .bottom-motto p {
     font-size: 8px;
   }
+
+  /*
+    En el teléfono las tres preguntas y sus respuestas
+    permanecen dentro de una única pantalla.
+  */
 
   .question-panel {
     padding: 8px 8px 10px;
