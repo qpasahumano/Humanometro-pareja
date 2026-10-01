@@ -361,7 +361,7 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .94;
+  opacity: .68;
 
   filter:
     saturate(1.25)
@@ -1136,8 +1136,8 @@ button {
 .question-text {
   margin: 0;
   color: #f7fbff;
-  font-size: 11px;
-  line-height: 1.18;
+  font-size: 12.5px;
+  line-height: 1.2;
 }
 
 .answer-options {
@@ -1608,8 +1608,8 @@ button {
   }
 
   .question-text {
-    font-size: 10px;
-    line-height: 1.14;
+    font-size: 12px;
+    line-height: 1.18;
   }
 
   .answer-options {
