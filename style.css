@@ -19,9 +19,9 @@
      COLORES DE LAS PORCIONES / LÍNEAS LED
      ======================================================= */
 
-  --couple-red: #ff2b2b;
-  --couple-yellow: #ffdc37;
-  --couple-ice: #74eaff;
+  --couple-red: #ff303f;
+  --couple-yellow: #ffe34f;
+  --couple-ice: #55ddff;
 }
 
 html {
@@ -261,14 +261,71 @@ button {
   pointer-events: none;
 }
 
+/*
+   CIRCUNFERENCIA EXTERIOR
+   ---------------------------------------------------------
+   Se conserva exactamente la misma posición y dimensión.
+   Solamente cambia su representación visual:
+   9 arcos LED independientes, siguiendo el color de cada
+   porción de la rueda.
+*/
+
 .outer-ring {
   inset: 2.8%;
   z-index: 2;
-  border: 2px solid rgba(45, 199, 255, .98);
-  box-shadow:
-    0 0 5px rgba(70, 226, 255, .9),
-    0 0 12px rgba(20, 153, 255, .55),
-    inset 0 0 13px rgba(0, 149, 255, .11);
+
+  border: 0;
+
+  background:
+    conic-gradient(
+      from 300deg,
+
+      #ff303f 0deg 39.72deg,
+      transparent 39.72deg 40.28deg,
+
+      #55ddff 40.28deg 79.72deg,
+      transparent 79.72deg 80.28deg,
+
+      #ffe34f 80.28deg 119.72deg,
+      transparent 119.72deg 120.28deg,
+
+      #55ddff 120.28deg 159.72deg,
+      transparent 159.72deg 160.28deg,
+
+      #ff303f 160.28deg 199.72deg,
+      transparent 199.72deg 200.28deg,
+
+      #ffe34f 200.28deg 239.72deg,
+      transparent 239.72deg 240.28deg,
+
+      #55ddff 240.28deg 279.72deg,
+      transparent 279.72deg 280.28deg,
+
+      #ff303f 280.28deg 319.72deg,
+      transparent 319.72deg 320.28deg,
+
+      #ffe34f 320.28deg 359.72deg,
+      transparent 359.72deg 360deg
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,.90))
+    drop-shadow(0 0 3px rgba(255,255,255,.42))
+    drop-shadow(0 0 6px rgba(255,255,255,.20));
+
+  opacity: 1;
 }
 
 .inner-ring {
@@ -292,30 +349,25 @@ button {
   --seg9-color: transparent;
 
   /*
-    Cada porción conserva su propia línea.
-    Los colores corresponden a la referencia:
-    1,5,8 = rojo vivo
-    3,6,9 = amarillo vivo
-    2,4,7 = celeste hielo
+    Líneas LED individuales.
+    1,5,8 = rojo
+    3,6,9 = amarillo
+    2,4,7 = celeste
   */
 
-  --seg1-line: rgba(255,43,43,.42);
-  --seg2-line: rgba(116,234,255,.42);
-  --seg3-line: rgba(255,220,55,.42);
-  --seg4-line: rgba(116,234,255,.42);
-  --seg5-line: rgba(255,43,43,.42);
-  --seg6-line: rgba(255,220,55,.42);
-  --seg7-line: rgba(116,234,255,.42);
-  --seg8-line: rgba(255,43,43,.42);
-  --seg9-line: rgba(255,220,55,.42);
+  --seg1-line: rgba(255,48,63,.58);
+  --seg2-line: rgba(85,221,255,.58);
+  --seg3-line: rgba(255,227,79,.58);
+  --seg4-line: rgba(85,221,255,.58);
+  --seg5-line: rgba(255,48,63,.58);
+  --seg6-line: rgba(255,227,79,.58);
+  --seg7-line: rgba(85,221,255,.58);
+  --seg8-line: rgba(255,48,63,.58);
+  --seg9-line: rgba(255,227,79,.58);
 }
 
 /*
    LÍNEAS INDIVIDUALES DE CADA PORCIÓN
-
-   Cada bloque posee sus dos líneas personales.
-   En cada unión quedan dos líneas independientes:
-   una pertenece al bloque anterior y otra al siguiente.
 */
 
 .segment-wheel::before {
@@ -380,20 +432,28 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .96;
+  opacity: .98;
+
+  /*
+    El brillo blanco es solamente el núcleo del LED.
+    Se elimina el glow cian uniforme para que cada línea
+    conserve visualmente su propia identidad cromática.
+  */
 
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.88))
-    drop-shadow(0 0 2.5px rgba(255,255,255,.42))
-    drop-shadow(0 0 5px rgba(80,220,255,.30));
+    drop-shadow(0 0 1px rgba(255,255,255,.98))
+    drop-shadow(0 0 2.5px rgba(255,255,255,.48))
+    drop-shadow(0 0 5px rgba(255,255,255,.18));
 }
 
 /*
-   COLORACIÓN PROGRESIVA DE LOS SEGMENTOS
+   COLORACIÓN DE LOS SEGMENTOS
+   ---------------------------------------------------------
+   Los colores ahora reproducen el lenguaje de la FOTO 2:
+   rojo LED / amarillo LED / celeste eléctrico.
 
-   Cada bloque completado recibe un color intenso pero
-   translúcido, permitiendo que continúe visible el fondo
-   espacial y las estrellas.
+   La transparencia permite que el fondo espacial permanezca
+   visible debajo de cada porción.
 */
 
 .segment-wheel::after {
@@ -404,8 +464,15 @@ button {
   border-radius: 50%;
 
   background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.035) 34%,
+      transparent 68%
+    ),
     conic-gradient(
       from 300deg,
+
       var(--seg1-color) 0deg 40deg,
       var(--seg2-color) 40deg 80deg,
       var(--seg3-color) 80deg 120deg,
@@ -431,52 +498,79 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .88;
+  /*
+    Screen refuerza el carácter luminoso sin convertir las
+    porciones en bloques opacos.
+  */
+
+  mix-blend-mode: screen;
+
+  opacity: 1;
 
   filter:
-    saturate(1.35)
-    drop-shadow(0 0 3px rgba(255,255,255,.20))
-    drop-shadow(0 0 7px rgba(80,225,255,.30));
+    saturate(1.48)
+    brightness(1.06)
+    drop-shadow(0 0 2px rgba(255,255,255,.14));
 }
 
 /* =========================================================
-   LUMINOSIDAD DE LÍNEAS AL COMPLETAR CADA PORCIÓN
+   COLORES DE LAS PORCIONES COMPLETADAS
    ========================================================= */
 
+/*
+   Importante:
+   Estos valores son forzados solamente cuando una porción
+   está completada. De esta manera se conserva exactamente
+   la lógica visual progresiva existente.
+
+   Los !important permiten que cualquier valor cromático
+   anterior establecido para estas variables no vuelva a
+   imponer una tonalidad diferente.
+*/
+
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-line: rgba(255,43,43,.94);
+  --seg1-color: rgba(255,48,63,.38) !important;
+  --seg1-line: rgba(255,48,63,.98);
 }
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-line: rgba(116,234,255,.94);
+  --seg2-color: rgba(85,221,255,.34) !important;
+  --seg2-line: rgba(85,221,255,.98);
 }
 
 .segment-wheel:has(.segment-3.completed) {
-  --seg3-line: rgba(255,220,55,.94);
+  --seg3-color: rgba(255,227,79,.36) !important;
+  --seg3-line: rgba(255,227,79,.98);
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-line: rgba(116,234,255,.94);
+  --seg4-color: rgba(85,221,255,.34) !important;
+  --seg4-line: rgba(85,221,255,.98);
 }
 
 .segment-wheel:has(.segment-5.completed) {
-  --seg5-line: rgba(255,43,43,.94);
+  --seg5-color: rgba(255,48,63,.38) !important;
+  --seg5-line: rgba(255,48,63,.98);
 }
 
 .segment-wheel:has(.segment-6.completed) {
-  --seg6-line: rgba(255,220,55,.94);
+  --seg6-color: rgba(255,227,79,.36) !important;
+  --seg6-line: rgba(255,227,79,.98);
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-line: rgba(116,234,255,.94);
+  --seg7-color: rgba(85,221,255,.34) !important;
+  --seg7-line: rgba(85,221,255,.98);
 }
 
 .segment-wheel:has(.segment-8.completed) {
-  --seg8-line: rgba(255,43,43,.94);
+  --seg8-color: rgba(255,48,63,.38) !important;
+  --seg8-line: rgba(255,48,63,.98);
 }
 
 .segment-wheel:has(.segment-9.completed) {
-  --seg9-line: rgba(255,220,55,.94);
+  --seg9-color: rgba(255,227,79,.36) !important;
+  --seg9-line: rgba(255,227,79,.98);
 }
 
 /* =========================================================
@@ -567,22 +661,22 @@ button {
 .segment.red {
   filter:
     saturate(1.35)
-    drop-shadow(0 0 5px rgba(255,43,43,.68))
-    drop-shadow(0 0 11px rgba(255,43,43,.28));
+    drop-shadow(0 0 5px rgba(255,48,63,.68))
+    drop-shadow(0 0 11px rgba(255,48,63,.28));
 }
 
 .segment.yellow {
   filter:
     saturate(1.28)
-    drop-shadow(0 0 5px rgba(255,220,55,.62))
-    drop-shadow(0 0 11px rgba(255,220,55,.28));
+    drop-shadow(0 0 5px rgba(255,227,79,.62))
+    drop-shadow(0 0 11px rgba(255,227,79,.28));
 }
 
 .segment.ice {
   filter:
     saturate(1.25)
-    drop-shadow(0 0 5px rgba(116,234,255,.68))
-    drop-shadow(0 0 11px rgba(116,234,255,.30));
+    drop-shadow(0 0 5px rgba(85,221,255,.68))
+    drop-shadow(0 0 11px rgba(85,221,255,.30));
 }
 
 /* =========================================================
