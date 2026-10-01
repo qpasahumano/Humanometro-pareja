@@ -19,9 +19,9 @@
      COLORES DE LAS PORCIONES / LÍNEAS LED
      ======================================================= */
 
-  --couple-red: #ff303f;
-  --couple-yellow: #ffe34f;
-  --couple-ice: #55ddff;
+  --couple-red: #ff2f9f;
+  --couple-yellow: #ffe95a;
+  --couple-ice: #8feaff;
 }
 
 html {
@@ -263,11 +263,6 @@ button {
 
 /*
    CIRCUNFERENCIA EXTERIOR
-   ---------------------------------------------------------
-   Se conserva exactamente la misma posición y dimensión.
-   Solamente cambia su representación visual:
-   9 arcos LED independientes, siguiendo el color de cada
-   porción de la rueda.
 */
 
 .outer-ring {
@@ -280,31 +275,31 @@ button {
     conic-gradient(
       from 300deg,
 
-      #ff303f 0deg 39.72deg,
+      #ff2f9f 0deg 39.72deg,
       transparent 39.72deg 40.28deg,
 
-      #55ddff 40.28deg 79.72deg,
+      #8feaff 40.28deg 79.72deg,
       transparent 79.72deg 80.28deg,
 
-      #ffe34f 80.28deg 119.72deg,
+      #ffe95a 80.28deg 119.72deg,
       transparent 119.72deg 120.28deg,
 
-      #55ddff 120.28deg 159.72deg,
+      #8feaff 120.28deg 159.72deg,
       transparent 159.72deg 160.28deg,
 
-      #ff303f 160.28deg 199.72deg,
+      #ff2f9f 160.28deg 199.72deg,
       transparent 199.72deg 200.28deg,
 
-      #ffe34f 200.28deg 239.72deg,
+      #ffe95a 200.28deg 239.72deg,
       transparent 239.72deg 240.28deg,
 
-      #55ddff 240.28deg 279.72deg,
+      #8feaff 240.28deg 279.72deg,
       transparent 279.72deg 280.28deg,
 
-      #ff303f 280.28deg 319.72deg,
+      #ff2f9f 280.28deg 319.72deg,
       transparent 319.72deg 320.28deg,
 
-      #ffe34f 320.28deg 359.72deg,
+      #ffe95a 320.28deg 359.72deg,
       transparent 359.72deg 360deg
     );
 
@@ -349,21 +344,21 @@ button {
   --seg9-color: transparent;
 
   /*
-    Líneas LED individuales.
-    1,5,8 = rojo
-    3,6,9 = amarillo
-    2,4,7 = celeste
+    Líneas LED:
+    1,5,8 = rojo fucsia
+    3,6,9 = amarillo patito
+    2,4,7 = celeste glaciar
   */
 
-  --seg1-line: rgba(255,48,63,.58);
-  --seg2-line: rgba(85,221,255,.58);
-  --seg3-line: rgba(255,227,79,.58);
-  --seg4-line: rgba(85,221,255,.58);
-  --seg5-line: rgba(255,48,63,.58);
-  --seg6-line: rgba(255,227,79,.58);
-  --seg7-line: rgba(85,221,255,.58);
-  --seg8-line: rgba(255,48,63,.58);
-  --seg9-line: rgba(255,227,79,.58);
+  --seg1-line: rgba(255,47,159,.58);
+  --seg2-line: rgba(143,234,255,.58);
+  --seg3-line: rgba(255,233,90,.58);
+  --seg4-line: rgba(143,234,255,.58);
+  --seg5-line: rgba(255,47,159,.58);
+  --seg6-line: rgba(255,233,90,.58);
+  --seg7-line: rgba(143,234,255,.58);
+  --seg8-line: rgba(255,47,159,.58);
+  --seg9-line: rgba(255,233,90,.58);
 }
 
 /*
@@ -434,12 +429,6 @@ button {
 
   opacity: .98;
 
-  /*
-    El brillo blanco es solamente el núcleo del LED.
-    Se elimina el glow cian uniforme para que cada línea
-    conserve visualmente su propia identidad cromática.
-  */
-
   filter:
     drop-shadow(0 0 1px rgba(255,255,255,.98))
     drop-shadow(0 0 2.5px rgba(255,255,255,.48))
@@ -448,12 +437,7 @@ button {
 
 /*
    COLORACIÓN DE LOS SEGMENTOS
-   ---------------------------------------------------------
-   Los colores ahora reproducen el lenguaje de la FOTO 2:
-   rojo LED / amarillo LED / celeste eléctrico.
-
-   La transparencia permite que el fondo espacial permanezca
-   visible debajo de cada porción.
+   TRANSPARENCIA DE COLOR: 50%
 */
 
 .segment-wheel::after {
@@ -498,11 +482,6 @@ button {
       #000 20.5% 100%
     );
 
-  /*
-    Screen refuerza el carácter luminoso sin convertir las
-    porciones en bloques opacos.
-  */
-
   mix-blend-mode: screen;
 
   opacity: 1;
@@ -515,62 +494,52 @@ button {
 
 /* =========================================================
    COLORES DE LAS PORCIONES COMPLETADAS
+   TRANSPARENCIA: 50%
    ========================================================= */
 
-/*
-   Importante:
-   Estos valores son forzados solamente cuando una porción
-   está completada. De esta manera se conserva exactamente
-   la lógica visual progresiva existente.
-
-   Los !important permiten que cualquier valor cromático
-   anterior establecido para estas variables no vuelva a
-   imponer una tonalidad diferente.
-*/
-
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-color: rgba(255,48,63,.38) !important;
-  --seg1-line: rgba(255,48,63,.98);
+  --seg1-color: rgba(255,47,159,.50) !important;
+  --seg1-line: rgba(255,47,159,.98);
 }
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-color: rgba(85,221,255,.34) !important;
-  --seg2-line: rgba(85,221,255,.98);
+  --seg2-color: rgba(143,234,255,.50) !important;
+  --seg2-line: rgba(143,234,255,.98);
 }
 
 .segment-wheel:has(.segment-3.completed) {
-  --seg3-color: rgba(255,227,79,.36) !important;
-  --seg3-line: rgba(255,227,79,.98);
+  --seg3-color: rgba(255,233,90,.50) !important;
+  --seg3-line: rgba(255,233,90,.98);
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-color: rgba(85,221,255,.34) !important;
-  --seg4-line: rgba(85,221,255,.98);
+  --seg4-color: rgba(143,234,255,.50) !important;
+  --seg4-line: rgba(143,234,255,.98);
 }
 
 .segment-wheel:has(.segment-5.completed) {
-  --seg5-color: rgba(255,48,63,.38) !important;
-  --seg5-line: rgba(255,48,63,.98);
+  --seg5-color: rgba(255,47,159,.50) !important;
+  --seg5-line: rgba(255,47,159,.98);
 }
 
 .segment-wheel:has(.segment-6.completed) {
-  --seg6-color: rgba(255,227,79,.36) !important;
-  --seg6-line: rgba(255,227,79,.98);
+  --seg6-color: rgba(255,233,90,.50) !important;
+  --seg6-line: rgba(255,233,90,.98);
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-color: rgba(85,221,255,.34) !important;
-  --seg7-line: rgba(85,221,255,.98);
+  --seg7-color: rgba(143,234,255,.50) !important;
+  --seg7-line: rgba(143,234,255,.98);
 }
 
 .segment-wheel:has(.segment-8.completed) {
-  --seg8-color: rgba(255,48,63,.38) !important;
-  --seg8-line: rgba(255,48,63,.98);
+  --seg8-color: rgba(255,47,159,.50) !important;
+  --seg8-line: rgba(255,47,159,.98);
 }
 
 .segment-wheel:has(.segment-9.completed) {
-  --seg9-color: rgba(255,227,79,.36) !important;
-  --seg9-line: rgba(255,227,79,.98);
+  --seg9-color: rgba(255,233,90,.50) !important;
+  --seg9-line: rgba(255,233,90,.98);
 }
 
 /* =========================================================
@@ -661,22 +630,22 @@ button {
 .segment.red {
   filter:
     saturate(1.35)
-    drop-shadow(0 0 5px rgba(255,48,63,.68))
-    drop-shadow(0 0 11px rgba(255,48,63,.28));
+    drop-shadow(0 0 5px rgba(255,47,159,.68))
+    drop-shadow(0 0 11px rgba(255,47,159,.28));
 }
 
 .segment.yellow {
   filter:
     saturate(1.28)
-    drop-shadow(0 0 5px rgba(255,227,79,.62))
-    drop-shadow(0 0 11px rgba(255,227,79,.28));
+    drop-shadow(0 0 5px rgba(255,233,90,.62))
+    drop-shadow(0 0 11px rgba(255,233,90,.28));
 }
 
 .segment.ice {
   filter:
     saturate(1.25)
-    drop-shadow(0 0 5px rgba(85,221,255,.68))
-    drop-shadow(0 0 11px rgba(85,221,255,.30));
+    drop-shadow(0 0 5px rgba(143,234,255,.68))
+    drop-shadow(0 0 11px rgba(143,234,255,.30));
 }
 
 /* =========================================================
@@ -1750,11 +1719,6 @@ button {
   .bottom-motto p {
     font-size: 8px;
   }
-
-  /*
-    En el teléfono las tres preguntas y sus respuestas
-    permanecen dentro de una única pantalla.
-  */
 
   .question-panel {
     padding: 8px 8px 10px;
