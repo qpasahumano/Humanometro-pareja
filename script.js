@@ -11,11 +11,11 @@
   No      = 0
 
   Cada bloque:
-  2 o 3 Sí          -> ROJO
-  2 o 3 No          -> CELESTE HIELO
-  2 o 3 A veces     -> AMARILLO
+  Predominan Sí       -> ROJO
+  Predominan A veces  -> AMARILLO
+  Predominan No       -> CELESTE HIELO
   1 Sí + 1 A veces + 1 No
-                    -> la tercera respuesta funciona como tendencia
+                      -> AMARILLO
 
   Resultado global:
   27–54 -> Vínculo estable
@@ -267,6 +267,7 @@ function openBlock(index) {
   renderQuestions(index);
 
   questionPanel.classList.remove("hidden");
+  resultsPanel.classList.add("hidden");
   document.body.style.overflow = "hidden";
 
   updateWheel();
@@ -403,6 +404,8 @@ function completeCurrentBlock(index) {
       }, 1400);
     }, 100);
   } else {
+    state.currentBlock = index;
+
     journeyGuide.textContent =
       "Recorrido completo. Tu lectura del Humanómetro está lista.";
 
@@ -424,22 +427,14 @@ function calculateSegment(answerKeys) {
 
   let color;
 
-  if (yesCount >= 2) {
+  if (yesCount > maybeCount && yesCount > noCount) {
     color = "red";
-  } else if (noCount >= 2) {
+  } else if (noCount > yesCount && noCount > maybeCount) {
     color = "ice";
-  } else if (maybeCount >= 2) {
+  } else if (maybeCount > yesCount && maybeCount > noCount) {
     color = "yellow";
   } else {
-    const third = answerKeys[2];
-
-    if (third === "yes") {
-      color = "red";
-    } else if (third === "no") {
-      color = "ice";
-    } else {
-      color = "yellow";
-    }
+    color = "yellow";
   }
 
   return {
@@ -485,10 +480,23 @@ function showResults() {
 
   renderSegmentResults();
 
+  const wheelShell = document.querySelector(".wheel-shell");
+
+  if (wheelShell && resultsPanel.parentElement !== journeyGuide.parentElement) {
+    wheelShell.insertAdjacentElement("afterend", resultsPanel);
+  }
+
   resultsPanel.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow = "";
 
   resultsPanel.scrollTop = 0;
+
+  setTimeout(() => {
+    resultsPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 100);
 }
 
 function renderSegmentResults() {
