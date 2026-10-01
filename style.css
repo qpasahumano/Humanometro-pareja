@@ -293,19 +293,21 @@ button {
 
   /*
     Cada porción conserva su propia línea.
-    El color base es muy transparente para que la estructura
-    exista sin verse gruesa ni grotesca.
+    Los colores corresponden a la referencia:
+    1,5,8 = rojo vivo
+    3,6,9 = amarillo vivo
+    2,4,7 = celeste hielo
   */
 
-  --seg1-line: rgba(255,43,43,.26);
-  --seg2-line: rgba(116,234,255,.26);
-  --seg3-line: rgba(255,220,55,.26);
-  --seg4-line: rgba(116,234,255,.26);
-  --seg5-line: rgba(255,43,43,.26);
-  --seg6-line: rgba(255,220,55,.26);
-  --seg7-line: rgba(116,234,255,.26);
-  --seg8-line: rgba(255,43,43,.26);
-  --seg9-line: rgba(255,220,55,.26);
+  --seg1-line: rgba(255,43,43,.42);
+  --seg2-line: rgba(116,234,255,.42);
+  --seg3-line: rgba(255,220,55,.42);
+  --seg4-line: rgba(116,234,255,.42);
+  --seg5-line: rgba(255,43,43,.42);
+  --seg6-line: rgba(255,220,55,.42);
+  --seg7-line: rgba(116,234,255,.42);
+  --seg8-line: rgba(255,43,43,.42);
+  --seg9-line: rgba(255,220,55,.42);
 }
 
 /*
@@ -314,10 +316,6 @@ button {
    Cada bloque posee sus dos líneas personales.
    En cada unión quedan dos líneas independientes:
    una pertenece al bloque anterior y otra al siguiente.
-
-   Las líneas tienen solamente 0.10deg de espesor,
-   con una separación mínima de 0.16deg entre ambas,
-   para reproducir el efecto extremadamente fino de la referencia.
 */
 
 .segment-wheel::before {
@@ -385,16 +383,17 @@ button {
   opacity: .96;
 
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.82))
-    drop-shadow(0 0 2.5px rgba(255,255,255,.34))
-    drop-shadow(0 0 5px rgba(80,220,255,.22));
+    drop-shadow(0 0 1px rgba(255,255,255,.88))
+    drop-shadow(0 0 2.5px rgba(255,255,255,.42))
+    drop-shadow(0 0 5px rgba(80,220,255,.30));
 }
 
 /*
    COLORACIÓN PROGRESIVA DE LOS SEGMENTOS
 
-   Cada bloque completado recibe el color correspondiente
-   sin ocultar el fondo espacial ni las líneas luminosas.
+   Cada bloque completado recibe un color intenso pero
+   translúcido, permitiendo que continúe visible el fondo
+   espacial y las estrellas.
 */
 
 .segment-wheel::after {
@@ -432,22 +431,17 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .60;
+  opacity: .88;
 
   filter:
-    saturate(1.25)
-    drop-shadow(0 0 4px rgba(75,220,255,.32));
+    saturate(1.35)
+    drop-shadow(0 0 3px rgba(255,255,255,.20))
+    drop-shadow(0 0 7px rgba(80,225,255,.30));
 }
 
 /* =========================================================
    LUMINOSIDAD DE LÍNEAS AL COMPLETAR CADA PORCIÓN
    ========================================================= */
-
-/*
-   Cuando una porción pasa a completed,
-   su línea personal aumenta suavemente de intensidad.
-   Las líneas vecinas permanecen independientes.
-*/
 
 .segment-wheel:has(.segment-1.completed) {
   --seg1-line: rgba(255,43,43,.94);
@@ -570,11 +564,6 @@ button {
   font-weight: 900;
 }
 
-/*
-   ROJO VIVO
-   Sin fucsia.
-*/
-
 .segment.red {
   filter:
     saturate(1.35)
@@ -582,20 +571,12 @@ button {
     drop-shadow(0 0 11px rgba(255,43,43,.28));
 }
 
-/*
-   AMARILLO VIVO
-*/
-
 .segment.yellow {
   filter:
     saturate(1.28)
     drop-shadow(0 0 5px rgba(255,220,55,.62))
     drop-shadow(0 0 11px rgba(255,220,55,.28));
 }
-
-/*
-   CELESTE HIELO
-*/
 
 .segment.ice {
   filter:
