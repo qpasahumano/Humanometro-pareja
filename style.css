@@ -4,13 +4,13 @@
 
 .logo-parejas {
   display: block;
-  width: clamp(50px, 13vw, 62px);
-  height: clamp(50px, 13vw, 62px);
+  width: clamp(62px, 16vw, 76px);
+  height: clamp(62px, 16vw, 76px);
 
   object-fit: contain;
   object-position: center;
 
-  margin: 0 auto -5px;
+  margin: 0 auto -7px;
   padding: 0;
 
   background: transparent !important;
@@ -261,7 +261,7 @@ button {
 
 .wheel-shell {
   position: relative;
-  width: min(72vw, 415px);
+  width: min(68vw, 390px);
   aspect-ratio: 1;
   margin: -1px auto 2px;
 }
@@ -273,51 +273,24 @@ button {
   pointer-events: none;
 }
 
+/* =========================================================
+   ANILLO EXTERIOR — AZUL NEÓN FINO Y UNIFORME
+   ========================================================= */
+
 .outer-ring {
-  inset: 1.8%;
+  inset: 2.8%;
   z-index: 2;
-  border: 3px solid transparent;
 
-  background:
-    conic-gradient(
-      from 300deg,
-      #ff0055 0deg 39.72deg,
-      transparent 39.72deg 40.28deg,
-      #00eaff 40.28deg 79.72deg,
-      transparent 79.72deg 80.28deg,
-      #fff200 80.28deg 119.72deg,
-      transparent 119.72deg 120.28deg,
-      #00eaff 120.28deg 159.72deg,
-      transparent 159.72deg 160.28deg,
-      #ff0055 160.28deg 199.72deg,
-      transparent 199.72deg 200.28deg,
-      #fff200 200.28deg 239.72deg,
-      transparent 239.72deg 240.28deg,
-      #00eaff 240.28deg 279.72deg,
-      transparent 279.72deg 280.28deg,
-      #ff0055 280.28deg 319.72deg,
-      transparent 319.72deg 320.28deg,
-      #fff200 320.28deg 359.72deg,
-      transparent 359.72deg 360deg
-    ) border-box;
+  border: 1px solid #25eaff;
 
-  -webkit-mask:
-    linear-gradient(#000 0 0) padding-box,
-    linear-gradient(#000 0 0);
+  background: transparent;
 
-  -webkit-mask-composite: xor;
+  box-shadow:
+    0 0 2px #25eaff,
+    0 0 5px rgba(37,234,255,.82),
+    0 0 9px rgba(37,234,255,.48);
 
-  mask:
-    linear-gradient(#000 0 0) padding-box,
-    linear-gradient(#000 0 0);
-
-  mask-composite: exclude;
-
-  filter:
-    drop-shadow(0 0 2px #ff0055)
-    drop-shadow(0 0 5px #00eaff)
-    drop-shadow(0 0 8px rgba(255,242,0,.65));
-
+  filter: none;
   opacity: 1;
 }
 
@@ -791,7 +764,7 @@ button {
 }
 
 /* =========================================================
-   CORAZÓN CENTRAL
+   CORAZÓN CENTRAL DE LA RUEDA
    ========================================================= */
 
 .heart-core {
@@ -1542,8 +1515,8 @@ button {
   }
 
   .logo-parejas {
-    width: clamp(50px, 14vw, 62px);
-    height: clamp(50px, 14vw, 62px);
+    width: clamp(58px, 17vw, 72px);
+    height: clamp(58px, 17vw, 72px);
     margin-top: 0;
     margin-bottom: -5px;
   }
@@ -1571,8 +1544,8 @@ button {
   }
 
   .wheel-shell {
-    width: 72vw;
-    max-width: 415px;
+    width: 68vw;
+    max-width: 390px;
     margin-left: 50%;
     transform: translateX(-50%);
     margin-top: -1px;
@@ -1767,8 +1740,8 @@ button {
   }
 
   .logo-parejas {
-    width: 62px;
-    height: 62px;
+    width: 70px;
+    height: 70px;
     margin-bottom: -6px;
   }
 
@@ -1790,7 +1763,7 @@ button {
   }
 
   .wheel-shell {
-    width: 405px;
+    width: 380px;
     margin-bottom: 2px;
   }
 
@@ -1811,6 +1784,6 @@ button {
   }
 
   .wheel-shell {
-    width: 415px;
+    width: 390px;
   }
 }
