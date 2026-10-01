@@ -4,13 +4,13 @@
 
 .logo-parejas {
   display: block;
-  width: clamp(62px, 16vw, 76px);
-  height: clamp(62px, 16vw, 76px);
+  width: clamp(50px, 13vw, 62px);
+  height: clamp(50px, 13vw, 62px);
 
   object-fit: contain;
   object-position: center;
 
-  margin: 0 auto -7px;
+  margin: 0 auto -5px;
   padding: 0;
 
   background: transparent !important;
@@ -32,6 +32,7 @@
     drop-shadow(0 0 27px rgba(80,220,255,.18));
 }
 
+/* Evita superficie visual detrás del logo */
 .brand-header {
   text-align: center;
   position: relative;
@@ -260,7 +261,7 @@ button {
 
 .wheel-shell {
   position: relative;
-  width: min(68vw, 390px);
+  width: min(72vw, 415px);
   aspect-ratio: 1;
   margin: -1px auto 2px;
 }
@@ -273,8 +274,9 @@ button {
 }
 
 .outer-ring {
-  inset: 2.8%;
+  inset: 1.8%;
   z-index: 2;
+  border: 3px solid transparent;
 
   background:
     conic-gradient(
@@ -297,28 +299,26 @@ button {
       transparent 319.72deg 320.28deg,
       #fff200 320.28deg 359.72deg,
       transparent 359.72deg 360deg
-    );
+    ) border-box;
 
   -webkit-mask:
-    radial-gradient(
-      circle,
-      transparent 0 96.8%,
-      #000 97.15% 100%
-    );
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
 
   mask:
-    radial-gradient(
-      circle,
-      transparent 0 96.8%,
-      #000 97.15% 100%
-    );
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
 
   filter:
-    drop-shadow(0 0 1.5px #ff0055)
-    drop-shadow(0 0 3px #00eaff)
-    drop-shadow(0 0 5px rgba(255,242,0,.58));
+    drop-shadow(0 0 2px #ff0055)
+    drop-shadow(0 0 5px #00eaff)
+    drop-shadow(0 0 8px rgba(255,242,0,.65));
 
-  opacity: .98;
+  opacity: 1;
 }
 
 .inner-ring {
@@ -331,15 +331,15 @@ button {
   border-radius: 50%;
   overflow: visible;
 
-  --seg1-color: rgba(255,0,85,.07);
-  --seg2-color: rgba(0,234,255,.055);
-  --seg3-color: rgba(255,242,0,.07);
-  --seg4-color: rgba(0,234,255,.055);
-  --seg5-color: rgba(255,0,85,.07);
-  --seg6-color: rgba(255,242,0,.07);
-  --seg7-color: rgba(0,234,255,.055);
-  --seg8-color: rgba(255,0,85,.07);
-  --seg9-color: rgba(255,242,0,.07);
+  --seg1-color: transparent;
+  --seg2-color: transparent;
+  --seg3-color: transparent;
+  --seg4-color: transparent;
+  --seg5-color: transparent;
+  --seg6-color: transparent;
+  --seg7-color: transparent;
+  --seg8-color: transparent;
+  --seg9-color: transparent;
 
   --seg1-line: #ff0055;
   --seg2-line: #00eaff;
@@ -418,7 +418,7 @@ button {
   filter:
     drop-shadow(0 0 1px var(--seg1-line))
     drop-shadow(0 0 3px var(--seg1-line))
-    drop-shadow(0 0 5px var(--seg1-line));
+    drop-shadow(0 0 7px var(--seg1-line));
 }
 
 .segment-wheel::after {
@@ -431,8 +431,8 @@ button {
   background:
     radial-gradient(
       circle at 50% 42%,
-      rgba(255,255,255,.045) 0%,
-      rgba(255,255,255,.012) 34%,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.018) 34%,
       transparent 68%
     ),
     conic-gradient(
@@ -466,52 +466,52 @@ button {
   opacity: 1;
 
   filter:
-    saturate(1.4)
-    brightness(1.05);
+    saturate(1.35)
+    brightness(1.04);
 }
 
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-color: rgba(255,0,85,.30) !important;
+  --seg1-color: rgba(255,0,85,.25) !important;
   --seg1-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-color: rgba(0,234,255,.16) !important;
+  --seg2-color: rgba(0,234,255,.25) !important;
   --seg2-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-3.completed) {
-  --seg3-color: rgba(255,242,0,.30) !important;
+  --seg3-color: rgba(255,242,0,.25) !important;
   --seg3-line: #fff200;
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-color: rgba(0,234,255,.16) !important;
+  --seg4-color: rgba(0,234,255,.25) !important;
   --seg4-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-5.completed) {
-  --seg5-color: rgba(255,0,85,.30) !important;
+  --seg5-color: rgba(255,0,85,.25) !important;
   --seg5-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-6.completed) {
-  --seg6-color: rgba(255,242,0,.30) !important;
+  --seg6-color: rgba(255,242,0,.25) !important;
   --seg6-line: #fff200;
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-color: rgba(0,234,255,.16) !important;
+  --seg7-color: rgba(0,234,255,.25) !important;
   --seg7-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-8.completed) {
-  --seg8-color: rgba(255,0,85,.30) !important;
+  --seg8-color: rgba(255,0,85,.25) !important;
   --seg8-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-9.completed) {
-  --seg9-color: rgba(255,242,0,.30) !important;
+  --seg9-color: rgba(255,242,0,.25) !important;
   --seg9-line: #fff200;
 }
 
@@ -671,7 +671,7 @@ button {
    ========================================================= */
 
 .segment-number {
-  font-size: clamp(13px, 2.65vw, 18px);
+  font-size: clamp(12px, 2.4vw, 17px);
   font-weight: 500;
   line-height: 1;
   width: 100%;
@@ -685,7 +685,7 @@ button {
 
 .segment-name {
   margin-top: 1px;
-  font-size: clamp(6.5px, 1.3vw, 9px);
+  font-size: clamp(6px, 1.15vw, 8px);
   font-weight: 500;
   line-height: 1.02;
   width: 100%;
@@ -699,8 +699,8 @@ button {
 
 .segment-icon-svg {
   display: block;
-  width: clamp(25px, 5.4vw, 37px);
-  height: clamp(21px, 4.6vw, 31px);
+  width: clamp(24px, 5.2vw, 36px);
+  height: clamp(20px, 4.4vw, 30px);
   margin: 1px auto 0;
   overflow: visible;
   fill: none;
@@ -1180,7 +1180,7 @@ button {
 #questionTitle {
   margin: 3px 0 1px;
   padding-right: 45px;
-  font-size: clamp(23px, 6.3vw, 38px);
+  font-size: clamp(22px, 6vw, 36px);
   line-height: 1;
   color: white;
   text-shadow:
@@ -1191,7 +1191,7 @@ button {
 .question-subtitle {
   margin: 0 0 7px;
   color: rgba(234,248,255,.76);
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.1;
 }
 
@@ -1203,7 +1203,7 @@ button {
   display: block;
   margin-bottom: 3px;
   color: #bfefff;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .question-progress-track {
@@ -1254,7 +1254,7 @@ button {
 .question-text {
   margin: 0;
   color: #f7fbff;
-  font-size: 13.2px;
+  font-size: 12.5px;
   line-height: 1.2;
 }
 
@@ -1542,8 +1542,8 @@ button {
   }
 
   .logo-parejas {
-    width: clamp(58px, 17vw, 72px);
-    height: clamp(58px, 17vw, 72px);
+    width: clamp(50px, 14vw, 62px);
+    height: clamp(50px, 14vw, 62px);
     margin-top: 0;
     margin-bottom: -5px;
   }
@@ -1571,8 +1571,8 @@ button {
   }
 
   .wheel-shell {
-    width: 68vw;
-    max-width: 390px;
+    width: 72vw;
+    max-width: 415px;
     margin-left: 50%;
     transform: translateX(-50%);
     margin-top: -1px;
@@ -1585,12 +1585,12 @@ button {
   }
 
   .segment-name {
-    font-size: 6.5px;
+    font-size: 6px;
     margin-top: 1px;
   }
 
   .segment-number {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .segment-icon-svg {
@@ -1693,12 +1693,12 @@ button {
   }
 
   #questionTitle {
-    font-size: clamp(22px, 6vw, 31px);
+    font-size: clamp(21px, 6vw, 30px);
     margin-top: 2px;
   }
 
   .question-subtitle {
-    font-size: 10px;
+    font-size: 9px;
     margin-bottom: 5px;
   }
 
@@ -1707,7 +1707,7 @@ button {
   }
 
   #questionProgressText {
-    font-size: 9px;
+    font-size: 8px;
     margin-bottom: 2px;
   }
 
@@ -1730,7 +1730,7 @@ button {
   }
 
   .question-text {
-    font-size: 12.4px;
+    font-size: 12px;
     line-height: 1.18;
   }
 
@@ -1767,8 +1767,8 @@ button {
   }
 
   .logo-parejas {
-    width: 70px;
-    height: 70px;
+    width: 62px;
+    height: 62px;
     margin-bottom: -6px;
   }
 
@@ -1790,7 +1790,7 @@ button {
   }
 
   .wheel-shell {
-    width: 380px;
+    width: 405px;
     margin-bottom: 2px;
   }
 
@@ -1811,6 +1811,6 @@ button {
   }
 
   .wheel-shell {
-    width: 390px;
+    width: 415px;
   }
 }
