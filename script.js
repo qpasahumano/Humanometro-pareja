@@ -1,30 +1,36 @@
 "use strict";
 
-// HUMANÓMETRO PAREJAS — actualización 30/09/2026
+// HUMANÓMETRO PAREJAS — actualización 01/10/2026
 
 /*
-  HUMANÓMETRO PAREJAS
+HUMANÓMETRO PAREJAS
 
-  Escala:
-  Sí      = 2
-  A veces = 1
-  No      = 0
+Escala:
+Sí      = 2
+A veces = 1
+No      = 0
 
-  Cada bloque:
-  Predominan Sí       -> ROJO
-  Predominan A veces  -> AMARILLO
-  Predominan No       -> CELESTE HIELO
-  1 Sí + 1 A veces + 1 No
-                      -> AMARILLO
+Cada bloque:
+Predominan Sí       -> ROJO
+Predominan A veces  -> AMARILLO
+Predominan No       -> CELESTE HIELO
+1 Sí + 1 A veces + 1 No
+-> AMARILLO
 
-  Resultado global:
-  27–54 -> Vínculo estable
-  18–26 -> Vínculo estable con aspectos a revisar
-   9–17 -> Vínculo inestable
-   0–8  -> Vínculo en alerta
+Resultado global:
+27–54 -> Vínculo estable
+18–26 -> Vínculo estable con aspectos a revisar
+9–17  -> Vínculo inestable
+0–8   -> Vínculo en alerta
 
-  El test es individual.
-  No cruza respuestas entre integrantes.
+Color general del corazón:
+Predominan respuestas Sí      -> ROJO
+Predominan respuestas No      -> CELESTE HIELO
+Predominan respuestas A veces -> AMARILLO
+Sin predominancia única        -> AMARILLO
+
+El test es individual.
+No cruza respuestas entre integrantes.
 */
 
 const blocks = [
@@ -143,7 +149,8 @@ const state = {
   currentBlock: 0,
   answers: Array.from({ length: 9 }, () => [null, null, null]),
   completed: Array(9).fill(false),
-  segmentResults: Array(9).fill(null)
+  segmentResults: Array(9).fill(null),
+  overallColor: null
 };
 
 const enableHeart = document.getElementById("enableHeart");
@@ -239,7 +246,8 @@ function startTest() {
   state.started = true;
 
   enableHeart.classList.add("enabled");
-  enableHeart.querySelector("span:last-child").textContent = "CORAZÓN HABILITADO";
+  enableHeart.querySelector("span:last-child").textContent =
+    "CORAZÓN HABILITADO";
 
   journeyGuide.textContent =
     "El bloque 1 está disponible. Completá sus tres preguntas para continuar.";
@@ -284,7 +292,8 @@ function renderQuestions(blockIndex) {
 
     const number = document.createElement("div");
     number.className = "question-number";
-    number.textContent = `PREGUNTA ${blockIndex * 3 + questionIndex + 1}`;
+    number.textContent =
+      `PREGUNTA ${blockIndex * 3 + questionIndex + 1}`;
 
     const text = document.createElement("p");
     text.className = "question-text";
@@ -300,7 +309,9 @@ function renderQuestions(blockIndex) {
       button.className = `answer ${option.key}`;
       button.textContent = option.label;
 
-      if (state.answers[blockIndex][questionIndex] === option.key) {
+      if (
+        state.answers[blockIndex][questionIndex] === option.key
+      ) {
         button.classList.add("selected");
       }
 
@@ -328,9 +339,11 @@ function renderQuestions(blockIndex) {
   });
 
   const continueButton = document.createElement("button");
+
   continueButton.type = "button";
   continueButton.className = "continue-question";
   continueButton.id = "continueQuestion";
+
   continueButton.textContent =
     blockIndex === blocks.length - 1
       ? "FINALIZAR Y VER MI LECTURA"
@@ -353,7 +366,9 @@ function updateQuestionButton(blockIndex) {
     return;
   }
 
-  const complete = state.answers[blockIndex].every(answer => answer !== null);
+  const complete = state.answers[blockIndex].every(
+    answer => answer !== null
+  );
 
   button.disabled = !complete;
 }
@@ -363,8 +378,11 @@ function updateQuestionProgress(blockIndex) {
     answer => answer !== null
   ).length;
 
-  questionProgressText.textContent = `Pregunta ${answered} de 3`;
-  questionProgressBar.style.width = `${Math.max(33.33, answered / 3 * 100)}%`;
+  questionProgressText.textContent =
+    `Pregunta ${answered} de 3`;
+
+  questionProgressBar.style.width =
+    `${Math.max(33.33, answered / 3 * 100)}%`;
 }
 
 function completeCurrentBlock(index) {
@@ -403,11 +421,14 @@ function completeCurrentBlock(index) {
         next.classList.remove("active");
       }, 1400);
     }, 100);
+
   } else {
     state.currentBlock = index;
 
     journeyGuide.textContent =
       "Recorrido completo. Tu lectura del Humanómetro está lista.";
+
+    state.overallColor = calculateOverallColor();
 
     updateWheel();
 
@@ -415,25 +436,45 @@ function completeCurrentBlock(index) {
   }
 }
 
+/*
+  COLOR DE CADA SEGMENTO
+
+  La decisión se toma exclusivamente por cantidad
+  de respuestas de cada categoría.
+
+  2 Sí + 1 No          -> rojo
+  2 No + 1 Sí          -> celeste
+  2 A veces + 1 Sí     -> amarillo
+  2 A veces + 1 No     -> amarillo
+  1 Sí + 1 No + 1 A veces -> amarillo
+
+  Nunca se utiliza el puntaje para decidir el color.
+*/
 function calculateSegment(answerKeys) {
-  const yesCount = answerKeys.filter(value => value === "yes").length;
-  const maybeCount = answerKeys.filter(value => value === "maybe").length;
-  const noCount = answerKeys.filter(value => value === "no").length;
+  const yesCount =
+    answerKeys.filter(value => value === "yes").length;
+
+  const maybeCount =
+    answerKeys.filter(value => value === "maybe").length;
+
+  const noCount =
+    answerKeys.filter(value => value === "no").length;
 
   const score = answerKeys.reduce((total, key) => {
-    const option = responseOptions.find(item => item.key === key);
+    const option = responseOptions.find(
+      item => item.key === key
+    );
+
     return total + option.value;
   }, 0);
 
-  let color;
+  let color = "yellow";
 
   if (yesCount > maybeCount && yesCount > noCount) {
     color = "red";
   } else if (noCount > yesCount && noCount > maybeCount) {
     color = "ice";
   } else if (maybeCount > yesCount && maybeCount > noCount) {
-    color = "yellow";
-  } else {
     color = "yellow";
   }
 
@@ -446,9 +487,96 @@ function calculateSegment(answerKeys) {
   };
 }
 
+/*
+  COLOR GENERAL DEL CORAZÓN
+
+  Se cuentan las 27 respuestas por categoría.
+  No se suman los valores 2/1/0 para determinar el color.
+
+  Mayor cantidad de Sí      -> rojo
+  Mayor cantidad de No      -> celeste
+  Mayor cantidad de A veces -> amarillo
+  Empate                    -> amarillo
+*/
+function calculateOverallColor() {
+  const allAnswers = state.answers.flat();
+
+  const yesCount =
+    allAnswers.filter(value => value === "yes").length;
+
+  const maybeCount =
+    allAnswers.filter(value => value === "maybe").length;
+
+  const noCount =
+    allAnswers.filter(value => value === "no").length;
+
+  if (yesCount > maybeCount && yesCount > noCount) {
+    return "red";
+  }
+
+  if (noCount > yesCount && noCount > maybeCount) {
+    return "ice";
+  }
+
+  if (maybeCount > yesCount && maybeCount > noCount) {
+    return "yellow";
+  }
+
+  return "yellow";
+}
+
+function applyOverallHeartColor() {
+  const heartGradient =
+    document.getElementById("heartGradient");
+
+  if (!heartGradient || !state.overallColor) {
+    return;
+  }
+
+  const stops = [...heartGradient.querySelectorAll("stop")];
+
+  let colors;
+
+  if (state.overallColor === "red") {
+    colors = [
+      "#ffffff",
+      "#ff9f9f",
+      "#ff3838",
+      "#ff1717",
+      "#ff5656",
+      "#ffffff"
+    ];
+  } else if (state.overallColor === "yellow") {
+    colors = [
+      "#ffffff",
+      "#fff3a0",
+      "#ffe226",
+      "#ffd000",
+      "#ffe65c",
+      "#ffffff"
+    ];
+  } else {
+    colors = [
+      "#ffffff",
+      "#a8f4ff",
+      "#55e8ff",
+      "#20cfff",
+      "#76efff",
+      "#ffffff"
+    ];
+  }
+
+  stops.forEach((stop, index) => {
+    stop.setAttribute("stop-color", colors[index]);
+  });
+}
+
 function calculateGlobalScore() {
   return state.answers.flat().reduce((total, answerKey) => {
-    const option = responseOptions.find(item => item.key === answerKey);
+    const option = responseOptions.find(
+      item => item.key === answerKey
+    );
+
     return total + option.value;
   }, 0);
 }
@@ -473,8 +601,12 @@ function showResults() {
   const score = calculateGlobalScore();
   const result = getGeneralResult(score);
 
+  state.overallColor = calculateOverallColor();
+  applyOverallHeartColor();
+
   resultTitle.textContent = result.title;
-  resultScore.textContent = `Puntaje de tu recorrido: ${score} / 54`;
+  resultScore.textContent =
+    `Puntaje de tu recorrido: ${score} / 54`;
 
   resultGeneral.innerHTML = result.text;
 
@@ -482,8 +614,11 @@ function showResults() {
 
   const wheelShell = document.querySelector(".wheel-shell");
 
-  if (wheelShell && resultsPanel.parentElement !== journeyGuide.parentElement) {
-    wheelShell.insertAdjacentElement("afterend", resultsPanel);
+  if (wheelShell) {
+    wheelShell.insertAdjacentElement(
+      "afterend",
+      resultsPanel
+    );
   }
 
   resultsPanel.classList.remove("hidden");
@@ -510,17 +645,23 @@ function renderSegmentResults() {
     }
 
     const article = document.createElement("article");
-    article.className = `segment-result ${result.color}`;
+    article.className =
+      `segment-result ${result.color}`;
 
     const header = document.createElement("div");
-    header.className = "segment-result-header";
+    header.className =
+      "segment-result-header";
 
     const title = document.createElement("div");
-    title.className = "segment-result-title";
-    title.textContent = `${block.number}. ${block.name}`;
+    title.className =
+      "segment-result-title";
+
+    title.textContent =
+      `${block.number}. ${block.name}`;
 
     const mark = document.createElement("div");
-    mark.className = "segment-result-mark";
+    mark.className =
+      "segment-result-mark";
 
     if (result.color === "red") {
       mark.textContent = "🔴";
@@ -574,7 +715,10 @@ function updateWheel() {
 
   if (wheel) {
     for (let index = 1; index <= 9; index++) {
-      wheel.style.setProperty(`--seg${index}-color`, "transparent");
+      wheel.style.setProperty(
+        `--seg${index}-color`,
+        "transparent"
+      );
     }
 
     state.segmentResults.forEach((result, index) => {
@@ -590,8 +734,18 @@ function updateWheel() {
   }
 
   segments.forEach((segment, index) => {
-    segment.classList.remove("locked", "available", "completed", "active");
-    segment.classList.remove("red", "yellow", "ice");
+    segment.classList.remove(
+      "locked",
+      "available",
+      "completed",
+      "active"
+    );
+
+    segment.classList.remove(
+      "red",
+      "yellow",
+      "ice"
+    );
 
     if (!state.started) {
       if (index === 0) {
@@ -606,7 +760,8 @@ function updateWheel() {
     if (state.completed[index]) {
       segment.classList.add("completed");
 
-      const result = state.segmentResults[index];
+      const result =
+        state.segmentResults[index];
 
       if (result) {
         segment.classList.add(result.color);
@@ -616,12 +771,20 @@ function updateWheel() {
     }
 
     if (index === state.currentBlock) {
-      segment.classList.add("available", "active");
+      segment.classList.add(
+        "available",
+        "active"
+      );
+
       return;
     }
 
     segment.classList.add("locked");
   });
+
+  if (state.overallColor) {
+    applyOverallHeartColor();
+  }
 }
 
 function closeQuestionPanel() {
@@ -633,14 +796,25 @@ function closeQuestionPanel() {
 function restartTest() {
   state.started = false;
   state.currentBlock = 0;
-  state.answers = Array.from({ length: 9 }, () => [null, null, null]);
-  state.completed = Array(9).fill(false);
-  state.segmentResults = Array(9).fill(null);
+  state.answers =
+    Array.from(
+      { length: 9 },
+      () => [null, null, null]
+    );
+
+  state.completed =
+    Array(9).fill(false);
+
+  state.segmentResults =
+    Array(9).fill(null);
+
+  state.overallColor = null;
 
   resultsPanel.classList.add("hidden");
   questionPanel.classList.add("hidden");
 
   enableHeart.classList.remove("enabled");
+
   enableHeart.querySelector("span:last-child").textContent =
     "HABILITAR CORAZÓN";
 
