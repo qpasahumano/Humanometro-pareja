@@ -322,8 +322,8 @@ button {
 /*
    COLORACIÓN PROGRESIVA DE LOS SEGMENTOS
 
-   Cada bloque completado recibe el color correspondiente
-   sin ocultar el fondo espacial ni las líneas luminosas.
+   Más transparente para conservar el fondo espacial.
+   Los colores se acercan a una lectura LED limpia y elegante.
 */
 
 .segment-wheel::after {
@@ -361,11 +361,12 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .94;
+  opacity: .62;
 
   filter:
-    saturate(1.25)
-    drop-shadow(0 0 4px rgba(75,220,255,.32));
+    saturate(1.18)
+    drop-shadow(0 0 5px rgba(75,220,255,.42))
+    drop-shadow(0 0 11px rgba(75,220,255,.18));
 }
 
 /* =========================================================
@@ -453,25 +454,32 @@ button {
   font-weight: 900;
 }
 
+/* =========================================================
+   GLOW DE LOS SECTORES COMPLETADOS
+   ========================================================= */
+
 .segment.red {
   filter:
-    saturate(1.35)
-    drop-shadow(0 0 6px rgba(255,24,123,.72))
-    drop-shadow(0 0 13px rgba(255,24,123,.32));
+    saturate(1.22)
+    drop-shadow(0 0 5px rgba(255,36,125,.92))
+    drop-shadow(0 0 12px rgba(255,36,125,.48))
+    drop-shadow(0 0 21px rgba(255,36,125,.20));
 }
 
 .segment.yellow {
   filter:
-    saturate(1.28)
-    drop-shadow(0 0 6px rgba(255,224,77,.62))
-    drop-shadow(0 0 13px rgba(255,224,77,.28));
+    saturate(1.18)
+    drop-shadow(0 0 5px rgba(255,224,77,.86))
+    drop-shadow(0 0 12px rgba(255,224,77,.42))
+    drop-shadow(0 0 21px rgba(255,224,77,.18));
 }
 
 .segment.ice {
   filter:
-    saturate(1.32)
-    drop-shadow(0 0 6px rgba(125,234,255,.72))
-    drop-shadow(0 0 13px rgba(35,190,255,.32));
+    saturate(1.20)
+    drop-shadow(0 0 5px rgba(125,234,255,.94))
+    drop-shadow(0 0 12px rgba(35,190,255,.48))
+    drop-shadow(0 0 21px rgba(35,190,255,.20));
 }
 
 /* =========================================================
@@ -1015,12 +1023,58 @@ button {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background:
-    radial-gradient(circle at 50% 15%, rgba(0,125,255,.22), transparent 35%),
-    rgba(1,7,23,.96);
   overflow: hidden;
   padding: 12px 10px 14px;
-  backdrop-filter: blur(15px);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 8%,
+      rgba(0,150,255,.24) 0%,
+      rgba(0,92,180,.10) 25%,
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 15% 60%,
+      rgba(40,105,255,.14) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 88% 78%,
+      rgba(176,30,255,.12) 0%,
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1,7,23,.94),
+      rgba(2,9,28,.97)
+    );
+
+  backdrop-filter: blur(12px);
+}
+
+.question-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .20;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.6px) 18px 26px / 97px 113px,
+    radial-gradient(circle, rgba(92,215,255,.8) 0 1px, transparent 1.7px) 47px 81px / 137px 151px;
+}
+
+.question-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10,110,255,.06),
+      transparent 35%,
+      rgba(150,20,255,.05)
+    );
 }
 
 .question-panel-inner {
@@ -1030,6 +1084,7 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .close-question {
@@ -1041,12 +1096,14 @@ button {
   height: 34px;
   border: 1px solid rgba(82,221,255,.7);
   border-radius: 50%;
-  background: rgba(4,19,50,.85);
+  background: rgba(4,19,50,.72);
   color: white;
   font-size: 23px;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(25,204,255,.4);
+  box-shadow:
+    0 0 8px rgba(25,204,255,.55),
+    0 0 17px rgba(25,204,255,.22);
 }
 
 .question-kicker {
@@ -1106,20 +1163,33 @@ button {
 
 .questions-container {
   display: grid;
-  gap: 5px;
+  grid-template-rows: repeat(3, minmax(0, 1fr)) auto;
+  gap: 7px;
   flex: 1;
   min-height: 0;
 }
 
 .question-card {
-  padding: 7px 9px;
-  border: 1px solid rgba(78,217,255,.35);
-  border-radius: 10px;
+  padding: 9px 11px;
+  border: 1px solid rgba(78,217,255,.38);
+  border-radius: 12px;
+
   background:
-    linear-gradient(145deg, rgba(8,30,68,.86), rgba(3,14,36,.92));
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(0,155,255,.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(5,25,57,.70),
+      rgba(2,12,31,.78)
+    );
+
   box-shadow:
-    0 0 10px rgba(0,137,255,.15),
-    inset 0 0 12px rgba(38,176,255,.05);
+    0 0 13px rgba(0,137,255,.16),
+    inset 0 0 15px rgba(38,176,255,.055);
+
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -1128,80 +1198,124 @@ button {
 
 .question-number {
   color: #62eaff;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  letter-spacing: .4px;
 }
 
 .question-text {
   margin: 0;
   color: #f7fbff;
-  font-size: 11px;
-  line-height: 1.18;
+  font-size: 14px;
+  line-height: 1.28;
+  text-shadow:
+    0 0 4px rgba(255,255,255,.10);
 }
 
 .answer-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  margin-top: 6px;
+  gap: 6px;
+  margin-top: 8px;
 }
 
 .answer {
-  min-height: 30px;
-  height: 30px;
-  border-radius: 9px;
-  border: 1px solid rgba(100,220,255,.42);
-  background: rgba(10,34,71,.72);
+  min-height: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(100,220,255,.55);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,47,91,.86),
+      rgba(7,25,57,.88)
+    );
   color: white;
   cursor: pointer;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 800;
   transition: .25s ease;
-  padding: 0 3px;
+  padding: 0 5px;
+
+  box-shadow:
+    0 0 5px rgba(49,211,255,.20),
+    inset 0 0 8px rgba(87,220,255,.06);
 }
 
 .answer:hover {
   transform: translateY(-1px);
   border-color: #64eaff;
-  box-shadow: 0 0 9px rgba(40,211,255,.4);
+  box-shadow:
+    0 0 8px rgba(40,211,255,.58),
+    0 0 15px rgba(40,211,255,.20);
 }
 
 .answer.selected.yes {
-  background: rgba(255,26,112,.23);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,26,112,.34),
+      rgba(92,10,61,.48)
+    );
   border-color: #ff397f;
-  box-shadow: 0 0 12px rgba(255,26,112,.42);
+  box-shadow:
+    0 0 9px rgba(255,26,112,.72),
+    0 0 18px rgba(255,26,112,.30),
+    inset 0 0 10px rgba(255,50,140,.13);
 }
 
 .answer.selected.maybe {
-  background: rgba(255,222,54,.18);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,222,54,.27),
+      rgba(104,77,8,.34)
+    );
   border-color: #ffe34f;
   color: #fff6a8;
-  box-shadow: 0 0 12px rgba(255,224,65,.35);
+  box-shadow:
+    0 0 9px rgba(255,224,65,.68),
+    0 0 18px rgba(255,224,65,.25),
+    inset 0 0 10px rgba(255,224,65,.10);
 }
 
 .answer.selected.no {
-  background: rgba(88,219,255,.19);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(88,219,255,.29),
+      rgba(8,75,104,.42)
+    );
   border-color: #83eaff;
   color: #d9f9ff;
-  box-shadow: 0 0 12px rgba(75,222,255,.4);
+  box-shadow:
+    0 0 9px rgba(75,222,255,.72),
+    0 0 18px rgba(75,222,255,.28),
+    inset 0 0 10px rgba(75,222,255,.12);
 }
 
 .continue-question {
   width: 100%;
-  min-height: 34px;
-  height: 34px;
-  margin-top: 2px;
+  min-height: 40px;
+  height: 40px;
+  margin-top: 1px;
   border: 1px solid #54eaff;
   border-radius: 20px;
-  background: linear-gradient(90deg, rgba(8,67,112,.9), rgba(92,12,101,.85));
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8,67,112,.92),
+      rgba(92,12,101,.88)
+    );
   color: white;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   cursor: pointer;
   box-shadow:
-    0 0 9px rgba(40,224,255,.55),
-    inset 0 0 9px rgba(255,255,255,.08);
+    0 0 10px rgba(40,224,255,.58),
+    0 0 20px rgba(40,224,255,.16),
+    inset 0 0 10px rgba(255,255,255,.08);
 }
 
 .continue-question:disabled {
@@ -1546,10 +1660,9 @@ button {
     font-size: 8px;
   }
 
-  /*
-    En el teléfono las tres preguntas y sus respuestas
-    permanecen dentro de una única pantalla.
-  */
+  /* =======================================================
+     PREGUNTAS — TELÉFONO
+     ======================================================= */
 
   .question-panel {
     padding: 8px 8px 10px;
@@ -1576,7 +1689,7 @@ button {
   }
 
   .question-subtitle {
-    font-size: 9px;
+    font-size: 10px;
     margin-bottom: 5px;
   }
 
@@ -1585,7 +1698,7 @@ button {
   }
 
   #questionProgressText {
-    font-size: 8px;
+    font-size: 9px;
     margin-bottom: 2px;
   }
 
@@ -1594,42 +1707,43 @@ button {
   }
 
   .questions-container {
-    gap: 4px;
+    grid-template-rows: repeat(3, minmax(0, 1fr)) auto;
+    gap: 5px;
   }
 
   .question-card {
-    padding: 6px 8px;
-    border-radius: 9px;
+    padding: 8px 9px;
+    border-radius: 10px;
   }
 
   .question-number {
-    font-size: 7px;
-    margin-bottom: 2px;
+    font-size: 8px;
+    margin-bottom: 3px;
   }
 
   .question-text {
-    font-size: 10px;
-    line-height: 1.14;
+    font-size: 12px;
+    line-height: 1.22;
   }
 
   .answer-options {
     grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    margin-top: 5px;
+    gap: 4px;
+    margin-top: 6px;
   }
 
   .answer {
-    min-height: 28px;
-    height: 28px;
-    border-radius: 8px;
-    font-size: 9px;
+    min-height: 34px;
+    height: 34px;
+    border-radius: 9px;
+    font-size: 11px;
   }
 
   .continue-question {
-    min-height: 32px;
-    height: 32px;
+    min-height: 36px;
+    height: 36px;
     margin-top: 1px;
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
