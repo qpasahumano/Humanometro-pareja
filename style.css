@@ -19,38 +19,9 @@
      COLORES DE LAS PORCIONES / LÍNEAS NEÓN
      ======================================================= */
 
-  --couple-red: #ff3f91;
-  --couple-yellow: #d8bd69;
-  --couple-ice: #70b4ea;
-
-  /* =======================================================
-     ESCALAS CROMÁTICAS DE LA RUEDA
-     -------------------------------------------------------
-     Azul:
-     profundo -> medio -> celeste
-
-     Magenta:
-     bordó -> magenta -> fucsia
-
-     Dorado:
-     bronce -> dorado -> ámbar
-     ======================================================= */
-
-  --wheel-blue-dark: #08264a;
-  --wheel-blue-mid: #155b94;
-  --wheel-blue-light: #70b4ea;
-
-  --wheel-pink-dark: #250d25;
-  --wheel-pink-mid: #76194f;
-  --wheel-pink-light: #ff3f91;
-
-  --wheel-gold-dark: #292310;
-  --wheel-gold-mid: #806c28;
-  --wheel-gold-light: #d8bd69;
-
-  --wheel-blue-glow: rgba(112,180,234,.72);
-  --wheel-pink-glow: rgba(255,63,145,.72);
-  --wheel-gold-glow: rgba(216,189,105,.62);
+  --couple-red: #ff0055;
+  --couple-yellow: #fff200;
+  --couple-ice: #00eaff;
 }
 
 html {
@@ -293,9 +264,7 @@ button {
 /*
    CIRCUNFERENCIA EXTERIOR
    ---------------------------------------------------------
-   Borde cromático basado en las mismas tres familias
-   de la rueda:
-   magenta / azul / dorado.
+   Neón fluorescente siguiendo el color de cada porción.
 */
 
 .outer-ring {
@@ -308,31 +277,31 @@ button {
     conic-gradient(
       from 300deg,
 
-      #ff3f91 0deg 39.72deg,
+      #ff0055 0deg 39.72deg,
       transparent 39.72deg 40.28deg,
 
-      #70b4ea 40.28deg 79.72deg,
+      #00eaff 40.28deg 79.72deg,
       transparent 79.72deg 80.28deg,
 
-      #d8bd69 80.28deg 119.72deg,
+      #fff200 80.28deg 119.72deg,
       transparent 119.72deg 120.28deg,
 
-      #70b4ea 120.28deg 159.72deg,
+      #00eaff 120.28deg 159.72deg,
       transparent 159.72deg 160.28deg,
 
-      #ff3f91 160.28deg 199.72deg,
+      #ff0055 160.28deg 199.72deg,
       transparent 199.72deg 200.28deg,
 
-      #d8bd69 200.28deg 239.72deg,
+      #fff200 200.28deg 239.72deg,
       transparent 239.72deg 240.28deg,
 
-      #70b4ea 240.28deg 279.72deg,
+      #00eaff 240.28deg 279.72deg,
       transparent 279.72deg 280.28deg,
 
-      #ff3f91 280.28deg 319.72deg,
+      #ff0055 280.28deg 319.72deg,
       transparent 319.72deg 320.28deg,
 
-      #d8bd69 320.28deg 359.72deg,
+      #fff200 320.28deg 359.72deg,
       transparent 359.72deg 360deg
     );
 
@@ -349,9 +318,9 @@ button {
   mask-composite: exclude;
 
   filter:
-    drop-shadow(0 0 2px rgba(255,63,145,.75))
-    drop-shadow(0 0 5px rgba(112,180,234,.62))
-    drop-shadow(0 0 8px rgba(216,189,105,.42));
+    drop-shadow(0 0 2px #ff0055)
+    drop-shadow(0 0 5px #00eaff)
+    drop-shadow(0 0 8px rgba(255,242,0,.65));
 
   opacity: 1;
 }
@@ -366,45 +335,39 @@ button {
   border-radius: 50%;
   overflow: visible;
 
-  /*
-    COLOR BASE DE LAS 9 PORCIONES
-
-    1 / 5 / 8 = MAGENTA
-    2 / 4 / 7 = AZUL
-    3 / 6 / 9 = DORADO
-  */
-
-  --seg1-color: rgba(118,25,79,.88);
-  --seg2-color: rgba(21,91,148,.88);
-  --seg3-color: rgba(128,108,40,.82);
-  --seg4-color: rgba(21,91,148,.88);
-  --seg5-color: rgba(118,25,79,.88);
-  --seg6-color: rgba(128,108,40,.82);
-  --seg7-color: rgba(21,91,148,.88);
-  --seg8-color: rgba(118,25,79,.88);
-  --seg9-color: rgba(128,108,40,.82);
+  --seg1-color: transparent;
+  --seg2-color: transparent;
+  --seg3-color: transparent;
+  --seg4-color: transparent;
+  --seg5-color: transparent;
+  --seg6-color: transparent;
+  --seg7-color: transparent;
+  --seg8-color: transparent;
+  --seg9-color: transparent;
 
   /*
-    LÍNEAS INTERCOSTALES
+    Líneas intercostales NEÓN.
+    1,5,8 = rojo fluorescente
+    3,6,9 = amarillo fluorescente
+    2,4,7 = celeste fluorescente
   */
 
-  --seg1-line: #ff3f91;
-  --seg2-line: #70b4ea;
-  --seg3-line: #d8bd69;
-  --seg4-line: #70b4ea;
-  --seg5-line: #ff3f91;
-  --seg6-line: #d8bd69;
-  --seg7-line: #70b4ea;
-  --seg8-line: #ff3f91;
-  --seg9-line: #d8bd69;
+  --seg1-line: #ff0055;
+  --seg2-line: #00eaff;
+  --seg3-line: #fff200;
+  --seg4-line: #00eaff;
+  --seg5-line: #ff0055;
+  --seg6-line: #fff200;
+  --seg7-line: #00eaff;
+  --seg8-line: #ff0055;
+  --seg9-line: #fff200;
 }
 
 /*
    LÍNEAS INDIVIDUALES DE CADA PORCIÓN
    ---------------------------------------------------------
-   Línea fina luminosa.
-   El color es el mismo que corresponde a cada familia
-   cromática.
+   Se reemplaza el aspecto LED blanco por un efecto NEÓN
+   cromático: color puro + halo del mismo color.
 */
 
 .segment-wheel::before {
@@ -471,28 +434,23 @@ button {
 
   opacity: .98;
 
+  /*
+    NEÓN:
+    sin halo blanco dominante;
+    el brillo nace del propio color fluorescente.
+  */
+
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.75))
-    drop-shadow(0 0 3px rgba(90,220,255,.38))
-    drop-shadow(0 0 6px rgba(255,70,160,.18));
+    drop-shadow(0 0 1px var(--seg1-line))
+    drop-shadow(0 0 3px var(--seg1-line))
+    drop-shadow(0 0 7px var(--seg1-line));
 }
 
 /*
    COLORACIÓN DE LOS SEGMENTOS
    ---------------------------------------------------------
-   Cada familia utiliza una escala cromática propia.
-
-   MAGENTA:
-   oscuro -> medio -> fucsia
-
-   AZUL:
-   oscuro -> medio -> celeste
-
-   DORADO:
-   bronce -> dorado -> ámbar
-
-   La capa radial agrega luminosidad hacia el centro
-   y evita que el color quede plano.
+   Transparencia 75%:
+   alpha .25 = el 75% del fondo permanece visible.
 */
 
 .segment-wheel::after {
@@ -503,91 +461,24 @@ button {
   border-radius: 50%;
 
   background:
-
-    /* BRILLO INTERNO GENERAL */
     radial-gradient(
-      circle at 50% 43%,
-      rgba(255,255,255,.12) 0%,
-      rgba(255,255,255,.045) 18%,
-      rgba(255,255,255,.015) 37%,
-      transparent 69%
+      circle at 50% 42%,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.018) 34%,
+      transparent 68%
     ),
-
-    /* ESCALA CROMÁTICA ANGULAR DE LAS 9 PORCIONES */
     conic-gradient(
       from 300deg,
 
-      /* =================================================
-         1 — MAGENTA
-         ================================================= */
-      #250d25 0deg,
-      #76194f 17deg,
-      #ff3f91 34deg,
-      #76194f 40deg,
-
-      /* =================================================
-         2 — AZUL
-         ================================================= */
-      #08264a 40deg,
-      #155b94 57deg,
-      #70b4ea 74deg,
-      #155b94 80deg,
-
-      /* =================================================
-         3 — DORADO
-         ================================================= */
-      #292310 80deg,
-      #806c28 97deg,
-      #d8bd69 114deg,
-      #806c28 120deg,
-
-      /* =================================================
-         4 — AZUL
-         ================================================= */
-      #08264a 120deg,
-      #155b94 137deg,
-      #70b4ea 154deg,
-      #155b94 160deg,
-
-      /* =================================================
-         5 — MAGENTA
-         ================================================= */
-      #250d25 160deg,
-      #76194f 177deg,
-      #ff3f91 194deg,
-      #76194f 200deg,
-
-      /* =================================================
-         6 — DORADO
-         ================================================= */
-      #292310 200deg,
-      #806c28 217deg,
-      #d8bd69 234deg,
-      #806c28 240deg,
-
-      /* =================================================
-         7 — AZUL
-         ================================================= */
-      #08264a 240deg,
-      #155b94 257deg,
-      #70b4ea 274deg,
-      #155b94 280deg,
-
-      /* =================================================
-         8 — MAGENTA
-         ================================================= */
-      #250d25 280deg,
-      #76194f 297deg,
-      #ff3f91 314deg,
-      #76194f 320deg,
-
-      /* =================================================
-         9 — DORADO
-         ================================================= */
-      #292310 320deg,
-      #806c28 337deg,
-      #d8bd69 354deg,
-      #806c28 360deg
+      var(--seg1-color) 0deg 40deg,
+      var(--seg2-color) 40deg 80deg,
+      var(--seg3-color) 80deg 120deg,
+      var(--seg4-color) 120deg 160deg,
+      var(--seg5-color) 160deg 200deg,
+      var(--seg6-color) 200deg 240deg,
+      var(--seg7-color) 240deg 280deg,
+      var(--seg8-color) 280deg 320deg,
+      var(--seg9-color) 320deg 360deg
     );
 
   -webkit-mask:
@@ -606,79 +497,60 @@ button {
 
   mix-blend-mode: screen;
 
-  opacity: .96;
+  opacity: 1;
 
   filter:
-    saturate(1.08)
-    brightness(1.02);
-}
-
-/* =========================================================
-   CAPA DE PROFUNDIDAD CROMÁTICA
-   ---------------------------------------------------------
-   Refuerzo de cada familia para que el brillo no quede
-   limitado únicamente al borde.
-   ========================================================= */
-
-.segment-wheel {
-  background:
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(255,255,255,.025) 0%,
-      transparent 55%
-    );
+    saturate(1.35)
+    brightness(1.04);
 }
 
 /* =========================================================
    COLORES DE LAS PORCIONES COMPLETADAS
-   =========================================================
-   Se mantiene el comportamiento de las clases
-   .completed, pero ahora utiliza las nuevas escalas.
-*/
+   ========================================================= */
 
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-color: rgba(118,25,79,.96) !important;
-  --seg1-line: #ff3f91;
+  --seg1-color: rgba(255,0,85,.25) !important;
+  --seg1-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-color: rgba(21,91,148,.96) !important;
-  --seg2-line: #70b4ea;
+  --seg2-color: rgba(0,234,255,.25) !important;
+  --seg2-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-3.completed) {
-  --seg3-color: rgba(128,108,40,.92) !important;
-  --seg3-line: #d8bd69;
+  --seg3-color: rgba(255,242,0,.25) !important;
+  --seg3-line: #fff200;
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-color: rgba(21,91,148,.96) !important;
-  --seg4-line: #70b4ea;
+  --seg4-color: rgba(0,234,255,.25) !important;
+  --seg4-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-5.completed) {
-  --seg5-color: rgba(118,25,79,.96) !important;
-  --seg5-line: #ff3f91;
+  --seg5-color: rgba(255,0,85,.25) !important;
+  --seg5-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-6.completed) {
-  --seg6-color: rgba(128,108,40,.92) !important;
-  --seg6-line: #d8bd69;
+  --seg6-color: rgba(255,242,0,.25) !important;
+  --seg6-line: #fff200;
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-color: rgba(21,91,148,.96) !important;
-  --seg7-line: #70b4ea;
+  --seg7-color: rgba(0,234,255,.25) !important;
+  --seg7-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-8.completed) {
-  --seg8-color: rgba(118,25,79,.96) !important;
-  --seg8-line: #ff3f91;
+  --seg8-color: rgba(255,0,85,.25) !important;
+  --seg8-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-9.completed) {
-  --seg9-color: rgba(128,108,40,.92) !important;
-  --seg9-line: #d8bd69;
+  --seg9-color: rgba(255,242,0,.25) !important;
+  --seg9-line: #fff200;
 }
 
 /* =========================================================
@@ -766,30 +638,25 @@ button {
   font-weight: 900;
 }
 
-/*
-   GLOW DE CADA FAMILIA.
-   Ahora el glow coincide con la paleta nueva.
-*/
-
 .segment.red {
   filter:
-    saturate(1.08)
-    drop-shadow(0 0 4px rgba(255,63,145,.58))
-    drop-shadow(0 0 9px rgba(255,63,145,.28));
+    saturate(1.4)
+    drop-shadow(0 0 5px rgba(255,0,85,.72))
+    drop-shadow(0 0 11px rgba(255,0,85,.34));
 }
 
 .segment.yellow {
   filter:
-    saturate(.96)
-    drop-shadow(0 0 4px rgba(216,189,105,.52))
-    drop-shadow(0 0 9px rgba(216,189,105,.24));
+    saturate(1.35)
+    drop-shadow(0 0 5px rgba(255,242,0,.72))
+    drop-shadow(0 0 11px rgba(255,242,0,.34));
 }
 
 .segment.ice {
   filter:
-    saturate(1.05)
-    drop-shadow(0 0 4px rgba(112,180,234,.58))
-    drop-shadow(0 0 9px rgba(112,180,234,.28));
+    saturate(1.35)
+    drop-shadow(0 0 5px rgba(0,234,255,.72))
+    drop-shadow(0 0 11px rgba(0,234,255,.34));
 }
 
 /* =========================================================
