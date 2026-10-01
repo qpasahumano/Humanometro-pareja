@@ -1,4 +1,4 @@
-  * {
+* {
   box-sizing: border-box;
 }
 
@@ -284,49 +284,18 @@ button {
   --seg9-color: transparent;
 }
 
-/* =========================================================
-   LÍNEAS LATERALES DE CADA SECTOR
-   MISMO COLOR DEL SECTOR + GLOW LED
-   ========================================================= */
-
 .segment-wheel::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 0;
   border-radius: 50%;
 
   background:
-    conic-gradient(
+    repeating-conic-gradient(
       from 300deg,
-      var(--seg1-color) 0deg 1.1deg,
-      transparent 1.1deg 39deg,
-
-      var(--seg2-color) 39deg 41deg,
-      transparent 41deg 79deg,
-
-      var(--seg3-color) 79deg 81deg,
-      transparent 81deg 119deg,
-
-      var(--seg4-color) 119deg 121deg,
-      transparent 121deg 159deg,
-
-      var(--seg5-color) 159deg 161deg,
-      transparent 161deg 199deg,
-
-      var(--seg6-color) 199deg 201deg,
-      transparent 201deg 239deg,
-
-      var(--seg7-color) 239deg 241deg,
-      transparent 241deg 279deg,
-
-      var(--seg8-color) 279deg 281deg,
-      transparent 281deg 319deg,
-
-      var(--seg9-color) 319deg 321deg,
-      transparent 321deg 359deg,
-
-      var(--seg1-color) 359deg 360deg
+      rgba(53, 211, 255, .96) 0deg .22deg,
+      transparent .22deg 40deg
     );
 
   -webkit-mask:
@@ -343,21 +312,18 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .95;
+  opacity: .86;
 
   filter:
-    saturate(1.5)
-    brightness(1.25)
-    drop-shadow(0 0 2px rgba(255,255,255,.75))
-    drop-shadow(0 0 5px currentColor)
-    drop-shadow(0 0 10px rgba(0,190,255,.42));
+    drop-shadow(0 0 2px rgba(76,231,255,.95))
+    drop-shadow(0 0 5px rgba(0,180,255,.5));
 }
 
 /*
    COLORACIÓN PROGRESIVA DE LOS SEGMENTOS
 
-   Mucho más transparente para permitir que se vea
-   el fondo cósmico de la interfaz.
+   Cada bloque completado recibe el color correspondiente
+   sin ocultar el fondo espacial ni las líneas luminosas.
 */
 
 .segment-wheel::after {
@@ -395,13 +361,11 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .54;
+  opacity: .94;
 
   filter:
-    saturate(1.65)
-    brightness(1.12)
-    drop-shadow(0 0 3px rgba(255,255,255,.12))
-    drop-shadow(0 0 7px rgba(0,190,255,.22));
+    saturate(1.25)
+    drop-shadow(0 0 4px rgba(75,220,255,.32));
 }
 
 /* =========================================================
@@ -484,32 +448,30 @@ button {
   border-radius: 50%;
   color: #02131f;
   background: #67ffd0;
-  box-shadow:
-    0 0 5px #67ffd0,
-    0 0 11px rgba(103,255,208,.72);
+  box-shadow: 0 0 7px #67ffd0;
   font-size: 9px;
   font-weight: 900;
 }
 
 .segment.red {
   filter:
-    saturate(1.45)
-    drop-shadow(0 0 6px rgba(255,24,123,.82))
-    drop-shadow(0 0 13px rgba(255,24,123,.42));
+    saturate(1.35)
+    drop-shadow(0 0 6px rgba(255,24,123,.72))
+    drop-shadow(0 0 13px rgba(255,24,123,.32));
 }
 
 .segment.yellow {
   filter:
-    saturate(1.38)
-    drop-shadow(0 0 6px rgba(255,224,77,.72))
-    drop-shadow(0 0 13px rgba(255,224,77,.38));
+    saturate(1.28)
+    drop-shadow(0 0 6px rgba(255,224,77,.62))
+    drop-shadow(0 0 13px rgba(255,224,77,.28));
 }
 
 .segment.ice {
   filter:
-    saturate(1.42)
-    drop-shadow(0 0 6px rgba(125,234,255,.82))
-    drop-shadow(0 0 13px rgba(35,190,255,.42));
+    saturate(1.32)
+    drop-shadow(0 0 6px rgba(125,234,255,.72))
+    drop-shadow(0 0 13px rgba(35,190,255,.32));
 }
 
 /* =========================================================
@@ -728,18 +690,10 @@ button {
   overflow: visible;
   pointer-events: none;
 
-  /*
-    Contorno LED más cercano a la referencia:
-    núcleo blanco/celeste + halo magenta intenso.
-  */
-
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,1))
-    drop-shadow(0 0 3px rgba(255,255,255,.95))
-    drop-shadow(0 0 6px rgba(255,82,196,.98))
-    drop-shadow(0 0 11px rgba(255,20,160,.90))
-    drop-shadow(0 0 19px rgba(255,20,160,.68))
-    drop-shadow(0 0 28px rgba(0,207,255,.42));
+    drop-shadow(0 0 1px rgba(255,255,255,.9))
+    drop-shadow(0 0 3px rgba(70,225,255,.62))
+    drop-shadow(0 0 6px rgba(0,170,255,.25));
 }
 
 /* =========================================================
@@ -1061,38 +1015,12 @@ button {
   position: fixed;
   inset: 0;
   z-index: 100;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(0,125,255,.22), transparent 35%),
+    rgba(1,7,23,.96);
   overflow: hidden;
   padding: 12px 10px 14px;
-
-  /*
-    El panel deja de verse como un bloque azul plano.
-    Se integra con la misma estética espacial.
-  */
-
-  background:
-    radial-gradient(
-      circle at 50% 8%,
-      rgba(0,174,255,.22),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 12% 45%,
-      rgba(79,25,255,.13),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 88% 72%,
-      rgba(255,20,175,.11),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(1,8,25,.91),
-      rgba(2,9,28,.88)
-    ),
-    url("fondo_constelaciones.png") center center / cover no-repeat;
-
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(15px);
 }
 
 .question-panel-inner {
@@ -1113,33 +1041,28 @@ button {
   height: 34px;
   border: 1px solid rgba(82,221,255,.7);
   border-radius: 50%;
-  background: rgba(4,19,50,.62);
+  background: rgba(4,19,50,.85);
   color: white;
   font-size: 23px;
   line-height: 1;
   cursor: pointer;
-  box-shadow:
-    0 0 8px rgba(25,204,255,.65),
-    0 0 17px rgba(25,204,255,.28);
+  box-shadow: 0 0 12px rgba(25,204,255,.4);
 }
 
 .question-kicker {
   padding-top: 2px;
   padding-right: 45px;
   color: #5cecff;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 9px #1bdfff,
-    0 0 16px rgba(0,198,255,.62);
+  text-shadow: 0 0 7px #1bdfff;
 }
 
 #questionTitle {
-  margin: 3px 0 2px;
+  margin: 3px 0 1px;
   padding-right: 45px;
-  font-size: clamp(27px, 7vw, 40px);
+  font-size: clamp(22px, 6vw, 36px);
   line-height: 1;
   color: white;
   text-shadow:
@@ -1149,9 +1072,9 @@ button {
 
 .question-subtitle {
   margin: 0 0 7px;
-  color: rgba(234,248,255,.86);
-  font-size: 13px;
-  line-height: 1.15;
+  color: rgba(234,248,255,.76);
+  font-size: 10px;
+  line-height: 1.1;
 }
 
 .question-progress {
@@ -1162,17 +1085,14 @@ button {
   display: block;
   margin-bottom: 3px;
   color: #bfefff;
-  font-size: 11px;
+  font-size: 9px;
 }
 
 .question-progress-track {
-  height: 5px;
+  height: 4px;
   border-radius: 10px;
-  background: rgba(91,207,255,.16);
+  background: rgba(91,207,255,.13);
   overflow: hidden;
-  box-shadow:
-    inset 0 0 5px rgba(0,0,0,.45),
-    0 0 5px rgba(44,206,255,.18);
 }
 
 #questionProgressBar {
@@ -1180,48 +1100,26 @@ button {
   width: 33.33%;
   border-radius: inherit;
   background: linear-gradient(90deg, #1edcff, #ff3bb7);
-  box-shadow:
-    0 0 6px #20dfff,
-    0 0 13px rgba(32,223,255,.5);
+  box-shadow: 0 0 9px #20dfff;
   transition: width .35s ease;
 }
 
-/*
-   Las tres tarjetas siguen entrando juntas en pantalla,
-   pero se aprovecha mejor el espacio y se aumenta claramente
-   la lectura.
-*/
-
 .questions-container {
   display: grid;
-  grid-template-rows: repeat(3, minmax(0, 1fr));
-  gap: 7px;
+  gap: 5px;
   flex: 1;
   min-height: 0;
 }
 
 .question-card {
-  padding: 10px 12px;
-  border: 1px solid rgba(78,217,255,.48);
-  border-radius: 13px;
-
+  padding: 7px 9px;
+  border: 1px solid rgba(78,217,255,.35);
+  border-radius: 10px;
   background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(0,180,255,.12),
-      transparent 55%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(5,28,62,.56),
-      rgba(2,13,34,.60)
-    );
-
+    linear-gradient(145deg, rgba(8,30,68,.86), rgba(3,14,36,.92));
   box-shadow:
-    0 0 12px rgba(0,137,255,.17),
-    0 0 25px rgba(0,137,255,.07),
-    inset 0 0 14px rgba(38,176,255,.07);
-
+    0 0 10px rgba(0,137,255,.15),
+    inset 0 0 12px rgba(38,176,255,.05);
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -1230,131 +1128,79 @@ button {
 
 .question-number {
   color: #62eaff;
-  font-size: 11px;
+  font-size: 8px;
   font-weight: 800;
-  margin-bottom: 4px;
-  text-shadow:
-    0 0 5px rgba(98,234,255,.5);
+  margin-bottom: 3px;
 }
 
 .question-text {
   margin: 0;
   color: #f7fbff;
-  font-size: clamp(15px, 3.8vw, 20px);
-  line-height: 1.22;
-  text-shadow:
-    0 0 3px rgba(255,255,255,.15);
+  font-size: 11px;
+  line-height: 1.18;
 }
 
 .answer-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin-top: 9px;
+  gap: 4px;
+  margin-top: 6px;
 }
 
 .answer {
-  min-height: 39px;
-  height: 39px;
-  border-radius: 11px;
-  border: 1px solid rgba(100,220,255,.65);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(11,45,82,.78),
-      rgba(5,25,57,.72)
-    );
-
+  min-height: 30px;
+  height: 30px;
+  border-radius: 9px;
+  border: 1px solid rgba(100,220,255,.42);
+  background: rgba(10,34,71,.72);
   color: white;
   cursor: pointer;
-  font-size: clamp(12px, 3vw, 16px);
-  font-weight: 800;
-
-  transition:
-    .25s ease;
-
-  padding: 0 4px;
-
-  box-shadow:
-    0 0 5px rgba(64,215,255,.25),
-    0 0 10px rgba(64,215,255,.12),
-    inset 0 0 7px rgba(80,220,255,.06);
+  font-size: 10px;
+  font-weight: 700;
+  transition: .25s ease;
+  padding: 0 3px;
 }
 
 .answer:hover {
   transform: translateY(-1px);
   border-color: #64eaff;
-  box-shadow:
-    0 0 7px rgba(40,211,255,.65),
-    0 0 15px rgba(40,211,255,.3),
-    inset 0 0 8px rgba(255,255,255,.08);
+  box-shadow: 0 0 9px rgba(40,211,255,.4);
 }
 
 .answer.selected.yes {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,26,112,.34),
-      rgba(125,8,66,.24)
-    );
+  background: rgba(255,26,112,.23);
   border-color: #ff397f;
-  box-shadow:
-    0 0 7px rgba(255,26,112,.78),
-    0 0 16px rgba(255,26,112,.42),
-    0 0 26px rgba(255,26,112,.18);
+  box-shadow: 0 0 12px rgba(255,26,112,.42);
 }
 
 .answer.selected.maybe {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,222,54,.28),
-      rgba(142,103,8,.19)
-    );
+  background: rgba(255,222,54,.18);
   border-color: #ffe34f;
   color: #fff6a8;
-  box-shadow:
-    0 0 7px rgba(255,224,65,.72),
-    0 0 16px rgba(255,224,65,.38),
-    0 0 25px rgba(255,224,65,.16);
+  box-shadow: 0 0 12px rgba(255,224,65,.35);
 }
 
 .answer.selected.no {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(88,219,255,.30),
-      rgba(10,96,135,.20)
-    );
+  background: rgba(88,219,255,.19);
   border-color: #83eaff;
   color: #d9f9ff;
-  box-shadow:
-    0 0 7px rgba(75,222,255,.78),
-    0 0 16px rgba(75,222,255,.42),
-    0 0 26px rgba(75,222,255,.18);
+  box-shadow: 0 0 12px rgba(75,222,255,.4);
 }
 
 .continue-question {
   width: 100%;
-  min-height: 38px;
-  height: 38px;
-  margin-top: 4px;
+  min-height: 34px;
+  height: 34px;
+  margin-top: 2px;
   border: 1px solid #54eaff;
   border-radius: 20px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(8,67,112,.82),
-      rgba(92,12,101,.78)
-    );
+  background: linear-gradient(90deg, rgba(8,67,112,.9), rgba(92,12,101,.85));
   color: white;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   cursor: pointer;
   box-shadow:
-    0 0 7px rgba(40,224,255,.62),
-    0 0 15px rgba(40,224,255,.24),
+    0 0 9px rgba(40,224,255,.55),
     inset 0 0 9px rgba(255,255,255,.08);
 }
 
@@ -1700,9 +1546,10 @@ button {
     font-size: 8px;
   }
 
-  /* =======================================================
-     PREGUNTAS — TELÉFONO
-     ======================================================= */
+  /*
+    En el teléfono las tres preguntas y sus respuestas
+    permanecen dentro de una única pantalla.
+  */
 
   .question-panel {
     padding: 8px 8px 10px;
@@ -1719,17 +1566,17 @@ button {
   }
 
   .question-kicker {
-    font-size: 11px;
+    font-size: 9px;
     padding-top: 1px;
   }
 
   #questionTitle {
-    font-size: clamp(25px, 7.5vw, 34px);
+    font-size: clamp(21px, 6vw, 30px);
     margin-top: 2px;
   }
 
   .question-subtitle {
-    font-size: 12px;
+    font-size: 9px;
     margin-bottom: 5px;
   }
 
@@ -1738,52 +1585,51 @@ button {
   }
 
   #questionProgressText {
-    font-size: 10px;
+    font-size: 8px;
     margin-bottom: 2px;
   }
 
   .question-progress-track {
-    height: 4px;
+    height: 3px;
   }
 
   .questions-container {
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-    gap: 5px;
+    gap: 4px;
   }
 
   .question-card {
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 6px 8px;
+    border-radius: 9px;
   }
 
   .question-number {
-    font-size: 10px;
-    margin-bottom: 3px;
+    font-size: 7px;
+    margin-bottom: 2px;
   }
 
   .question-text {
-    font-size: clamp(15px, 4.2vw, 18px);
-    line-height: 1.18;
+    font-size: 10px;
+    line-height: 1.14;
   }
 
   .answer-options {
     grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    margin-top: 7px;
+    gap: 3px;
+    margin-top: 5px;
   }
 
   .answer {
-    min-height: 37px;
-    height: 37px;
-    border-radius: 9px;
-    font-size: 12px;
+    min-height: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 9px;
   }
 
   .continue-question {
-    min-height: 35px;
-    height: 35px;
-    margin-top: 2px;
-    font-size: 11px;
+    min-height: 32px;
+    height: 32px;
+    margin-top: 1px;
+    font-size: 10px;
   }
 }
 
