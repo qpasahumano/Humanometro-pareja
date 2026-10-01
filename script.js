@@ -547,15 +547,15 @@ function renderSegmentResults() {
 
 function getWheelSegmentColor(color) {
   if (color === "red") {
-    return "rgba(255, 48, 48, .52)";
+    return "rgba(255, 38, 38, .72)";
   }
 
   if (color === "yellow") {
-    return "rgba(255, 229, 38, .50)";
+    return "rgba(255, 226, 35, .70)";
   }
 
   if (color === "ice") {
-    return "rgba(92, 224, 255, .50)";
+    return "rgba(108, 238, 255, .64)";
   }
 
   return "transparent";
