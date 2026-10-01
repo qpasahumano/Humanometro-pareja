@@ -14,6 +14,14 @@
   --white: #f8fcff;
   --deep: #02091c;
   --deep-2: #06163b;
+
+  /* =======================================================
+     COLORES DE LAS PORCIONES / LÍNEAS LED
+     ======================================================= */
+
+  --couple-red: #ff2b2b;
+  --couple-yellow: #ffdc37;
+  --couple-ice: #74eaff;
 }
 
 html {
@@ -282,20 +290,82 @@ button {
   --seg7-color: transparent;
   --seg8-color: transparent;
   --seg9-color: transparent;
+
+  /*
+    Cada porción conserva su propia línea.
+    El color base es muy transparente para que la estructura
+    exista sin verse gruesa ni grotesca.
+  */
+
+  --seg1-line: rgba(255,43,43,.26);
+  --seg2-line: rgba(116,234,255,.26);
+  --seg3-line: rgba(255,220,55,.26);
+  --seg4-line: rgba(116,234,255,.26);
+  --seg5-line: rgba(255,43,43,.26);
+  --seg6-line: rgba(255,220,55,.26);
+  --seg7-line: rgba(116,234,255,.26);
+  --seg8-line: rgba(255,43,43,.26);
+  --seg9-line: rgba(255,220,55,.26);
 }
+
+/*
+   LÍNEAS INDIVIDUALES DE CADA PORCIÓN
+
+   Cada bloque posee sus dos líneas personales.
+   En cada unión quedan dos líneas independientes:
+   una pertenece al bloque anterior y otra al siguiente.
+
+   Las líneas tienen solamente 0.10deg de espesor,
+   con una separación mínima de 0.16deg entre ambas,
+   para reproducir el efecto extremadamente fino de la referencia.
+*/
 
 .segment-wheel::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   border-radius: 50%;
 
   background:
-    repeating-conic-gradient(
+    conic-gradient(
       from 300deg,
-      rgba(53, 211, 255, .96) 0deg .22deg,
-      transparent .22deg 40deg
+
+      var(--seg1-line) 0deg .10deg,
+      transparent .10deg 39.82deg,
+      var(--seg1-line) 39.82deg 39.92deg,
+
+      var(--seg2-line) 40.08deg 40.18deg,
+      transparent 40.18deg 79.82deg,
+      var(--seg2-line) 79.82deg 79.92deg,
+
+      var(--seg3-line) 80.08deg 80.18deg,
+      transparent 80.18deg 119.82deg,
+      var(--seg3-line) 119.82deg 119.92deg,
+
+      var(--seg4-line) 120.08deg 120.18deg,
+      transparent 120.18deg 159.82deg,
+      var(--seg4-line) 159.82deg 159.92deg,
+
+      var(--seg5-line) 160.08deg 160.18deg,
+      transparent 160.18deg 199.82deg,
+      var(--seg5-line) 199.82deg 199.92deg,
+
+      var(--seg6-line) 200.08deg 200.18deg,
+      transparent 200.18deg 239.82deg,
+      var(--seg6-line) 239.82deg 239.92deg,
+
+      var(--seg7-line) 240.08deg 240.18deg,
+      transparent 240.18deg 279.82deg,
+      var(--seg7-line) 279.82deg 279.92deg,
+
+      var(--seg8-line) 280.08deg 280.18deg,
+      transparent 280.18deg 319.82deg,
+      var(--seg8-line) 319.82deg 319.92deg,
+
+      var(--seg9-line) 320.08deg 320.18deg,
+      transparent 320.18deg 359.82deg,
+      var(--seg9-line) 359.82deg 359.92deg
     );
 
   -webkit-mask:
@@ -312,11 +382,12 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .86;
+  opacity: .96;
 
   filter:
-    drop-shadow(0 0 2px rgba(76,231,255,.95))
-    drop-shadow(0 0 5px rgba(0,180,255,.5));
+    drop-shadow(0 0 1px rgba(255,255,255,.82))
+    drop-shadow(0 0 2.5px rgba(255,255,255,.34))
+    drop-shadow(0 0 5px rgba(80,220,255,.22));
 }
 
 /*
@@ -361,11 +432,57 @@ button {
       #000 20.5% 100%
     );
 
-  opacity: .68;
+  opacity: .60;
 
   filter:
     saturate(1.25)
     drop-shadow(0 0 4px rgba(75,220,255,.32));
+}
+
+/* =========================================================
+   LUMINOSIDAD DE LÍNEAS AL COMPLETAR CADA PORCIÓN
+   ========================================================= */
+
+/*
+   Cuando una porción pasa a completed,
+   su línea personal aumenta suavemente de intensidad.
+   Las líneas vecinas permanecen independientes.
+*/
+
+.segment-wheel:has(.segment-1.completed) {
+  --seg1-line: rgba(255,43,43,.94);
+}
+
+.segment-wheel:has(.segment-2.completed) {
+  --seg2-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-3.completed) {
+  --seg3-line: rgba(255,220,55,.94);
+}
+
+.segment-wheel:has(.segment-4.completed) {
+  --seg4-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-5.completed) {
+  --seg5-line: rgba(255,43,43,.94);
+}
+
+.segment-wheel:has(.segment-6.completed) {
+  --seg6-line: rgba(255,220,55,.94);
+}
+
+.segment-wheel:has(.segment-7.completed) {
+  --seg7-line: rgba(116,234,255,.94);
+}
+
+.segment-wheel:has(.segment-8.completed) {
+  --seg8-line: rgba(255,43,43,.94);
+}
+
+.segment-wheel:has(.segment-9.completed) {
+  --seg9-line: rgba(255,220,55,.94);
 }
 
 /* =========================================================
@@ -453,25 +570,38 @@ button {
   font-weight: 900;
 }
 
+/*
+   ROJO VIVO
+   Sin fucsia.
+*/
+
 .segment.red {
   filter:
     saturate(1.35)
-    drop-shadow(0 0 6px rgba(255,24,123,.72))
-    drop-shadow(0 0 13px rgba(255,24,123,.32));
+    drop-shadow(0 0 5px rgba(255,43,43,.68))
+    drop-shadow(0 0 11px rgba(255,43,43,.28));
 }
+
+/*
+   AMARILLO VIVO
+*/
 
 .segment.yellow {
   filter:
     saturate(1.28)
-    drop-shadow(0 0 6px rgba(255,224,77,.62))
-    drop-shadow(0 0 13px rgba(255,224,77,.28));
+    drop-shadow(0 0 5px rgba(255,220,55,.62))
+    drop-shadow(0 0 11px rgba(255,220,55,.28));
 }
+
+/*
+   CELESTE HIELO
+*/
 
 .segment.ice {
   filter:
-    saturate(1.32)
-    drop-shadow(0 0 6px rgba(125,234,255,.72))
-    drop-shadow(0 0 13px rgba(35,190,255,.32));
+    saturate(1.25)
+    drop-shadow(0 0 5px rgba(116,234,255,.68))
+    drop-shadow(0 0 11px rgba(116,234,255,.30));
 }
 
 /* =========================================================
