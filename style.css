@@ -16,12 +16,12 @@
   --deep-2: #06163b;
 
   /* =======================================================
-     COLORES DE LAS PORCIONES / LÍNEAS LED
+     COLORES DE LAS PORCIONES / LÍNEAS NEÓN
      ======================================================= */
 
-  --couple-red: #ff2f9f;
-  --couple-yellow: #ffe95a;
-  --couple-ice: #8feaff;
+  --couple-red: #ff0055;
+  --couple-yellow: #fff200;
+  --couple-ice: #00eaff;
 }
 
 html {
@@ -263,6 +263,8 @@ button {
 
 /*
    CIRCUNFERENCIA EXTERIOR
+   ---------------------------------------------------------
+   Neón fluorescente siguiendo el color de cada porción.
 */
 
 .outer-ring {
@@ -275,31 +277,31 @@ button {
     conic-gradient(
       from 300deg,
 
-      #ff2f9f 0deg 39.72deg,
+      #ff0055 0deg 39.72deg,
       transparent 39.72deg 40.28deg,
 
-      #8feaff 40.28deg 79.72deg,
+      #00eaff 40.28deg 79.72deg,
       transparent 79.72deg 80.28deg,
 
-      #ffe95a 80.28deg 119.72deg,
+      #fff200 80.28deg 119.72deg,
       transparent 119.72deg 120.28deg,
 
-      #8feaff 120.28deg 159.72deg,
+      #00eaff 120.28deg 159.72deg,
       transparent 159.72deg 160.28deg,
 
-      #ff2f9f 160.28deg 199.72deg,
+      #ff0055 160.28deg 199.72deg,
       transparent 199.72deg 200.28deg,
 
-      #ffe95a 200.28deg 239.72deg,
+      #fff200 200.28deg 239.72deg,
       transparent 239.72deg 240.28deg,
 
-      #8feaff 240.28deg 279.72deg,
+      #00eaff 240.28deg 279.72deg,
       transparent 279.72deg 280.28deg,
 
-      #ff2f9f 280.28deg 319.72deg,
+      #ff0055 280.28deg 319.72deg,
       transparent 319.72deg 320.28deg,
 
-      #ffe95a 320.28deg 359.72deg,
+      #fff200 320.28deg 359.72deg,
       transparent 359.72deg 360deg
     );
 
@@ -316,9 +318,9 @@ button {
   mask-composite: exclude;
 
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.90))
-    drop-shadow(0 0 3px rgba(255,255,255,.42))
-    drop-shadow(0 0 6px rgba(255,255,255,.20));
+    drop-shadow(0 0 2px #ff0055)
+    drop-shadow(0 0 5px #00eaff)
+    drop-shadow(0 0 8px rgba(255,242,0,.65));
 
   opacity: 1;
 }
@@ -344,25 +346,28 @@ button {
   --seg9-color: transparent;
 
   /*
-    Líneas LED:
-    1,5,8 = rojo fucsia
-    3,6,9 = amarillo patito
-    2,4,7 = celeste glaciar
+    Líneas intercostales NEÓN.
+    1,5,8 = rojo fluorescente
+    3,6,9 = amarillo fluorescente
+    2,4,7 = celeste fluorescente
   */
 
-  --seg1-line: rgba(255,47,159,.58);
-  --seg2-line: rgba(143,234,255,.58);
-  --seg3-line: rgba(255,233,90,.58);
-  --seg4-line: rgba(143,234,255,.58);
-  --seg5-line: rgba(255,47,159,.58);
-  --seg6-line: rgba(255,233,90,.58);
-  --seg7-line: rgba(143,234,255,.58);
-  --seg8-line: rgba(255,47,159,.58);
-  --seg9-line: rgba(255,233,90,.58);
+  --seg1-line: #ff0055;
+  --seg2-line: #00eaff;
+  --seg3-line: #fff200;
+  --seg4-line: #00eaff;
+  --seg5-line: #ff0055;
+  --seg6-line: #fff200;
+  --seg7-line: #00eaff;
+  --seg8-line: #ff0055;
+  --seg9-line: #fff200;
 }
 
 /*
    LÍNEAS INDIVIDUALES DE CADA PORCIÓN
+   ---------------------------------------------------------
+   Se reemplaza el aspecto LED blanco por un efecto NEÓN
+   cromático: color puro + halo del mismo color.
 */
 
 .segment-wheel::before {
@@ -429,15 +434,23 @@ button {
 
   opacity: .98;
 
+  /*
+    NEÓN:
+    sin halo blanco dominante;
+    el brillo nace del propio color fluorescente.
+  */
+
   filter:
-    drop-shadow(0 0 1px rgba(255,255,255,.98))
-    drop-shadow(0 0 2.5px rgba(255,255,255,.48))
-    drop-shadow(0 0 5px rgba(255,255,255,.18));
+    drop-shadow(0 0 1px var(--seg1-line))
+    drop-shadow(0 0 3px var(--seg1-line))
+    drop-shadow(0 0 7px var(--seg1-line));
 }
 
 /*
    COLORACIÓN DE LOS SEGMENTOS
-   TRANSPARENCIA DE COLOR: 50%
+   ---------------------------------------------------------
+   Transparencia 75%:
+   alpha .25 = el 75% del fondo permanece visible.
 */
 
 .segment-wheel::after {
@@ -450,8 +463,8 @@ button {
   background:
     radial-gradient(
       circle at 50% 42%,
-      rgba(255,255,255,.10) 0%,
-      rgba(255,255,255,.035) 34%,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.018) 34%,
       transparent 68%
     ),
     conic-gradient(
@@ -487,59 +500,57 @@ button {
   opacity: 1;
 
   filter:
-    saturate(1.48)
-    brightness(1.06)
-    drop-shadow(0 0 2px rgba(255,255,255,.14));
+    saturate(1.35)
+    brightness(1.04);
 }
 
 /* =========================================================
    COLORES DE LAS PORCIONES COMPLETADAS
-   TRANSPARENCIA: 50%
    ========================================================= */
 
 .segment-wheel:has(.segment-1.completed) {
-  --seg1-color: rgba(255,47,159,.50) !important;
-  --seg1-line: rgba(255,47,159,.98);
+  --seg1-color: rgba(255,0,85,.25) !important;
+  --seg1-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-2.completed) {
-  --seg2-color: rgba(143,234,255,.50) !important;
-  --seg2-line: rgba(143,234,255,.98);
+  --seg2-color: rgba(0,234,255,.25) !important;
+  --seg2-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-3.completed) {
-  --seg3-color: rgba(255,233,90,.50) !important;
-  --seg3-line: rgba(255,233,90,.98);
+  --seg3-color: rgba(255,242,0,.25) !important;
+  --seg3-line: #fff200;
 }
 
 .segment-wheel:has(.segment-4.completed) {
-  --seg4-color: rgba(143,234,255,.50) !important;
-  --seg4-line: rgba(143,234,255,.98);
+  --seg4-color: rgba(0,234,255,.25) !important;
+  --seg4-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-5.completed) {
-  --seg5-color: rgba(255,47,159,.50) !important;
-  --seg5-line: rgba(255,47,159,.98);
+  --seg5-color: rgba(255,0,85,.25) !important;
+  --seg5-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-6.completed) {
-  --seg6-color: rgba(255,233,90,.50) !important;
-  --seg6-line: rgba(255,233,90,.98);
+  --seg6-color: rgba(255,242,0,.25) !important;
+  --seg6-line: #fff200;
 }
 
 .segment-wheel:has(.segment-7.completed) {
-  --seg7-color: rgba(143,234,255,.50) !important;
-  --seg7-line: rgba(143,234,255,.98);
+  --seg7-color: rgba(0,234,255,.25) !important;
+  --seg7-line: #00eaff;
 }
 
 .segment-wheel:has(.segment-8.completed) {
-  --seg8-color: rgba(255,47,159,.50) !important;
-  --seg8-line: rgba(255,47,159,.98);
+  --seg8-color: rgba(255,0,85,.25) !important;
+  --seg8-line: #ff0055;
 }
 
 .segment-wheel:has(.segment-9.completed) {
-  --seg9-color: rgba(255,233,90,.50) !important;
-  --seg9-line: rgba(255,233,90,.98);
+  --seg9-color: rgba(255,242,0,.25) !important;
+  --seg9-line: #fff200;
 }
 
 /* =========================================================
@@ -629,23 +640,23 @@ button {
 
 .segment.red {
   filter:
-    saturate(1.35)
-    drop-shadow(0 0 5px rgba(255,47,159,.68))
-    drop-shadow(0 0 11px rgba(255,47,159,.28));
+    saturate(1.4)
+    drop-shadow(0 0 5px rgba(255,0,85,.72))
+    drop-shadow(0 0 11px rgba(255,0,85,.34));
 }
 
 .segment.yellow {
   filter:
-    saturate(1.28)
-    drop-shadow(0 0 5px rgba(255,233,90,.62))
-    drop-shadow(0 0 11px rgba(255,233,90,.28));
+    saturate(1.35)
+    drop-shadow(0 0 5px rgba(255,242,0,.72))
+    drop-shadow(0 0 11px rgba(255,242,0,.34));
 }
 
 .segment.ice {
   filter:
-    saturate(1.25)
-    drop-shadow(0 0 5px rgba(143,234,255,.68))
-    drop-shadow(0 0 11px rgba(143,234,255,.30));
+    saturate(1.35)
+    drop-shadow(0 0 5px rgba(0,234,255,.72))
+    drop-shadow(0 0 11px rgba(0,234,255,.34));
 }
 
 /* =========================================================
@@ -1719,6 +1730,11 @@ button {
   .bottom-motto p {
     font-size: 8px;
   }
+
+  /*
+    En el teléfono las tres preguntas y sus respuestas
+    permanecen dentro de una única pantalla.
+  */
 
   .question-panel {
     padding: 8px 8px 10px;
