@@ -118,7 +118,7 @@ const blocks = [
     questions: [
       "Cuando la relación necesita algo de vos, ¿procurás asumir tu parte para que el vínculo funcione?",
       "¿Destinás tiempo, atención o energía a aspectos de la relación que sabés que son importantes para tu pareja?",
-      "¿ aporta al vínculo de manera equivocada  a vos?"
+      "¿ aporta al vínculo de manera equilibrada a vos?"
     ],
     clarifications: [
       "Observa tu responsabilidad dentro del vínculo.",
@@ -353,10 +353,12 @@ function renderQuestions(blockIndex) {
 
     const text = document.createElement("p");
     text.className = "question-text";
+    text.style.fontSize = "1.18em";
     text.textContent = question;
 
     const clarification = document.createElement("div");
     clarification.className = "question-clarification";
+    clarification.style.fontSize = "0.88em";
     clarification.textContent = block.clarifications[questionIndex];
 
     const answers = document.createElement("div");
