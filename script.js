@@ -42,12 +42,12 @@ const blocks = [
     subtitle: "Percepción del vínculo",
     questions: [
       "¿Existe entre ustedes un trato amable y considerado, especialmente cuando alguno necesita comprensión del otro?",
-      "¿Existe entre ustedes un trato amable y considerado, especialmente cuando alguno necesita comprensión del otro?",
+      "Cuando alguno atraviesa un momento de enojo o malestar, ¿pueden seguir tratándose con respeto?",
       "¿Te agrada el trato que recibís de tu pareja?"
     ],
     clarifications: [
       "Observa la consideración en el trato cotidiano.",
-      "Observa la consideración en el trato cotidiano.",
+      "Observa cómo se sostiene el trato en momentos de tensión.",
       "Observa cómo vivís el trato que recibís."
     ]
   },
@@ -57,12 +57,12 @@ const blocks = [
     subtitle: "Percepción del vínculo",
     questions: [
       "¿Pueden hablar entre ustedes de aquello que realmente les importa sin sentir que tienen que guardárselo?",
-      "¿Pueden hablar entre ustedes de aquello que realmente les importa sin sentir que tienen que guardárselo?",
-      "Recibís comunicación (charlan?) fluida?"
+      "Cuando tu pareja te habla de algo que sabés que es importante para ella, ¿intentás comprender lo que quiere transmitir antes de responder?",
+      "Recibís comunicación ( charlan?) fluida?"
     ],
     clarifications: [
       "Observa la apertura para hablar de lo importante.",
-      "Observa la apertura para hablar de lo importante.",
+      "Observa la disposición para escuchar y comprender.",
       "Observa la comunicación que recibís del otro."
     ]
   },
@@ -72,12 +72,12 @@ const blocks = [
     subtitle: "Percepción del vínculo",
     questions: [
       "Cuando uno de los dos necesita cercanía emocional, ¿el otro suele poder brindársela?",
-      "Cuando uno de los dos necesita cercanía emocional, ¿el otro suele poder brindársela?",
+      "¿Encuentran momentos que les permitan sentirse realmente conectados, más allá de las obligaciones cotidianas?",
       "¿Cuando se ven, sentís que conecta en algún momento con vos?"
     ],
     clarifications: [
       "Observa la disponibilidad ante la necesidad emocional.",
-      "Observa la disponibilidad ante la necesidad emocional.",
+      "Observa la presencia de momentos de conexión.",
       "Observa la conexión que percibís del otro."
     ]
   },
@@ -87,12 +87,12 @@ const blocks = [
     subtitle: "Autopercepción en el vínculo",
     questions: [
       "Cuando tu pareja atraviesa algo que sabés que le afecta, ¿tenés en cuenta cómo se encuentra antes de actuar o decidir?",
-      "Cuando tu pareja atraviesa algo que sabés que le afecta, ¿tenés en cuenta cómo se encuentra antes de actuar o decidir?",
-      "Te ha cuidado en momentos claves?"
+      "Cuando tu pareja necesita apoyo, ¿procurás estar presente de una manera que realmente le resulte útil?",
+      "Te ha cuidado en momentos claves ?"
     ],
     clarifications: [
       "Observa la consideración hacia el estado del otro.",
-      "Observa la consideración hacia el estado del otro.",
+      "Observa la forma de acompañar al otro.",
       "Observa el cuidado que recibís del otro."
     ]
   },
@@ -102,12 +102,12 @@ const blocks = [
     subtitle: "Autopercepción en el vínculo",
     questions: [
       "Cuando tu pareja piensa o siente algo diferente de vos sobre un tema importante, ¿podés respetar su manera de verlo?",
-      "Cuando tu pareja piensa o siente algo diferente de vos sobre un tema importante, ¿podés respetar su manera de verlo?",
+      "Cuando tu pareja necesita espacio, tiempo o establece un límite, ¿podés respetarlo aunque no estés de acuerdo?",
       "¿Te brinda respeto en todo momento?"
     ],
     clarifications: [
       "Observa el respeto frente a las diferencias.",
-      "Observa el respeto frente a las diferencias.",
+      "Observa el respeto por los límites del otro.",
       "Observa el respeto que recibís del otro."
     ]
   },
@@ -117,12 +117,12 @@ const blocks = [
     subtitle: "Autopercepción en el vínculo",
     questions: [
       "Cuando la relación necesita algo de vos, ¿procurás asumir tu parte para que el vínculo funcione?",
-      "Cuando la relación necesita algo de vos, ¿procurás asumir tu parte para que el vínculo funcione?",
-      "¿Aporta al vínculo de manera equivocada a vos?"
+      "¿Destinás tiempo, atención o energía a aspectos de la relación que sabés que son importantes para tu pareja?",
+      "¿ aporta al vínculo de manera equivocada  a vos?"
     ],
     clarifications: [
       "Observa tu responsabilidad dentro del vínculo.",
-      "Observa tu responsabilidad dentro del vínculo.",
+      "Observa tu dedicación concreta al vínculo.",
       "Observa cómo percibís el aporte que recibís."
     ]
   },
@@ -132,12 +132,12 @@ const blocks = [
     subtitle: "Vivencias reales",
     questions: [
       "Cuando surge un conflicto por algo que realmente importa para alguno de los dos, ¿pueden abordarlo sin quedar atrapados en la misma discusión?",
-      "Cuando surge un conflicto por algo que realmente importa para alguno de los dos, ¿pueden abordarlo sin quedar atrapados en la misma discusión?",
-      "¿Cuando tienen un conflicto, recibís de tu pareja una disposición que ayude a resolverlo?"
+      "Después de una discusión que los afecta emocionalmente, ¿pueden encontrar una manera de volver a acercarse?",
+      "¿Cuando tienen un conflicto, recibís de  una disposición que ayude a resolverlo?"
     ],
     clarifications: [
       "Observa la capacidad de abordar el conflicto.",
-      "Observa la capacidad de abordar el conflicto.",
+      "Observa la capacidad de reparar después del conflicto.",
       "Observa la disposición que recibís para resolver."
     ]
   },
@@ -147,12 +147,12 @@ const blocks = [
     subtitle: "Vivencias reales",
     questions: [
       "Cuando una situación despierta celos o inseguridad en alguno de los dos, ¿pueden hablar de lo que ocurre sin convertirlo inmediatamente en una acusación?",
-      "Cuando una situación despierta celos o inseguridad en alguno de los dos, ¿pueden hablar de lo que ocurre sin convertirlo inmediatamente en una acusación?",
+      "Cuando alguno necesita seguridad respecto del vínculo, ¿pueden hablar de esa necesidad sin que termine transformándose en control?",
       "¿Sentís que tiene/hace comportamientos que fragmentan tu seguridad?"
     ],
     clarifications: [
       "Observa cómo se expresan los celos y la inseguridad.",
-      "Observa cómo se expresan los celos y la inseguridad.",
+      "Observa cómo se gestiona la necesidad de seguridad.",
       "Observa lo que recibís que afecta tu seguridad."
     ]
   },
@@ -162,12 +162,12 @@ const blocks = [
     subtitle: "Vivencias reales",
     questions: [
       "Cuando atraviesan una situación que pone a prueba la relación, ¿pueden enfrentarla como pareja en lugar de enfrentarse entre ustedes?",
-      "Cuando atraviesan una situación que pone a prueba la relación, ¿pueden enfrentarla como pareja en lugar de enfrentarse entre ustedes?",
+      "Cuando uno de los dos atraviesa una dificultad importante, ¿el otro puede acompañarlo teniendo en cuenta lo que realmente necesita?",
       "¿En los momentos de crisis, encontrás en tu pareja el acompañamiento que necesitás?"
     ],
     clarifications: [
       "Observa cómo afrontan juntos una crisis.",
-      "Observa cómo afrontan juntos una crisis.",
+      "Observa el acompañamiento ante una dificultad.",
       "Observa el acompañamiento que recibís."
     ]
   }
