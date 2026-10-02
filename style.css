@@ -1688,3 +1688,215 @@ button {
     width: 410px;
   }
 }
+/* =========================================================
+   AJUSTE FINAL DE PROPORCIONES — HUMANÓMETRO PAREJAS
+   ========================================================= */
+
+/* 1. ELIMINAR COMPLETAMENTE EL LOGO SUPERIOR */
+.logo-parejas {
+  display: none !important;
+}
+
+
+/* 2. CABECERA: SIN HUECO DESPUÉS DE SACAR EL LOGO */
+.brand-header {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.brand-tagline {
+  margin-top: 2px;
+  margin-bottom: 3px;
+}
+
+
+/* 3. DARLE AIRE AL TEXTO ANTES DE LA RUEDA */
+.journey-guide {
+  margin-top: 2px;
+  margin-bottom: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+
+/* 4. RUEDA UN POCO MÁS GRANDE Y CON MEJOR SEPARACIÓN */
+.wheel-shell {
+  width: min(76vw, 430px);
+  margin-top: 1px;
+  margin-bottom: 3px;
+}
+
+
+/* 5. LOGO CENTRAL MÁS GRANDE:
+      CRECE HASTA EL LÍMITE DEL CORAZÓN SIN INVADIR
+      LOS SEGMENTOS */
+.heart-core {
+  width: 31%;
+  left: 34.5%;
+  top: 34.5%;
+}
+
+.center-interface-icon {
+  width: 96%;
+  height: 96%;
+}
+
+
+/* 6. TEXTOS DE LA RUEDA LEVEMENTE MÁS GRANDES */
+.segment-number {
+  font-size: clamp(13px, 2.55vw, 18px);
+}
+
+.segment-name {
+  font-size: clamp(6.5px, 1.25vw, 9px);
+}
+
+
+/* 7. ICONOS DE LOS SEGMENTOS UN POQUITO MÁS VISIBLES */
+.segment-icon-svg {
+  width: clamp(25px, 5.4vw, 37px);
+  height: clamp(21px, 4.6vw, 31px);
+}
+
+
+/* 8. TODO EL BLOQUE INFERIOR BAJA JUNTO CON LA RUEDA,
+      SIN PEGARSE A ELLA */
+.heart-button {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.payment-panel {
+  margin-top: 1px;
+}
+
+.bottom-motto {
+  margin-top: 4px;
+}
+
+
+/* =========================================================
+   AJUSTE ESPECÍFICO PARA TELÉFONOS
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+  .logo-parejas {
+    display: none !important;
+  }
+
+  .brand-header {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .brand-tagline {
+    margin-top: 2px;
+    margin-bottom: 3px;
+  }
+
+  .journey-guide {
+    margin-top: 2px;
+    margin-bottom: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  .wheel-shell {
+    width: 76vw;
+    max-width: 430px;
+    margin-top: 1px;
+    margin-bottom: 3px;
+  }
+
+  .heart-core {
+    width: 31%;
+    left: 34.5%;
+    top: 34.5%;
+  }
+
+  .center-interface-icon {
+    width: 96%;
+    height: 96%;
+  }
+
+  .segment-number {
+    font-size: 13px;
+  }
+
+  .segment-name {
+    font-size: 6.5px;
+  }
+
+  .segment-icon-svg {
+    width: 28px;
+    height: 23px;
+  }
+
+  .heart-button {
+    width: 76vw;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .payment-panel {
+    width: 76vw;
+    margin-top: 1px;
+  }
+
+  .bottom-motto {
+    width: 76vw;
+    margin-top: 4px;
+  }
+}
+/* =========================================================
+   PANTALLAS ALTAS / ESCRITORIO
+   ========================================================= */
+
+@media (min-width: 521px) and (max-height: 850px) {
+
+  .logo-parejas {
+    display: none !important;
+  }
+
+  .wheel-shell {
+    width: 420px;
+    margin-top: 1px;
+    margin-bottom: 3px;
+  }
+
+  .heart-core {
+    width: 31%;
+    left: 34.5%;
+    top: 34.5%;
+  }
+
+  .center-interface-icon {
+    width: 96%;
+    height: 96%;
+  }
+
+  .heart-button {
+    margin-top: 3px;
+  }
+
+  .payment-panel {
+    margin-top: 1px;
+  }
+
+  .bottom-motto {
+    margin-top: 4px;
+  }
+}
+
+
+/* =========================================================
+   ESCRITORIO GRANDE
+   ========================================================= */
+
+@media (min-width: 721px) {
+
+  .wheel-shell {
+    width: 430px;
+  }
+}
