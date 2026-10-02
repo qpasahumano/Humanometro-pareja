@@ -221,69 +221,11 @@
           </button>
 
           <div class="heart-core" id="heartCore">
-
-            <div class="heart-shape">
-
-              <svg class="heart-outline" viewBox="0 0 100 100" aria-hidden="true">
-                <defs>
-                  <linearGradient id="heartGradient"
-                                  x1="0%"
-                                  y1="0%"
-                                  x2="100%"
-                                  y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"></stop>
-                    <stop offset="22%" stop-color="#ffb4df"></stop>
-                    <stop offset="48%" stop-color="#ff3fa2"></stop>
-                    <stop offset="70%" stop-color="#ff176d"></stop>
-                    <stop offset="88%" stop-color="#ff63b8"></stop>
-                    <stop offset="100%" stop-color="#ffffff"></stop>
-                  </linearGradient>
-
-                  <filter id="heartGlow"
-                          x="-60%"
-                          y="-60%"
-                          width="220%"
-                          height="220%">
-                    <feGaussianBlur stdDeviation="1.3" result="blur1"></feGaussianBlur>
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur2"></feGaussianBlur>
-                    <feMerge>
-                      <feMergeNode in="blur2"></feMergeNode>
-                      <feMergeNode in="blur1"></feMergeNode>
-                      <feMergeNode in="SourceGraphic"></feMergeNode>
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                <path
-                  d="M50 94
-                     C43 86 8 59 8 35
-                     C8 19 19 8 34 8
-                     C42 8 48 12 50 20
-                     C52 12 58 8 66 8
-                     C81 8 92 19 92 35
-                     C92 59 57 86 50 94 Z"
-                  fill="none"
-                  stroke="url(#heartGradient)"
-                  stroke-width="2.25"
-                  stroke-linejoin="round"
-                  filter="url(#heartGlow)"
-                ></path>
-              </svg>
-
-              <div class="hm-symbol">
-                <span class="h-letter">H</span>
-
-                <span class="level-bars">
-                  <i></i>
-                  <i></i>
-                  <i></i>
-                  <i></i>
-                  <i></i>
-                </span>
-              </div>
-
-            </div>
-
+            <img
+              src="humanometro_parejas.png"
+              alt="Humanómetro Parejas"
+              class="center-interface-icon"
+            >
           </div>
 
         </div>
@@ -364,11 +306,8 @@
           </div>
 
           <div class="segments-results">
-
             <h2>Lectura de los 9 segmentos</h2>
-
             <div id="segmentResults"></div>
-
           </div>
 
           <div class="comparison-card">
