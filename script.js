@@ -378,9 +378,36 @@ function renderQuestions(blockIndex) {
 
         answers.querySelectorAll(".answer").forEach(item => {
           item.classList.remove("selected");
+          item.classList.remove("ice-feedback");
+
+          const existingIce =
+            item.querySelector(".ice-feedback-icon");
+
+          if (existingIce) {
+            existingIce.remove();
+          }
         });
 
         button.classList.add("selected");
+
+        if (option.key === "no") {
+          const ice = document.createElement("span");
+
+          ice.className = "ice-feedback-icon";
+          ice.textContent = "❄";
+          ice.setAttribute("aria-hidden", "true");
+
+          button.appendChild(ice);
+          button.classList.add("ice-feedback");
+
+          setTimeout(() => {
+            button.classList.remove("ice-feedback");
+
+            if (ice.parentNode) {
+              ice.remove();
+            }
+          }, 1000);
+        }
 
         updateQuestionButton(blockIndex);
         updateQuestionProgress(blockIndex);
