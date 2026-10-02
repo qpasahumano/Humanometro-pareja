@@ -1,6 +1,6 @@
 "use strict";
 
-// HUMANÓMETRO PAREJAS — actualización 01/10/2026
+// HUMANÓMETRO PAREJAS — actualización 02/10/2026
 
 /*
 HUMANÓMETRO PAREJAS
@@ -13,9 +13,12 @@ No      = 0
 Cada bloque:
 Predominan Sí       -> ROJO
 Predominan A veces  -> AMARILLO
-Predominan No       -> CELESTE HIELO
+Predominan No      -> CELESTE HIELO
 1 Sí + 1 A veces + 1 No
--> AMARILLO
+-> AMARILLO INTERMITENTE
+
+El color de cada bloque depende exclusivamente de sus
+tres respuestas.
 
 Resultado global:
 27–54 -> Vínculo estable
@@ -170,35 +173,34 @@ const resultGeneral = document.getElementById("resultGeneral");
 const segmentResults = document.getElementById("segmentResults");
 const restartButton = document.getElementById("restartButton");
 const segments = [...document.querySelectorAll(".segment")];
+const resultsInner = document.querySelector(".results-inner");
+const resultsScrollIndicator = document.getElementById("resultsScrollIndicator");
 
 const generalResults = {
   stable: {
     title: "❤️ VÍNCULO ESTABLE",
     text: `
       <p>Las respuestas muestran una base sólida en la manera en que vivís el vínculo. Predominan experiencias de cercanía, consideración y reciprocidad.</p>
-      <p>La relación parece contar con recursos para comunicarse, acompañarse y atravesar las situaciones cotidianas sin perder de vista al otro. También aparece una valoración del vínculo que se sostiene tanto en lo que comparten como en la manera en que participás dentro de la relación.</p>
-      <p>Esto no significa que no existan diferencias, desacuerdos o momentos difíciles. La diferencia está en cómo esos momentos son transitados y en los recursos que aparecen en tus respuestas.</p>
-      <p>La lectura de cada segmento del corazón permite observar dónde esa fortaleza se manifiesta con mayor claridad y dónde todavía existen pequeños espacios para seguir construyendo.</p>
+      <p>La relación parece contar con recursos para comunicarse, acompañarse y atravesar las situaciones cotidianas sin perder de vista al otro.</p>
+      <p>Esto no significa que no existan diferencias, desacuerdos o momentos difíciles. La lectura de los nueve segmentos permite observar dónde esa estabilidad aparece con mayor claridad.</p>
     `
   },
 
   review: {
     title: "🟡 VÍNCULO ESTABLE CON ASPECTOS A REVISAR",
     text: `
-      <p>Las respuestas muestran una base de vínculo que se encuentra presente, aunque aparecen algunos aspectos que no se manifiestan de manera sostenida.</p>
-      <p>Hay áreas en las que aparece conexión y reciprocidad, mientras que otras parecen necesitar mayor atención. Esto puede estar relacionado con la comunicación, la manera de cuidarse, el respeto por las necesidades del otro o la forma en que atraviesan determinadas situaciones.</p>
-      <p>Las diferencias entre lo que cada persona vive también forman parte de cualquier vínculo. Observarlas puede ayudar a reconocer aquello que necesita mayor atención.</p>
-      <p>El corazón muestra dónde encontrás mayor estabilidad y dónde podría beneficiarse de una mirada más consciente.</p>
+      <p>Las respuestas muestran una base de vínculo presente, aunque algunos aspectos no aparecen de manera sostenida.</p>
+      <p>Hay áreas en las que aparece conexión y reciprocidad, mientras que otras parecen necesitar mayor atención o una mirada más consciente.</p>
+      <p>Los nueve segmentos permiten observar con mayor precisión dónde encontrás estabilidad y dónde aparecen diferencias.</p>
     `
   },
 
   unstable: {
     title: "🟠 VÍNCULO INESTABLE",
     text: `
-      <p>Las respuestas muestran que el vínculo atraviesa diferentes niveles de conexión y que existen varios aspectos que no aparecen de manera sostenida.</p>
-      <p>Pueden aparecer dificultades relacionadas con la comunicación, el cuidado, el respeto, la participación dentro de la relación o la manera de afrontar conflictos, celos y momentos de crisis.</p>
-      <p>Este resultado no define a la pareja ni determina su futuro. Señala aspectos de tu experiencia del vínculo que merecen ser observados con mayor atención.</p>
-      <p>La lectura de los nueve segmentos permite mirar con mayor precisión dónde aparecen esas señales.</p>
+      <p>Las respuestas muestran diferentes niveles de conexión y varios aspectos que no aparecen de manera sostenida en tu experiencia del vínculo.</p>
+      <p>Pueden aparecer diferencias relacionadas con la comunicación, el cuidado, el respeto, la participación o la manera de atravesar situaciones difíciles.</p>
+      <p>Este resultado no define a la pareja ni determina su futuro. Señala aspectos de tu experiencia que merecen ser observados con mayor atención.</p>
     `
   },
 
@@ -206,10 +208,80 @@ const generalResults = {
     title: "🧊 VÍNCULO EN ALERTA",
     text: `
       <p>Las respuestas muestran una presencia importante de dificultades, desconexiones o aspectos que pueden estar afectando la manera en que vivís la relación.</p>
-      <p>La lectura puede involucrar distintos aspectos: comunicación, trato, conexión emocional, cuidado, respeto, aporte personal y la manera en que enfrentan conflictos, celos o situaciones de crisis.</p>
-      <p>Este resultado no pretende etiquetar la relación ni decidir por ustedes. Es una invitación a detenerse, mirar lo que está ocurriendo y reconocer qué aspectos del vínculo necesitan mayor atención.</p>
+      <p>La lectura puede involucrar distintos aspectos del vínculo y permite detenerse en cada uno de ellos por separado.</p>
+      <p>Este resultado no pretende etiquetar la relación ni decidir por ustedes. Es una invitación a observar qué aspectos necesitan mayor atención.</p>
     `
   }
+};
+
+/*
+  DEVOLUCIONES ESPECÍFICAS
+
+  Cada orden concreto de respuestas tiene una devolución
+  diferente. De esta manera:
+
+  Sí / Sí / No
+  no utiliza la misma devolución que
+  Sí / No / Sí
+
+  aunque ambas combinaciones tengan el mismo color.
+*/
+
+const segmentFeedback = {
+  "yes-yes-yes":
+    "Las tres respuestas muestran una percepción sostenida de presencia y disponibilidad en este aspecto del vínculo.",
+  "yes-yes-maybe":
+    "Dos respuestas reflejan una experiencia positiva y una tercera introduce un matiz. El aspecto aparece presente, aunque no de manera completamente uniforme.",
+  "yes-yes-no":
+    "Dos respuestas señalan una experiencia favorable, mientras que una marca una diferencia concreta que conviene observar dentro de este aspecto.",
+  "yes-maybe-yes":
+    "La primera y la tercera respuesta muestran una experiencia positiva, mientras que la respuesta intermedia señala un punto que puede variar según la situación.",
+  "yes-maybe-maybe":
+    "Aparece una respuesta positiva junto con dos experiencias que no se sostienen siempre. Este aspecto parece depender bastante de las circunstancias.",
+  "yes-maybe-no":
+    "Las tres respuestas expresan experiencias diferentes: aparece una vivencia positiva, una intermedia y otra negativa. Hay diversidad dentro de este aspecto.",
+  "yes-no-yes":
+    "La primera y la tercera respuesta muestran una experiencia favorable, mientras que la segunda señala una dificultad puntual que diferencia esta parte del vínculo.",
+  "yes-no-maybe":
+    "La respuesta positiva convive con una dificultad concreta y una situación intermedia. El aspecto presenta una experiencia cambiante.",
+  "yes-no-no":
+    "Una respuesta muestra una experiencia favorable, mientras que dos señalan dificultades. La diferencia entre ellas merece una observación particular.",
+
+  "maybe-yes-yes":
+    "Las dos últimas respuestas muestran una experiencia favorable, mientras que la primera introduce un matiz que puede aparecer según la situación.",
+  "maybe-yes-maybe":
+    "Una respuesta positiva queda acompañada por dos experiencias intermedias. El aspecto aparece disponible, pero con cierta variabilidad.",
+  "maybe-yes-no":
+    "Las tres respuestas son diferentes y muestran que este aspecto puede vivirse de maneras distintas según el momento o la situación.",
+  "maybe-maybe-yes":
+    "Dos respuestas muestran una experiencia intermedia y la tercera una experiencia positiva. El aspecto parece tener una base favorable, aunque todavía variable.",
+  "maybe-maybe-maybe":
+    "Las tres respuestas coinciden en una experiencia intermedia. Este aspecto no aparece completamente consolidado y puede ser observado con mayor atención.",
+  "maybe-no-yes":
+    "La experiencia comienza de manera intermedia, aparece una dificultad concreta y termina con una respuesta favorable. Hay variación dentro del aspecto.",
+  "maybe-no-maybe":
+    "Dos respuestas muestran una experiencia intermedia y una señala una dificultad. El aspecto parece necesitar atención especialmente en determinadas situaciones.",
+  "maybe-no-no":
+    "Una respuesta muestra una experiencia intermedia y dos señalan dificultades. La tendencia sugiere que este aspecto no se sostiene de manera regular.",
+
+  "no-yes-yes":
+    "La primera respuesta señala una dificultad, mientras que las dos siguientes muestran una experiencia favorable. El aspecto parece haber encontrado recursos en parte del vínculo.",
+  "no-yes-maybe":
+    "Una dificultad inicial convive con una respuesta favorable y otra intermedia. La experiencia de este aspecto parece depender del contexto.",
+  "no-yes-no":
+    "Las respuestas muestran una dificultad, una experiencia favorable y nuevamente una dificultad. El aspecto presenta una oscilación clara.",
+  "no-maybe-yes":
+    "La primera respuesta señala una dificultad, seguida de una experiencia intermedia y una favorable. Hay señales de variación dentro de este aspecto.",
+  "no-maybe-maybe":
+    "Una dificultad aparece junto con dos respuestas intermedias. Este aspecto parece requerir atención para dejar de depender tanto de las circunstancias.",
+  "no-maybe-no":
+    "Dos respuestas señalan dificultades y una queda en un punto intermedio. La experiencia muestra una tendencia que merece ser observada.",
+  "no-no-yes":
+    "Las dos primeras respuestas señalan dificultades, mientras que la tercera muestra una experiencia favorable. Existe una diferencia concreta dentro de este aspecto.",
+  "no-no-maybe":
+    "Dos respuestas muestran dificultades y una experiencia intermedia. Este aspecto aparece con poca estabilidad en las respuestas.",
+  "no-no-no":
+    "Las tres respuestas señalan dificultades en este aspecto. Es uno de los puntos que merece mayor atención dentro de la lectura."
 };
 
 function initialize() {
@@ -233,6 +305,10 @@ function initialize() {
   enableHeart.addEventListener("click", startTest);
   closeQuestion.addEventListener("click", closeQuestionPanel);
   restartButton.addEventListener("click", restartTest);
+
+  if (resultsInner) {
+    resultsInner.addEventListener("scroll", updateResultsScrollIndicator);
+  }
 
   updateWheel();
 }
@@ -442,13 +518,20 @@ function completeCurrentBlock(index) {
   La decisión se toma exclusivamente por cantidad
   de respuestas de cada categoría.
 
-  2 Sí + 1 No          -> rojo
-  2 No + 1 Sí          -> celeste
-  2 A veces + 1 Sí     -> amarillo
-  2 A veces + 1 No     -> amarillo
-  1 Sí + 1 No + 1 A veces -> amarillo
+  3 Sí                  -> rojo
+  2 Sí + 1 No           -> rojo
+  2 Sí + 1 A veces      -> rojo
 
-  Nunca se utiliza el puntaje para decidir el color.
+  3 No                  -> celeste hielo
+  2 No + 1 Sí            -> celeste hielo
+  2 No + 1 A veces       -> celeste hielo
+
+  3 A veces              -> amarillo
+  2 A veces + 1 Sí       -> amarillo
+  2 A veces + 1 No       -> amarillo
+
+  1 Sí + 1 No + 1 A veces
+  -> amarillo intermitente
 */
 function calculateSegment(answerKeys) {
   const yesCount =
@@ -469,34 +552,46 @@ function calculateSegment(answerKeys) {
   }, 0);
 
   let color = "yellow";
+  let intermittent = false;
 
   if (yesCount > maybeCount && yesCount > noCount) {
     color = "red";
   } else if (noCount > yesCount && noCount > maybeCount) {
     color = "ice";
+  } else if (
+    yesCount === 1 &&
+    maybeCount === 1 &&
+    noCount === 1
+  ) {
+    color = "yellow";
+    intermittent = true;
   } else if (maybeCount > yesCount && maybeCount > noCount) {
     color = "yellow";
   }
 
   return {
     color,
+    intermittent,
     score,
     yesCount,
     maybeCount,
-    noCount
+    noCount,
+    answerKey: answerKeys.join("-"),
+    feedback: getSegmentFeedback(answerKeys)
   };
+}
+
+function getSegmentFeedback(answerKeys) {
+  const key = answerKeys.join("-");
+
+  return (
+    segmentFeedback[key] ||
+    "Las respuestas muestran una combinación particular de experiencias en este aspecto del vínculo."
+  );
 }
 
 /*
   COLOR GENERAL DEL CORAZÓN
-
-  Se cuentan las 27 respuestas por categoría.
-  No se suman los valores 2/1/0 para determinar el color.
-
-  Mayor cantidad de Sí      -> rojo
-  Mayor cantidad de No      -> celeste
-  Mayor cantidad de A veces -> amarillo
-  Empate                    -> amarillo
 */
 function calculateOverallColor() {
   const allAnswers = state.answers.flat();
@@ -622,16 +717,13 @@ function showResults() {
   }
 
   resultsPanel.classList.remove("hidden");
-  document.body.style.overflow = "";
+  document.body.style.overflow = "hidden";
 
-  resultsPanel.scrollTop = 0;
+  if (resultsInner) {
+    resultsInner.scrollTop = 0;
+  }
 
-  setTimeout(() => {
-    resultsPanel.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }, 100);
+  updateResultsScrollIndicator();
 }
 
 function renderSegmentResults() {
@@ -645,14 +737,17 @@ function renderSegmentResults() {
     }
 
     const article = document.createElement("article");
+
     article.className =
       `segment-result ${result.color}`;
 
     const header = document.createElement("div");
+
     header.className =
       "segment-result-header";
 
     const title = document.createElement("div");
+
     title.className =
       "segment-result-title";
 
@@ -660,29 +755,21 @@ function renderSegmentResults() {
       `${block.number}. ${block.name}`;
 
     const mark = document.createElement("div");
+
     mark.className =
       "segment-result-mark";
 
     if (result.color === "red") {
       mark.textContent = "🔴";
     } else if (result.color === "yellow") {
-      mark.textContent = "🟡";
+      mark.textContent = result.intermittent ? "🟡" : "🟡";
     } else {
       mark.textContent = "🧊";
     }
 
     const description = document.createElement("p");
 
-    if (result.color === "red") {
-      description.textContent =
-        "Tus respuestas muestran una tendencia positiva en este aspecto del vínculo.";
-    } else if (result.color === "yellow") {
-      description.textContent =
-        "Tus respuestas muestran una tendencia intermedia. Este aspecto puede observarse con mayor atención.";
-    } else {
-      description.textContent =
-        "Tus respuestas muestran una señal que merece especial atención dentro de tu experiencia del vínculo.";
-    }
+    description.textContent = result.feedback;
 
     header.appendChild(title);
     header.appendChild(mark);
@@ -710,6 +797,22 @@ function getWheelSegmentColor(color) {
   return "transparent";
 }
 
+function getWheelSegmentLineColor(color) {
+  if (color === "red") {
+    return "#ff0055";
+  }
+
+  if (color === "yellow") {
+    return "#fff200";
+  }
+
+  if (color === "ice") {
+    return "#00eaff";
+  }
+
+  return "#00eaff";
+}
+
 function updateWheel() {
   const wheel = document.querySelector(".segment-wheel");
 
@@ -718,6 +821,11 @@ function updateWheel() {
       wheel.style.setProperty(
         `--seg${index}-color`,
         "transparent"
+      );
+
+      wheel.style.setProperty(
+        `--seg${index}-line`,
+        "#00eaff"
       );
     }
 
@@ -730,6 +838,11 @@ function updateWheel() {
         `--seg${index + 1}-color`,
         getWheelSegmentColor(result.color)
       );
+
+      wheel.style.setProperty(
+        `--seg${index + 1}-line`,
+        getWheelSegmentLineColor(result.color)
+      );
     });
   }
 
@@ -738,13 +851,11 @@ function updateWheel() {
       "locked",
       "available",
       "completed",
-      "active"
-    );
-
-    segment.classList.remove(
+      "active",
       "red",
       "yellow",
-      "ice"
+      "ice",
+      "yellow-blink"
     );
 
     if (!state.started) {
@@ -765,6 +876,13 @@ function updateWheel() {
 
       if (result) {
         segment.classList.add(result.color);
+
+        if (
+          result.color === "yellow" &&
+          result.intermittent
+        ) {
+          segment.classList.add("yellow-blink");
+        }
       }
 
       return;
@@ -787,9 +905,36 @@ function updateWheel() {
   }
 }
 
+function updateResultsScrollIndicator() {
+  if (!resultsInner || !resultsScrollIndicator) {
+    return;
+  }
+
+  const canScroll =
+    resultsInner.scrollHeight >
+    resultsInner.clientHeight + 2;
+
+  if (!canScroll) {
+    resultsScrollIndicator.classList.add("hidden");
+    return;
+  }
+
+  resultsScrollIndicator.classList.remove("hidden");
+
+  const atBottom =
+    resultsInner.scrollTop +
+    resultsInner.clientHeight >=
+    resultsInner.scrollHeight - 4;
+
+  resultsScrollIndicator.textContent =
+    atBottom
+      ? "↑ DESLIZÁ PARA SUBIR"
+      : "↓ DESLIZÁ PARA VER MÁS";
+}
+
 function closeQuestionPanel() {
   questionPanel.classList.add("hidden");
-  document.body.style.overflow = "";
+  document.body.style.overflow = "hidden";
   updateWheel();
 }
 
@@ -823,14 +968,13 @@ function restartTest() {
 
   journeyGuide.classList.remove("completed");
 
-  document.body.style.overflow = "";
+  document.body.style.overflow = "hidden";
+
+  if (resultsInner) {
+    resultsInner.scrollTop = 0;
+  }
 
   updateWheel();
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
 }
 
 initialize();
