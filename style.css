@@ -3,9 +3,9 @@
    ========================================================= */
 
 .logo-parejas {
-  display: block;
-  width: clamp(25px, 6.5vw, 31px);
-  height: clamp(25px, 6.5vw, 31px);
+  display: block !important;
+  width: clamp(25px, 6.5vw, 31px) !important;
+  height: clamp(25px, 6.5vw, 31px) !important;
 
   object-fit: contain;
   object-position: center;
@@ -289,22 +289,26 @@ button {
   inset: 2.8%;
   z-index: 2;
 
-  border: 1px solid rgba(37,234,255,.55);
+  border: 1px solid rgba(37,234,255,.24);
 
   background: transparent;
 
   box-shadow:
-    0 0 2px rgba(37,234,255,.62),
-    0 0 5px rgba(37,234,255,.46),
-    0 0 9px rgba(37,234,255,.26);
+    0 0 2px rgba(37,234,255,.32),
+    0 0 5px rgba(37,234,255,.22),
+    0 0 9px rgba(37,234,255,.12);
 
   filter: none;
-  opacity: 1;
+  opacity: .72;
 }
 
 .inner-ring {
   display: none;
 }
+
+/* =========================================================
+   RUEDA DE SEGMENTOS
+   ========================================================= */
 
 .segment-wheel {
   position: absolute;
@@ -734,10 +738,10 @@ button {
 
 .heart-core {
   position: absolute;
-  width: 33%;
+  width: 31%;
   aspect-ratio: 1;
-  left: 33.5%;
-  top: 33.5%;
+  left: 34.5%;
+  top: 34.5%;
   z-index: 4;
 
   display: flex;
@@ -747,8 +751,8 @@ button {
 
 .center-interface-icon {
   display: block;
-  width: 94%;
-  height: 94%;
+  width: 96%;
+  height: 96%;
   object-fit: contain;
   object-position: center;
 
@@ -1442,8 +1446,9 @@ button {
   }
 
   .logo-parejas {
-    width: clamp(24px, 7vw, 30px);
-    height: clamp(24px, 7vw, 30px);
+    display: block !important;
+    width: clamp(24px, 7vw, 30px) !important;
+    height: clamp(24px, 7vw, 30px) !important;
     margin-top: 0;
     margin-bottom: -5px;
   }
@@ -1714,8 +1719,9 @@ button {
   }
 
   .logo-parejas {
-    width: 29px;
-    height: 29px;
+    display: block !important;
+    width: 29px !important;
+    height: 29px !important;
     margin-bottom: -6px;
   }
 
@@ -1780,12 +1786,25 @@ button {
    AJUSTE FINAL DE PROPORCIONES — HUMANÓMETRO PAREJAS
    ========================================================= */
 
-/* 1. ELIMINAR COMPLETAMENTE EL LOGO SUPERIOR */
+/* 1. ÍCONO SUPERIOR REDUCIDO Y EN ARMONÍA CON LA INTERFAZ */
 .logo-parejas {
-  display: none !important;
+  display: block !important;
+  width: clamp(25px, 6.5vw, 31px) !important;
+  height: clamp(25px, 6.5vw, 31px) !important;
+  max-height: 31px !important;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto -7px;
+  padding: 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  visibility: visible;
+  opacity: 1;
+  mix-blend-mode: screen;
 }
 
-/* 2. CABECERA: SIN HUECO DESPUÉS DE SACAR EL LOGO */
+/* 2. CABECERA */
 .brand-header {
   margin: 0 auto;
   padding: 0;
@@ -1859,7 +1878,12 @@ button {
 @media (max-width: 520px) {
 
   .logo-parejas {
-    display: none !important;
+    display: block !important;
+    width: clamp(24px, 7vw, 30px) !important;
+    height: clamp(24px, 7vw, 30px) !important;
+    max-height: 30px !important;
+    margin-top: 0;
+    margin-bottom: -5px;
   }
 
   .brand-header {
@@ -1934,7 +1958,11 @@ button {
 @media (min-width: 521px) and (max-height: 850px) {
 
   .logo-parejas {
-    display: none !important;
+    display: block !important;
+    width: 29px !important;
+    height: 29px !important;
+    max-height: 29px !important;
+    margin-bottom: -6px;
   }
 
   .wheel-shell {
