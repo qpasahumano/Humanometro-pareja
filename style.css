@@ -309,7 +309,7 @@ button {
 .segment-wheel {
   position: absolute;
   inset: 5%;
-  border-radius: 50%;
+  border-radius: 0;
   overflow: visible;
 
   --seg1-color: transparent;
@@ -331,75 +331,19 @@ button {
   --seg7-line: #00eaff;
   --seg8-line: #00eaff;
   --seg9-line: #00eaff;
-}
-
-.segment-wheel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: 50%;
-
-  background:
-    conic-gradient(
-      from 300deg,
-      var(--seg1-line) 0deg .10deg,
-      transparent .10deg 39.82deg,
-      var(--seg1-line) 39.82deg 39.92deg,
-
-      var(--seg2-line) 40.08deg 40.18deg,
-      transparent 40.18deg 79.82deg,
-      var(--seg2-line) 79.82deg 79.92deg,
-
-      var(--seg3-line) 80.08deg 80.18deg,
-      transparent 80.18deg 119.82deg,
-      var(--seg3-line) 119.82deg 119.92deg,
-
-      var(--seg4-line) 120.08deg 120.18deg,
-      transparent 120.18deg 159.82deg,
-      var(--seg4-line) 159.82deg 159.92deg,
-
-      var(--seg5-line) 160.08deg 160.18deg,
-      transparent 160.18deg 199.82deg,
-      var(--seg5-line) 199.82deg 199.92deg,
-
-      var(--seg6-line) 200.08deg 200.18deg,
-      transparent 200.18deg 239.82deg,
-      var(--seg6-line) 239.82deg 239.92deg,
-
-      var(--seg7-line) 240.08deg 240.18deg,
-      transparent 240.18deg 279.82deg,
-      var(--seg7-line) 279.82deg 279.92deg,
-
-      var(--seg8-line) 280.08deg 280.18deg,
-      transparent 280.18deg 319.82deg,
-      var(--seg8-line) 319.82deg 319.92deg,
-
-      var(--seg9-line) 320.08deg 320.18deg,
-      transparent 320.18deg 359.82deg,
-      var(--seg9-line) 359.82deg 359.92deg
-    );
-
-  -webkit-mask:
-    radial-gradient(
-      circle,
-      transparent 0 20%,
-      #000 20.5% 100%
-    );
-
-  mask:
-    radial-gradient(
-      circle,
-      transparent 0 20%,
-      #000 20.5% 100%
-    );
-
-  opacity: .98;
 
   filter:
-    drop-shadow(0 0 1px var(--seg1-line))
-    drop-shadow(0 0 3px var(--seg1-line))
-    drop-shadow(0 0 7px var(--seg1-line));
+    drop-shadow(0 0 2px rgba(0,234,255,.35))
+    drop-shadow(0 0 6px rgba(0,234,255,.18));
+}
+
+/* =========================================================
+   CORAZÓN — REEMPLAZA VISUALMENTE AL ANILLO CIRCULAR
+   ========================================================= */
+
+.segment-wheel::before {
+  display: none;
+  content: none;
 }
 
 .segment-wheel::after {
@@ -407,14 +351,44 @@ button {
   position: absolute;
   inset: 0;
   z-index: 1;
-  border-radius: 50%;
+
+  clip-path: polygon(
+    50% 92%,
+    44% 87%,
+    36% 80%,
+    27% 72%,
+    19% 63%,
+    13% 54%,
+    10% 44%,
+    11% 35%,
+    16% 27%,
+    23% 22%,
+    31% 21%,
+    38% 24%,
+    44% 30%,
+    50% 37%,
+    56% 30%,
+    62% 24%,
+    69% 21%,
+    77% 22%,
+    84% 27%,
+    89% 35%,
+    90% 44%,
+    87% 54%,
+    81% 63%,
+    73% 72%,
+    64% 80%,
+    56% 87%
+  );
 
   background:
     radial-gradient(
-      circle at 50% 42%,
-      rgba(255,255,255,.06) 0%,
-      rgba(255,255,255,.018) 34%,
-      transparent 68%
+      circle at 50% 48%,
+      rgba(255,255,255,.012) 0%,
+      rgba(255,255,255,.025) 30%,
+      rgba(255,255,255,.055) 58%,
+      rgba(255,255,255,.10) 78%,
+      rgba(255,255,255,.16) 100%
     ),
     conic-gradient(
       from 300deg,
@@ -431,21 +405,21 @@ button {
 
   -webkit-mask:
     radial-gradient(
-      circle,
-      transparent 0 20%,
-      rgba(0,0,0,.12) 28%,
-      rgba(0,0,0,.28) 45%,
-      rgba(0,0,0,.55) 68%,
+      circle at 50% 48%,
+      transparent 0%,
+      rgba(0,0,0,.12) 22%,
+      rgba(0,0,0,.32) 42%,
+      rgba(0,0,0,.58) 68%,
       #000 100%
     );
 
   mask:
     radial-gradient(
-      circle,
-      transparent 0 20%,
-      rgba(0,0,0,.12) 28%,
-      rgba(0,0,0,.28) 45%,
-      rgba(0,0,0,.55) 68%,
+      circle at 50% 48%,
+      transparent 0%,
+      rgba(0,0,0,.12) 22%,
+      rgba(0,0,0,.32) 42%,
+      rgba(0,0,0,.58) 68%,
       #000 100%
     );
 
@@ -454,7 +428,8 @@ button {
 
   filter:
     saturate(1.35)
-    brightness(1.04);
+    brightness(1.04)
+    drop-shadow(0 0 4px rgba(0,234,255,.25));
 }
 
 /* =========================================================
@@ -1224,7 +1199,7 @@ button {
   max-height: calc(68vh - 30px);
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0 7px 18px;
+  padding: 0 7px 35px;
 
   scrollbar-width: thin;
   scrollbar-color: rgba(89,225,255,.9) rgba(55,145,190,.16);
@@ -1245,6 +1220,10 @@ button {
   box-shadow: 0 0 7px rgba(89,225,255,.7);
 }
 
+/* =========================================================
+   SEÑALIZACIÓN DE SCROLL
+   ========================================================= */
+
 .results-scroll-indicator {
   position: absolute;
   right: 3px;
@@ -1263,7 +1242,7 @@ button {
 }
 
 /* =========================================================
-   ELIMINAR ÚNICAMENTE EL ÍCONO DEL CORAZÓN DE RESULTADOS
+   CORAZÓN DE LA DEVOLUCIÓN — ELIMINADO
    ========================================================= */
 
 .results-symbol {
@@ -1671,6 +1650,7 @@ button {
     max-height: calc(67vh - 27px);
     padding-left: 6px;
     padding-right: 6px;
+    padding-bottom: 35px;
   }
 
   .results-scroll-indicator {
