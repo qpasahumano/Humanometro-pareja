@@ -433,14 +433,20 @@ button {
     radial-gradient(
       circle,
       transparent 0 20%,
-      #000 20.5% 100%
+      rgba(0,0,0,.12) 28%,
+      rgba(0,0,0,.28) 45%,
+      rgba(0,0,0,.55) 68%,
+      #000 100%
     );
 
   mask:
     radial-gradient(
       circle,
       transparent 0 20%,
-      #000 20.5% 100%
+      rgba(0,0,0,.12) 28%,
+      rgba(0,0,0,.28) 45%,
+      rgba(0,0,0,.55) 68%,
+      #000 100%
     );
 
   mix-blend-mode: screen;
@@ -1256,22 +1262,12 @@ button {
   pointer-events: none;
 }
 
+/* =========================================================
+   ELIMINAR ÚNICAMENTE EL ÍCONO DEL CORAZÓN DE RESULTADOS
+   ========================================================= */
+
 .results-symbol {
-  width: 62px;
-  height: 62px;
-  margin: 0 auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #49eaff;
-  font-size: 25px;
-  font-weight: 900;
-  border: 2px solid #ff348c;
-  box-shadow:
-    0 0 12px #ff308c,
-    0 0 28px rgba(0,206,255,.55),
-    inset 0 0 17px rgba(255,30,123,.3);
+  display: none !important;
 }
 
 .results-kicker {
