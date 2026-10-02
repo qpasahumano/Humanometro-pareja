@@ -13,7 +13,7 @@ No      = 0
 Cada bloque:
 Predominan Sí       -> ROJO
 Predominan A veces  -> AMARILLO
-Predominan No      -> CELESTE HIELO
+Predominan No       -> CELESTE HIELO
 1 Sí + 1 A veces + 1 No
 -> AMARILLO INTERMITENTE
 
@@ -130,21 +130,9 @@ const blocks = [
 ];
 
 const responseOptions = [
-  {
-    key: "yes",
-    label: "Sí",
-    value: 2
-  },
-  {
-    key: "maybe",
-    label: "A veces",
-    value: 1
-  },
-  {
-    key: "no",
-    label: "No",
-    value: 0
-  }
+  { key: "yes", label: "Sí", value: 2 },
+  { key: "maybe", label: "A veces", value: 1 },
+  { key: "no", label: "No", value: 0 }
 ];
 
 const state = {
@@ -214,82 +202,41 @@ const generalResults = {
   }
 };
 
-/*
-  DEVOLUCIONES ESPECÍFICAS
-
-  Cada orden concreto de respuestas tiene una devolución
-  diferente. De esta manera:
-
-  Sí / Sí / No
-  no utiliza la misma devolución que
-  Sí / No / Sí
-
-  aunque ambas combinaciones tengan el mismo color.
-*/
-
 const segmentFeedback = {
-  "yes-yes-yes":
-    "Las tres respuestas muestran una percepción sostenida de presencia y disponibilidad en este aspecto del vínculo.",
-  "yes-yes-maybe":
-    "Dos respuestas reflejan una experiencia positiva y una tercera introduce un matiz. El aspecto aparece presente, aunque no de manera completamente uniforme.",
-  "yes-yes-no":
-    "Dos respuestas señalan una experiencia favorable, mientras que una marca una diferencia concreta que conviene observar dentro de este aspecto.",
-  "yes-maybe-yes":
-    "La primera y la tercera respuesta muestran una experiencia positiva, mientras que la respuesta intermedia señala un punto que puede variar según la situación.",
-  "yes-maybe-maybe":
-    "Aparece una respuesta positiva junto con dos experiencias que no se sostienen siempre. Este aspecto parece depender bastante de las circunstancias.",
-  "yes-maybe-no":
-    "Las tres respuestas expresan experiencias diferentes: aparece una vivencia positiva, una intermedia y otra negativa. Hay diversidad dentro de este aspecto.",
-  "yes-no-yes":
-    "La primera y la tercera respuesta muestran una experiencia favorable, mientras que la segunda señala una dificultad puntual que diferencia esta parte del vínculo.",
-  "yes-no-maybe":
-    "La respuesta positiva convive con una dificultad concreta y una situación intermedia. El aspecto presenta una experiencia cambiante.",
-  "yes-no-no":
-    "Una respuesta muestra una experiencia favorable, mientras que dos señalan dificultades. La diferencia entre ellas merece una observación particular.",
+  "yes-yes-yes": "Las tres respuestas muestran una percepción sostenida de presencia y disponibilidad en este aspecto del vínculo.",
+  "yes-yes-maybe": "Dos respuestas reflejan una experiencia positiva y una tercera introduce un matiz. El aspecto aparece presente, aunque no de manera completamente uniforme.",
+  "yes-yes-no": "Dos respuestas señalan una experiencia favorable, mientras que una marca una diferencia concreta que conviene observar dentro de este aspecto.",
+  "yes-maybe-yes": "La primera y la tercera respuesta muestran una experiencia positiva, mientras que la respuesta intermedia señala un punto que puede variar según la situación.",
+  "yes-maybe-maybe": "Aparece una respuesta positiva junto con dos experiencias que no se sostienen siempre. Este aspecto parece depender bastante de las circunstancias.",
+  "yes-maybe-no": "Las tres respuestas expresan experiencias diferentes: aparece una vivencia positiva, una intermedia y otra negativa. Hay diversidad dentro de este aspecto.",
+  "yes-no-yes": "La primera y la tercera respuesta muestran una experiencia favorable, mientras que la segunda señala una dificultad puntual que diferencia esta parte del vínculo.",
+  "yes-no-maybe": "La respuesta positiva convive con una dificultad concreta y una situación intermedia. El aspecto presenta una experiencia cambiante.",
+  "yes-no-no": "Una respuesta muestra una experiencia favorable, mientras que dos señalan dificultades. La diferencia entre ellas merece una observación particular.",
 
-  "maybe-yes-yes":
-    "Las dos últimas respuestas muestran una experiencia favorable, mientras que la primera introduce un matiz que puede aparecer según la situación.",
-  "maybe-yes-maybe":
-    "Una respuesta positiva queda acompañada por dos experiencias intermedias. El aspecto aparece disponible, pero con cierta variabilidad.",
-  "maybe-yes-no":
-    "Las tres respuestas son diferentes y muestran que este aspecto puede vivirse de maneras distintas según el momento o la situación.",
-  "maybe-maybe-yes":
-    "Dos respuestas muestran una experiencia intermedia y la tercera una experiencia positiva. El aspecto parece tener una base favorable, aunque todavía variable.",
-  "maybe-maybe-maybe":
-    "Las tres respuestas coinciden en una experiencia intermedia. Este aspecto no aparece completamente consolidado y puede ser observado con mayor atención.",
-  "maybe-no-yes":
-    "La experiencia comienza de manera intermedia, aparece una dificultad concreta y termina con una respuesta favorable. Hay variación dentro del aspecto.",
-  "maybe-no-maybe":
-    "Dos respuestas muestran una experiencia intermedia y una señala una dificultad. El aspecto parece necesitar atención especialmente en determinadas situaciones.",
-  "maybe-no-no":
-    "Una respuesta muestra una experiencia intermedia y dos señalan dificultades. La tendencia sugiere que este aspecto no se sostiene de manera regular.",
+  "maybe-yes-yes": "Las dos últimas respuestas muestran una experiencia favorable, mientras que la primera introduce un matiz que puede aparecer según la situación.",
+  "maybe-yes-maybe": "Una respuesta positiva queda acompañada por dos experiencias intermedias. El aspecto aparece disponible, pero con cierta variabilidad.",
+  "maybe-yes-no": "Las tres respuestas son diferentes y muestran que este aspecto puede vivirse de maneras distintas según el momento o la situación.",
+  "maybe-maybe-yes": "Dos respuestas muestran una experiencia intermedia y la tercera una experiencia positiva. El aspecto parece tener una base favorable, aunque todavía variable.",
+  "maybe-maybe-maybe": "Las tres respuestas coinciden en una experiencia intermedia. Este aspecto no aparece completamente consolidado y puede ser observado con mayor atención.",
+  "maybe-no-yes": "La experiencia comienza de manera intermedia, aparece una dificultad concreta y termina con una respuesta favorable. Hay variación dentro del aspecto.",
+  "maybe-no-maybe": "Dos respuestas muestran una experiencia intermedia y una señala una dificultad. El aspecto parece necesitar atención especialmente en determinadas situaciones.",
+  "maybe-no-no": "Una respuesta muestra una experiencia intermedia y dos señalan dificultades. La tendencia sugiere que este aspecto no se sostiene de manera regular.",
 
-  "no-yes-yes":
-    "La primera respuesta señala una dificultad, mientras que las dos siguientes muestran una experiencia favorable. El aspecto parece haber encontrado recursos en parte del vínculo.",
-  "no-yes-maybe":
-    "Una dificultad inicial convive con una respuesta favorable y otra intermedia. La experiencia de este aspecto parece depender del contexto.",
-  "no-yes-no":
-    "Las respuestas muestran una dificultad, una experiencia favorable y nuevamente una dificultad. El aspecto presenta una oscilación clara.",
-  "no-maybe-yes":
-    "La primera respuesta señala una dificultad, seguida de una experiencia intermedia y una favorable. Hay señales de variación dentro de este aspecto.",
-  "no-maybe-maybe":
-    "Una dificultad aparece junto con dos respuestas intermedias. Este aspecto parece requerir atención para dejar de depender tanto de las circunstancias.",
-  "no-maybe-no":
-    "Dos respuestas señalan dificultades y una queda en un punto intermedio. La experiencia muestra una tendencia que merece ser observada.",
-  "no-no-yes":
-    "Las dos primeras respuestas señalan dificultades, mientras que la tercera muestra una experiencia favorable. Existe una diferencia concreta dentro de este aspecto.",
-  "no-no-maybe":
-    "Dos respuestas muestran dificultades y una experiencia intermedia. Este aspecto aparece con poca estabilidad en las respuestas.",
-  "no-no-no":
-    "Las tres respuestas señalan dificultades en este aspecto. Es uno de los puntos que merece mayor atención dentro de la lectura."
+  "no-yes-yes": "La primera respuesta señala una dificultad, mientras que las dos siguientes muestran una experiencia favorable. El aspecto parece haber encontrado recursos en parte del vínculo.",
+  "no-yes-maybe": "Una dificultad inicial convive con una respuesta favorable y otra intermedia. La experiencia de este aspecto parece depender del contexto.",
+  "no-yes-no": "Las respuestas muestran una dificultad, una experiencia favorable y nuevamente una dificultad. El aspecto presenta una oscilación clara.",
+  "no-maybe-yes": "La primera respuesta señala una dificultad, seguida de una experiencia intermedia y una favorable. Hay señales de variación dentro de este aspecto.",
+  "no-maybe-maybe": "Una dificultad aparece junto con dos respuestas intermedias. Este aspecto parece requerir atención para dejar de depender tanto de las circunstancias.",
+  "no-maybe-no": "Dos respuestas señalan dificultades y una queda en un punto intermedio. La experiencia muestra una tendencia que merece ser observada.",
+  "no-no-yes": "Las dos primeras respuestas señalan dificultades, mientras que la tercera muestra una experiencia favorable. Existe una diferencia concreta dentro de este aspecto.",
+  "no-no-maybe": "Dos respuestas muestran dificultades y una experiencia intermedia. Este aspecto aparece con poca estabilidad en las respuestas.",
+  "no-no-no": "Las tres respuestas señalan dificultades en este aspecto. Es uno de los puntos que merece mayor atención dentro de la lectura."
 };
 
 function initialize() {
   segments.forEach((segment, index) => {
     segment.addEventListener("click", () => {
-      if (!state.started && index !== 0) {
-        return;
-      }
+      if (!state.started && index !== 0) return;
 
       if (state.completed[index]) {
         openBlock(index);
@@ -332,9 +279,7 @@ function startTest() {
 }
 
 function openBlock(index) {
-  if (!state.started) {
-    return;
-  }
+  if (!state.started) return;
 
   if (index > 0 && !state.completed[index - 1] && !state.completed[index]) {
     return;
@@ -385,9 +330,7 @@ function renderQuestions(blockIndex) {
       button.className = `answer ${option.key}`;
       button.textContent = option.label;
 
-      if (
-        state.answers[blockIndex][questionIndex] === option.key
-      ) {
+      if (state.answers[blockIndex][questionIndex] === option.key) {
         button.classList.add("selected");
       }
 
@@ -438,9 +381,7 @@ function renderQuestions(blockIndex) {
 function updateQuestionButton(blockIndex) {
   const button = document.getElementById("continueQuestion");
 
-  if (!button) {
-    return;
-  }
+  if (!button) return;
 
   const complete = state.answers[blockIndex].every(
     answer => answer !== null
@@ -464,9 +405,7 @@ function updateQuestionProgress(blockIndex) {
 function completeCurrentBlock(index) {
   const answers = state.answers[index];
 
-  if (!answers.every(answer => answer !== null)) {
-    return;
-  }
+  if (!answers.every(answer => answer !== null)) return;
 
   const result = calculateSegment(answers);
 
@@ -512,27 +451,6 @@ function completeCurrentBlock(index) {
   }
 }
 
-/*
-  COLOR DE CADA SEGMENTO
-
-  La decisión se toma exclusivamente por cantidad
-  de respuestas de cada categoría.
-
-  3 Sí                  -> rojo
-  2 Sí + 1 No           -> rojo
-  2 Sí + 1 A veces      -> rojo
-
-  3 No                  -> celeste hielo
-  2 No + 1 Sí            -> celeste hielo
-  2 No + 1 A veces       -> celeste hielo
-
-  3 A veces              -> amarillo
-  2 A veces + 1 Sí       -> amarillo
-  2 A veces + 1 No       -> amarillo
-
-  1 Sí + 1 No + 1 A veces
-  -> amarillo intermitente
-*/
 function calculateSegment(answerKeys) {
   const yesCount =
     answerKeys.filter(value => value === "yes").length;
@@ -544,10 +462,7 @@ function calculateSegment(answerKeys) {
     answerKeys.filter(value => value === "no").length;
 
   const score = answerKeys.reduce((total, key) => {
-    const option = responseOptions.find(
-      item => item.key === key
-    );
-
+    const option = responseOptions.find(item => item.key === key);
     return total + option.value;
   }, 0);
 
@@ -590,9 +505,6 @@ function getSegmentFeedback(answerKeys) {
   );
 }
 
-/*
-  COLOR GENERAL DEL CORAZÓN
-*/
 function calculateOverallColor() {
   const allAnswers = state.answers.flat();
 
@@ -624,9 +536,7 @@ function applyOverallHeartColor() {
   const heartGradient =
     document.getElementById("heartGradient");
 
-  if (!heartGradient || !state.overallColor) {
-    return;
-  }
+  if (!heartGradient || !state.overallColor) return;
 
   const stops = [...heartGradient.querySelectorAll("stop")];
 
@@ -677,18 +587,9 @@ function calculateGlobalScore() {
 }
 
 function getGeneralResult(score) {
-  if (score >= 27) {
-    return generalResults.stable;
-  }
-
-  if (score >= 18) {
-    return generalResults.review;
-  }
-
-  if (score >= 9) {
-    return generalResults.unstable;
-  }
-
+  if (score >= 27) return generalResults.stable;
+  if (score >= 18) return generalResults.review;
+  if (score >= 9) return generalResults.unstable;
   return generalResults.alert;
 }
 
@@ -732,9 +633,7 @@ function renderSegmentResults() {
   blocks.forEach((block, index) => {
     const result = state.segmentResults[index];
 
-    if (!result) {
-      return;
-    }
+    if (!result) return;
 
     const article = document.createElement("article");
 
@@ -762,7 +661,7 @@ function renderSegmentResults() {
     if (result.color === "red") {
       mark.textContent = "🔴";
     } else if (result.color === "yellow") {
-      mark.textContent = result.intermittent ? "🟡" : "🟡";
+      mark.textContent = "🟡";
     } else {
       mark.textContent = "🧊";
     }
@@ -798,18 +697,9 @@ function getWheelSegmentColor(color) {
 }
 
 function getWheelSegmentLineColor(color) {
-  if (color === "red") {
-    return "#ff0055";
-  }
-
-  if (color === "yellow") {
-    return "#fff200";
-  }
-
-  if (color === "ice") {
-    return "#00eaff";
-  }
-
+  if (color === "red") return "#ff0055";
+  if (color === "yellow") return "#fff200";
+  if (color === "ice") return "#00eaff";
   return "#00eaff";
 }
 
@@ -830,9 +720,7 @@ function updateWheel() {
     }
 
     state.segmentResults.forEach((result, index) => {
-      if (!result) {
-        return;
-      }
+      if (!result) return;
 
       wheel.style.setProperty(
         `--seg${index + 1}-color`,
@@ -871,8 +759,7 @@ function updateWheel() {
     if (state.completed[index]) {
       segment.classList.add("completed");
 
-      const result =
-        state.segmentResults[index];
+      const result = state.segmentResults[index];
 
       if (result) {
         segment.classList.add(result.color);
@@ -906,9 +793,7 @@ function updateWheel() {
 }
 
 function updateResultsScrollIndicator() {
-  if (!resultsInner || !resultsScrollIndicator) {
-    return;
-  }
+  if (!resultsInner || !resultsScrollIndicator) return;
 
   const canScroll =
     resultsInner.scrollHeight >
@@ -941,6 +826,7 @@ function closeQuestionPanel() {
 function restartTest() {
   state.started = false;
   state.currentBlock = 0;
+
   state.answers =
     Array.from(
       { length: 9 },
