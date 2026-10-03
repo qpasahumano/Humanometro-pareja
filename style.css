@@ -1183,7 +1183,8 @@ button {
   inset: auto;
   width: 100%;
   max-height: 68vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 12px auto 0;
   padding: 13px 9px 17px;
   border: 1px solid rgba(73,213,255,.30);
@@ -1194,34 +1195,33 @@ button {
   box-shadow:
     0 0 20px rgba(0,148,255,.13),
     inset 0 0 18px rgba(49,204,255,.04);
-}
-
-.results-inner {
-  position: relative;
-  width: 100%;
-  height: calc(68vh - 30px);
-  max-height: calc(68vh - 30px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0 7px 35px;
 
   scrollbar-width: thin;
   scrollbar-color: rgba(89,225,255,.9) rgba(55,145,190,.16);
 }
 
-.results-inner::-webkit-scrollbar {
+.results-panel::-webkit-scrollbar {
   width: 6px;
 }
 
-.results-inner::-webkit-scrollbar-track {
+.results-panel::-webkit-scrollbar-track {
   background: rgba(55,145,190,.16);
   border-radius: 10px;
 }
 
-.results-inner::-webkit-scrollbar-thumb {
+.results-panel::-webkit-scrollbar-thumb {
   background: rgba(89,225,255,.9);
   border-radius: 10px;
   box-shadow: 0 0 7px rgba(89,225,255,.7);
+}
+
+.results-inner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 0 7px 35px;
 }
 
 /* =========================================================
@@ -1655,13 +1655,16 @@ button {
   .results-panel {
     width: 100%;
     max-height: 67vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 10px;
     padding: 11px 7px 15px;
   }
 
   .results-inner {
-    height: calc(67vh - 27px);
-    max-height: calc(67vh - 27px);
+    height: auto;
+    max-height: none;
+    overflow: visible;
     padding-left: 6px;
     padding-right: 6px;
     padding-bottom: 35px;
@@ -1961,6 +1964,20 @@ button {
     width: 76vw;
     margin-top: 4px;
   }
+
+  /* ÚNICO AJUSTE: el panel completo de resultados es ahora
+     el contenedor del scroll, incluido el botón final. */
+  .results-panel {
+    max-height: 67vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .results-inner {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 /* =========================================================
@@ -2004,6 +2021,19 @@ button {
 
   .bottom-motto {
     margin-top: 4px;
+  }
+
+  /* ÚNICO AJUSTE: el scroll pertenece al panel completo. */
+  .results-panel {
+    max-height: 68vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .results-inner {
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
 }
 
