@@ -988,7 +988,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["COMUNICACIÓN", "CRISIS"],
-      "La comunicación aparece presente en tu experiencia cotidiana, pero cuando el vínculo atraviesa una situación crítica parece no sostenerse de la misma manera. Quizás el desafío no esté en hablar, sino en poder hablar cuando más lo necesitan.",
+      "La comunicación parece tener un lugar en tu experiencia cotidiana, aunque esa posibilidad de hablar no necesariamente se mantiene igual cuando el vínculo atraviesa momentos difíciles. Puede haber una diferencia entre poder comunicarse cuando todo está relativamente tranquilo y encontrar esa misma apertura cuando lo que está en juego genera tensión o incertidumbre.",
       1
     );
   }
@@ -1002,7 +1002,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["CONEXIÓN", "CUIDADO"],
-      "La conexión aparece presente en tu experiencia, aunque existe una diferencia cuando observás cómo esa conexión se transforma en cuidado. Podés sentir cercanía y, al mismo tiempo, no recibirla en forma de acompañamiento cuando la necesitás.",
+      "Sentirte conectado con tu pareja no necesariamente significa que esa cercanía se transforme siempre en el tipo de cuidado que necesitás. En tu recorrido aparecen ambas experiencias separadas, y puede ser interesante observar qué sucede entre sentirse cerca emocionalmente y sentirse realmente acompañado cuando hace falta.",
       2
     );
   }
@@ -1016,7 +1016,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["CONFLICTOS", "CRISIS"],
-      "Las dificultades aparecen tanto al atravesar los conflictos como en situaciones de mayor intensidad para el vínculo. Ese patrón merece una mirada atenta sobre cómo se acompañan cuando algo realmente los pone a prueba.",
+      "Hay algo que merece atención en la manera en que el vínculo atraviesa los momentos de mayor presión. Las dificultades no aparecen solamente cuando surge una diferencia puntual, sino también cuando una situación exige sostenerse como pareja. Esto puede llevar la mirada hacia cómo se encuentran, se escuchan y se acompañan cuando las cosas dejan de ser sencillas.",
       2
     );
   }
@@ -1030,7 +1030,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["TRATO", "RESPETO"],
-      "El trato cotidiano puede sentirse cuidado, pero aparece una diferencia cuando entran en juego opiniones distintas, límites o desacuerdos. Es un contraste que puede resultar importante observar.",
+      "El modo cotidiano de tratarse puede sentirse positivo y, sin embargo, aparecer otra experiencia cuando entran en juego las diferencias, los límites o aquello que cada uno necesita defender para sí. No necesariamente son experiencias opuestas: pueden convivir y mostrar que la relación cambia según la situación que están atravesando.",
       3
     );
   }
@@ -1046,7 +1046,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["CONEXIÓN", "CUIDADO", "CRISIS"],
-      "Hay conexión y cuidado reconocibles en tu experiencia cotidiana, pero cuando el vínculo entra en una zona de crisis ese acompañamiento parece no sostenerse de la misma manera. El contraste merece ser observado.",
+      "En tu experiencia hay señales de conexión y de cuidado en momentos cotidianos, pero ese modo de acompañarse parece transformarse cuando aparece una crisis. Es una diferencia interesante porque sugiere que no necesariamente falta cercanía o intención de cuidado; puede haber algo particular en la forma en que ambos enfrentan las situaciones que más los desbordan.",
       1
     );
   }
@@ -1060,7 +1060,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["APORTE", "CONFLICTOS"],
-      "Existe una percepción de participación y aporte dentro del vínculo, aunque esa disposición parece encontrar una dificultad cuando llega el momento de resolver diferencias.",
+      "Sentís que existe una participación concreta dentro del vínculo, aunque esa disposición no parece trasladarse con la misma facilidad a los momentos de conflicto. Puede ser que aportar a la relación y resolver aquello que genera tensión requieran de recursos diferentes, y esa diferencia aparece en tu recorrido.",
       3
     );
   }
@@ -1074,7 +1074,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["CELOS", "CONEXIÓN"],
-      "La conexión aparece presente, pero al mismo tiempo existe una dificultad relacionada con la seguridad dentro del vínculo. Esto muestra que sentirse conectado y sentirse seguro no necesariamente aparecen como la misma experiencia.",
+      "Podés sentir conexión con tu pareja y, al mismo tiempo, experimentar dificultades relacionadas con la seguridad dentro del vínculo. Ambas cosas pueden coexistir. Sentirse cerca no siempre elimina las dudas o inseguridades, y observar esa diferencia puede ayudar a comprender mejor qué parte de la experiencia necesita ser escuchada.",
       2
     );
   }
@@ -1088,7 +1088,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["COMUNICACIÓN", "CONFLICTOS"],
-      "La comunicación aparece presente en tu experiencia, pero cuando surgen diferencias importantes parece costar más trasladar esa capacidad de hablar hacia una forma de resolver.",
+      "La posibilidad de hablar parece estar presente, aunque eso no garantiza que las conversaciones difíciles terminen ayudando a resolver lo que ocurre. Hay una diferencia entre poder expresar lo que uno siente y encontrar, en medio del desacuerdo, una manera de avanzar juntos.",
       3
     );
   }
@@ -1102,7 +1102,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["COMUNICACIÓN", "CELOS"],
-      "La comunicación aparece presente en tu experiencia, aunque las situaciones relacionadas con inseguridad parecen introducir una dificultad diferente. El contraste merece ser observado.",
+      "La comunicación aparece como un recurso disponible, pero las situaciones relacionadas con inseguridad parecen abrir otra zona de la experiencia. Esto puede indicar que hablar no siempre alcanza para recuperar tranquilidad, especialmente cuando detrás de la conversación hay miedo, dudas o necesidad de seguridad.",
       4
     );
   }
@@ -1116,7 +1116,7 @@ function buildCrossBlockPatterns() {
     addPattern(
       patterns,
       ["CUIDADO", "CRISIS"],
-      "El cuidado aparece presente en tu experiencia cotidiana, pero cuando llega una situación de mayor intensidad parece resultar más difícil sostener ese acompañamiento.",
+      "El cuidado parece formar parte de la experiencia cotidiana, aunque cuando la situación adquiere mayor intensidad ese acompañamiento puede resultar más difícil de sostener. A veces una relación funciona de una manera en lo cotidiano y revela otra dinámica cuando aparece una dificultad que exige más presencia emocional.",
       3
     );
   }
@@ -1141,31 +1141,31 @@ function getRepeatedPatterns() {
 
   if ((relations.contradiction || 0) >= 2) {
     patterns.push(
-      "Aparecen varias diferencias claras entre aquello que vivís positivamente y aquello que declarás recibir del otro. No indican por sí mismas una causa: muestran una separación repetida que merece ser observada."
+      "En distintos momentos de la lectura aparece una distancia entre aquello que vos vivís de manera positiva y aquello que sentís que recibís del otro. Que esa diferencia se repita no explica por sí sola por qué ocurre, pero sí puede señalar una experiencia que atraviesa más de un aspecto del vínculo."
     );
   }
 
   if ((relations.perceptionReceptionDifference || 0) >= 2) {
     patterns.push(
-      "En más de un aspecto, tu experiencia aparece de una manera mientras que reconocés recibir algo diferente. La repetición de esta diferencia puede ser una de las zonas más significativas de tu recorrido."
+      "Hay más de un lugar en el que tu propia experiencia y lo que reconocés recibir parecen ir por caminos diferentes. Esa distancia puede resultar especialmente interesante para vos, porque habla de una relación que quizás se está viviendo de maneras distintas según desde dónde se la observe."
     );
   }
 
   if ((relations.coincidentDifficulty || 0) >= 3) {
     patterns.push(
-      "Varias dimensiones presentan coincidencia entre una experiencia propia negativa y una recepción también negativa. Esto muestra una dificultad repetida en diferentes aspectos del vínculo."
+      "Varias dimensiones coinciden en una experiencia difícil y, al mismo tiempo, en la sensación de no recibir del otro aquello que podría aliviarla. Cuando una misma sensación aparece en diferentes partes del vínculo, puede valer la pena mirar no solamente cada situación por separado, sino también aquello que tienen en común."
     );
   }
 
   if ((relations.variability || 0) >= 3) {
     patterns.push(
-      "Aparecen varios aspectos que no terminan de sostenerse de manera constante. La variabilidad atraviesa distintas dimensiones y puede ser útil observar en qué situaciones cambia."
+      "En distintos aspectos aparece una experiencia que no termina de mantenerse siempre de la misma manera. Hay momentos en los que algo parece estar, y otros en los que cambia. Esa variación puede ser tan significativa como una respuesta claramente positiva o negativa, especialmente si depende de determinados momentos, estados emocionales o circunstancias."
     );
   }
 
   if ((relations.fragility || 0) >= 2) {
     patterns.push(
-      "Más de un aspecto combina una experiencia propia intermedia con una recepción negativa. Esto marca zonas donde la experiencia ya presenta cierta dificultad y además falta un recurso percibido del otro."
+      "En más de un aspecto aparece cierta dificultad propia junto con la sensación de no recibir suficiente apoyo en esa misma dimensión. La combinación puede hacer que algunas situaciones se sientan más pesadas, porque aquello que ya te cuesta internamente tampoco parece encontrar un sostén claro desde el otro lado."
     );
   }
 
@@ -1246,11 +1246,11 @@ function buildIntegratedReading() {
 
     if (names.length === 1) {
       paragraphs.push(
-        `En tu recorrido aparece una experiencia positiva que parece sostenerse especialmente en ${names[0]}. Además, reconocés recibir ese aspecto de tu pareja, por lo que ambas dimensiones muestran coherencia.`
+        `Al mirar tu recorrido completo, hay algo que aparece con bastante claridad en ${names[0]}. Lo vivís de una manera positiva y, además, sentís que ese aspecto también está presente en lo que recibís de tu pareja. Cuando ambas experiencias coinciden, suele sentirse como una parte del vínculo en la que no necesitás hacer demasiado esfuerzo para reconocer lo que está pasando.`
       );
     } else {
       paragraphs.push(
-        `En tu recorrido aparecen aspectos que parecen sostenerse: ${joinNatural(names)}. En ellos, tu experiencia positiva coincide con aquello que declarás recibir de tu pareja.`
+        `A lo largo de tus respuestas aparecen varios lugares en los que parece haber una sensación compartida entre lo que vivís y aquello que recibís de tu pareja: ${joinNatural(names)}. No se trata solamente de respuestas positivas aisladas; en esas dimensiones aparece una coincidencia que puede formar parte de la manera en que hoy estás viviendo el vínculo.`
       );
     }
   }
@@ -1261,17 +1261,17 @@ function buildIntegratedReading() {
 
     if (first.result.relation === "contradiction") {
       paragraphs.push(
-        `Al mismo tiempo, aparece una diferencia importante en ${blockName}: percibís positivamente este aspecto, pero declarás no recibirlo de tu pareja. Acá aparece un gris claro entre tu experiencia y la recepción del otro.`
+        `Al mismo tiempo, en ${blockName} aparece una experiencia diferente. Para vos ese aspecto puede estar presente o incluso sentirse bien, pero cuando mirás aquello que recibís de tu pareja la respuesta cambia. Esa distancia no necesita ser resuelta desde una única explicación: puede haber diferencias en expectativas, maneras de expresar afecto, formas de interpretar lo que sucede o simplemente experiencias que no están siendo vividas de la misma manera.`
       );
     } else if (
       first.result.relation === "perceptionReceptionDifference"
     ) {
       paragraphs.push(
-        `También aparece una diferencia en ${blockName}: tu experiencia es negativa, aunque reconocés recibir ese aspecto de tu pareja. La diferencia no permite afirmar que una percepción sea correcta y la otra incorrecta; muestra que ambas dimensiones no están coincidiendo.`
+        `También hay un contraste en ${blockName}. Lo que vos experimentás en esa dimensión no coincide con lo que reconocés recibir de tu pareja. Es posible que ambos estén mirando una misma situación desde lugares diferentes, y justamente por eso la diferencia puede ser más interesante que intentar decidir quién tiene razón. Tu experiencia habla de cómo lo estás viviendo hoy; la recepción habla de aquello que alcanzás a reconocer desde el otro lado.`
       );
     } else {
       paragraphs.push(
-        `En ${blockName} aparece una diferencia parcial entre lo que vivís y aquello que declarás recibir. Es un aspecto que no parece presentarse de la misma manera en ambas dimensiones.`
+        `En ${blockName} la experiencia tampoco aparece completamente definida en una sola dirección. Hay una diferencia entre lo que vivís y aquello que sentís que recibís, como si una parte de la experiencia estuviera presente pero no terminara de sostenerse de la misma manera. Este tipo de zona intermedia puede cambiar mucho según el momento y merece ser observada sin convertirla automáticamente en algo positivo o negativo.`
       );
     }
   }
@@ -1300,7 +1300,7 @@ function buildIntegratedReading() {
       .map(item => item.block.name.toLowerCase());
 
     paragraphs.push(
-      `Entre las zonas que merecen mayor atención aparecen ${joinNatural(names)}. No necesariamente representan una dificultad global: muestran aspectos donde tus respuestas presentan variabilidad, fragilidad o falta de continuidad.`
+      `También quedan algunas zonas que no aparecen completamente definidas: ${joinNatural(names)}. Más que señalar un problema por sí mismas, estas respuestas hablan de aspectos que pueden cambiar según el momento, la situación o la manera en que ambos están atravesando lo que sucede. Observar cuándo cambian puede darte una lectura más profunda que quedarte solamente con una respuesta puntual.`
     );
   }
 
@@ -1322,12 +1322,24 @@ function buildIntegratedReading() {
 
   if (paragraphs.length === 0) {
     paragraphs.push(
-      "Tus respuestas muestran un recorrido sin un único patrón dominante. Aparecen distintas formas de vivir y recibir los aspectos del vínculo, por lo que la lectura adquiere sentido especialmente al observar dónde esas experiencias coinciden y dónde cambian."
+      "Tu recorrido no queda concentrado en una única experiencia. Hay aspectos que parecen sostenerse, otros que cambian y otros en los que aquello que vivís no coincide completamente con lo que sentís que recibís. Más que buscar una conclusión rápida, la lectura invita a mirar cómo se relacionan todas esas experiencias dentro de tu manera actual de vivir el vínculo."
     );
   }
 
   paragraphs.push(
-    "Las diferencias que aparecen no determinan por sí mismas qué significa tu relación ni hacia dónde debería ir. Simplemente muestran dónde tu experiencia parece coincidir con lo que recibís y dónde ambas cosas se separan."
+    "Hay algo importante en esta lectura: una relación no se vive de manera idéntica en todos sus momentos. Lo que ocurre cuando están tranquilos puede no ser igual a lo que ocurre durante una discusión, una crisis, una etapa de distancia o una situación que despierta inseguridad. Por eso, las diferencias que aparecen entre tus respuestas no necesariamente representan una contradicción de la relación completa; pueden estar mostrando distintos momentos de una misma experiencia."
+  );
+
+  paragraphs.push(
+    "También puede haber una distancia entre lo que una persona intenta ofrecer y aquello que la otra alcanza a recibir. Esa diferencia no permite afirmar automáticamente que exista una falta de amor, de interés o de compromiso. Puede hablar de necesidades diferentes, formas distintas de expresar lo que se siente o de algo que uno cree estar dando y el otro no llega a percibir de la misma manera."
+  );
+
+  paragraphs.push(
+    "Lo que aparece en tu Humanómetro pertenece a tu experiencia. No representa la versión de tu pareja ni pretende definir quién está bien o quién está equivocado. Si alguna de estas diferencias te llama especialmente la atención, puede ser justamente ahí donde exista una conversación que todavía no tuvieron, una necesidad que no fue expresada claramente o algo que ambos están viviendo de manera diferente."
+  );
+
+  paragraphs.push(
+    "Al final, la lectura no busca decirte qué hacer con tu relación. Busca devolverte una mirada más amplia sobre cómo la estás viviendo hoy: qué sentís que funciona, dónde encontrás sostén, qué cosas cambian según las circunstancias y en qué lugares tu experiencia parece separarse de aquello que recibís. Lo que hagas con esa mirada queda en tus manos."
   );
 
   paragraphs.push(
