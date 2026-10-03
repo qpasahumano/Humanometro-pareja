@@ -317,12 +317,7 @@ function initialize() {
 
   enableHeart.addEventListener("click", startTest);
   closeQuestion.addEventListener("click", closeQuestionPanel);
-
-  /*
-  CERRAR debe cerrar la lectura y devolver el Humanómetro
-  a su estado inicial para poder comenzar nuevamente.
-  */
-  restartButton.addEventListener("click", restartTest);
+  restartButton.addEventListener("click", closeResults);
 
   if (resultsInner) {
     resultsInner.addEventListener("scroll", updateResultsScrollIndicator);
@@ -804,6 +799,23 @@ function calculateSegment(answerKeys) {
 
   const colorState = getColorState(relation);
 
+  /*
+  NUEVA LÓGICA DE COLOR
+
+  ROJO:
+  únicamente cuando las tres respuestas son Sí.
+
+  CELESTE:
+  únicamente cuando las tres respuestas son No.
+
+  AMARILLO / INTERMITENCIA:
+  cualquier otra combinación.
+
+  De esta manera, una respuesta positiva propia no alcanza
+  para representar reciprocidad plena si la recepción del otro
+  es diferente.
+  */
+
   const allYes =
     answerKeys[0] === "yes" &&
     answerKeys[1] === "yes" &&
@@ -872,6 +884,18 @@ function calculateOverallColor() {
   const allIce =
     results.length === 9 &&
     results.every(result => result.color === "ice");
+
+  /*
+  El corazón general solamente puede ser rojo cuando
+  existe reciprocidad positiva plena en los nueve bloques.
+
+  El celeste general solamente aparece cuando los nueve
+  bloques coinciden en una valoración negativa.
+
+  Cualquier combinación diferente representa un recorrido
+  con matices, diferencias o intermitencias y permanece
+  en amarillo.
+  */
 
   if (allRed) {
     return "red";
@@ -1196,6 +1220,20 @@ function getRepeatedPatterns() {
       result => result && result.intermittent
     ).length;
 
+  /*
+  NUEVA LECTURA DE RECIPROCIDAD
+
+  Una intermitencia aislada no se interpreta igual que
+  una repetición en muchos bloques.
+
+  Con 5 o más de los 9 bloques:
+  → patrón repetido de intermitencia / reciprocidad.
+
+  Con 1 a 4:
+  → también se señala la presencia de intermitencias,
+    pero sin convertirlas automáticamente en un patrón general.
+  */
+
   if (intermittentCount >= 5) {
     patterns.push(
       "En una parte importante de tu recorrido aparece intermitencia entre aquello que vivís o expresás y aquello que sentís que recibís de tu pareja. Cuando esta diferencia se repite en varios aspectos del vínculo, puede ser especialmente significativo observar la reciprocidad: no alcanza solamente con que algo exista desde un lado si del otro lado no se siente, no se recibe o no se sostiene de una manera parecida. La reciprocidad no significa que ambos tengan que responder exactamente igual, sino que aquello que se ofrece pueda encontrar algún tipo de correspondencia en la experiencia del otro."
@@ -1323,6 +1361,12 @@ function buildIntegratedReading() {
       );
     }
   }
+
+  /*
+  La reciprocidad se incorpora antes de las demás
+  observaciones porque ahora constituye una parte
+  central de la lógica de lectura de los bloques.
+  */
 
   const intermittentResults =
     state.segmentResults.filter(
@@ -1505,57 +1549,10 @@ function renderSegmentResults() {
   segmentResults.innerHTML = "";
 
   /*
-  Se conservan las nueve devoluciones de los segmentos.
-  Se muestran dentro del mismo results-inner para que formen
-  parte del recorrido continuo de lectura hasta CERRAR.
+  Los nueve análisis siguen disponibles internamente para la matriz,
+  pero la pantalla final NO presenta nueve devoluciones independientes.
+  La lectura integral se muestra únicamente en resultGeneral.
   */
-
-  blocks.forEach((block, index) => {
-    const result = state.segmentResults[index];
-
-    if (!result) return;
-
-    const card = document.createElement("article");
-    card.className = "segment-result-card";
-
-    const header = document.createElement("div");
-    header.className = "segment-result-header";
-
-    const number = document.createElement("span");
-    number.className = "segment-result-number";
-    number.textContent = `BLOQUE ${block.number}`;
-
-    const title = document.createElement("h3");
-    title.className = "segment-result-title";
-    title.textContent = block.name;
-
-    header.appendChild(number);
-    header.appendChild(title);
-
-    const stateLabel = document.createElement("div");
-    stateLabel.className =
-      `segment-result-state ${result.color} ${result.intermittent ? "intermittent" : ""}`;
-
-    if (result.allYes) {
-      stateLabel.textContent = "RECIPROCIDAD POSITIVA";
-    } else if (result.allNo) {
-      stateLabel.textContent = "DIFICULTAD COINCIDENTE";
-    } else if (result.intermittent) {
-      stateLabel.textContent = "INTERMITENCIA";
-    } else {
-      stateLabel.textContent = result.relationLabel;
-    }
-
-    const feedback = document.createElement("p");
-    feedback.className = "segment-result-feedback";
-    feedback.textContent = result.feedback;
-
-    card.appendChild(header);
-    card.appendChild(stateLabel);
-    card.appendChild(feedback);
-
-    segmentResults.appendChild(card);
-  });
 }
 
 
