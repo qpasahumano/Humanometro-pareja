@@ -283,14 +283,7 @@ function initialize() {
 
   enableHeart.addEventListener("click", startTest);
   closeQuestion.addEventListener("click", closeQuestionPanel);
-
-  /*
-  El reinicio queda eliminado.
-  El botón se oculta y no se le asigna ninguna acción.
-  */
-  if (restartButton) {
-    restartButton.style.display = "none";
-  }
+  restartButton.addEventListener("click", closeResults);
 
   if (resultsInner) {
     resultsInner.addEventListener("scroll", updateResultsScrollIndicator);
@@ -1377,13 +1370,6 @@ function showResults() {
   resultGeneral.innerHTML =
     buildIntegratedReading();
 
-  /*
-  Aumenta ligeramente la tipografía de la devolución integral.
-  */
-  if (resultGeneral) {
-    resultGeneral.style.fontSize = "1.08em";
-  }
-
   renderSegmentResults();
 
   const wheelShell = document.querySelector(".wheel-shell");
@@ -1414,12 +1400,6 @@ function renderSegmentResults() {
   pero la pantalla final NO presenta nueve devoluciones independientes.
   La lectura integral se muestra únicamente en resultGeneral.
   */
-
-  /*
-  Eliminación visual del cuadro de devoluciones de coincidencias
-  y diferencias.
-  */
-  segmentResults.style.display = "none";
 }
 
 
@@ -1578,6 +1558,18 @@ function updateResultsScrollIndicator() {
 function closeQuestionPanel() {
   questionPanel.classList.add("hidden");
   document.body.style.overflow = "hidden";
+  updateWheel();
+}
+
+
+function closeResults() {
+  resultsPanel.classList.add("hidden");
+  document.body.style.overflow = "";
+
+  if (resultsInner) {
+    resultsInner.scrollTop = 0;
+  }
+
   updateWheel();
 }
 
