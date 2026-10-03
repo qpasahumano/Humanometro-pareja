@@ -1182,7 +1182,9 @@ button {
   position: relative;
   inset: auto;
   width: 100%;
+  height: 68vh;
   max-height: 68vh;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   margin: 12px auto 0;
@@ -1198,6 +1200,8 @@ button {
 
   scrollbar-width: thin;
   scrollbar-color: rgba(89,225,255,.9) rgba(55,145,190,.16);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .results-panel::-webkit-scrollbar {
@@ -1218,6 +1222,7 @@ button {
 .results-inner {
   position: relative;
   width: 100%;
+  min-height: 100%;
   height: auto;
   max-height: none;
   overflow: visible;
@@ -1229,7 +1234,8 @@ button {
    ========================================================= */
 
 .results-scroll-indicator {
-  position: absolute;
+  position: sticky;
+  float: right;
   right: 3px;
   bottom: 7px;
   z-index: 5;
@@ -1250,6 +1256,14 @@ button {
    ========================================================= */
 
 .results-symbol {
+  display: none !important;
+}
+
+/* =========================================================
+   TÍTULO "LECTURA DE LOS NUEVE ELEMENTOS" — ELIMINADO
+   ========================================================= */
+
+.segments-results > h2 {
   display: none !important;
 }
 
@@ -1654,15 +1668,20 @@ button {
 
   .results-panel {
     width: 100%;
+    height: 67vh;
     max-height: 67vh;
+    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     margin-top: 10px;
     padding: 11px 7px 15px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .results-inner {
     height: auto;
+    min-height: 100%;
     max-height: none;
     overflow: visible;
     padding-left: 6px;
@@ -1965,18 +1984,30 @@ button {
     margin-top: 4px;
   }
 
-  /* ÚNICO AJUSTE: el panel completo de resultados es ahora
-     el contenedor del scroll, incluido el botón final. */
+  /* =======================================================
+     RESULTADOS — SCROLL REAL DEL CONTENEDOR COMPLETO
+     ======================================================= */
+
   .results-panel {
+    height: 67vh;
     max-height: 67vh;
+    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .results-inner {
     height: auto;
+    min-height: 100%;
     max-height: none;
     overflow: visible;
+    padding-bottom: 35px;
+  }
+
+  .segments-results > h2 {
+    display: none !important;
   }
 }
 
@@ -2023,17 +2054,30 @@ button {
     margin-top: 4px;
   }
 
-  /* ÚNICO AJUSTE: el scroll pertenece al panel completo. */
+  /* =======================================================
+     RESULTADOS — SCROLL REAL DEL CONTENEDOR COMPLETO
+     ======================================================= */
+
   .results-panel {
+    height: 68vh;
     max-height: 68vh;
+    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .results-inner {
     height: auto;
+    min-height: 100%;
     max-height: none;
     overflow: visible;
+    padding-bottom: 35px;
+  }
+
+  .segments-results > h2 {
+    display: none !important;
   }
 }
 
