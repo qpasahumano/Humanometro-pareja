@@ -1399,9 +1399,18 @@ button {
     0 0 18px rgba(255,0,179,.6);
 }
 
+/* =========================================================
+   CERRAR — AL FINAL DE TODA LA DEVOLUCIÓN
+   ========================================================= */
+
 .restart-button {
+  display: block;
+  position: static;
   width: 100%;
   min-height: 42px;
+  height: 42px;
+  margin: 16px 0 20px;
+  flex-shrink: 0;
   border: 1px solid #5ceaff;
   border-radius: 30px;
   background: rgba(7,34,70,.78);
@@ -1703,6 +1712,9 @@ button {
 
   .restart-button {
     min-height: 40px;
+    height: 40px;
+    margin-top: 16px;
+    margin-bottom: 20px;
     font-size: 9px;
   }
 }
