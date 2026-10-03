@@ -1,6 +1,6 @@
 "use strict";
 
-// HUMANÓMETRO PAREJAS — actualización 02/10/2026
+// HUMANÓMETRO PAREJAS — actualización 03/10/2026
 
 /*
 HUMANÓMETRO PAREJAS
@@ -16,19 +16,53 @@ Pregunta 3:
 La tercera respuesta NO se suma como una tercera respuesta
 equivalente a las dos primeras.
 
+LÓGICA VISUAL DE RECIPROCIDAD:
+
+Sí + Sí + Sí
+→ ROJO
+
+No + No + No
+→ CELESTE
+
+Cualquier combinación en la que exista diferencia entre
+lo que se vive/proyecta y lo que se recibe:
+→ INTERMITENCIA / AMARILLO
+
+Ejemplos:
+Sí + Sí + No
+→ INTERMITENCIA
+
+No + No + Sí
+→ INTERMITENCIA
+
+Sí + No + Sí
+→ INTERMITENCIA
+
+No + Sí + No
+→ INTERMITENCIA
+
+Las respuestas "A veces" también permanecen dentro
+de la zona intermedia / amarilla.
+
+La lógica busca representar que una respuesta positiva
+de un solo lado no equivale a reciprocidad plena.
+
 Cada bloque conserva:
 - ownTrend
 - received
 - relation
 - colorState
+- intermittent
 
 La lectura final integra los 9 bloques mediante:
 - coherencias
 - contradicciones
+- intermitencias
 - grises
 - patrones repetidos
 - cambios de contexto
 - diferencias entre percepción y recepción
+- reciprocidad
 
 El test es individual.
 No cruza respuestas entre integrantes.
@@ -668,6 +702,28 @@ function getReceivedLabel(received) {
 function getBlockInterpretation(block, result) {
   const own = normalizeOwnTrend(result.ownTrend);
 
+  if (result.intermittent) {
+    if (
+      result.answers &&
+      result.answers[0] === "yes" &&
+      result.answers[1] === "yes" &&
+      result.answers[2] === "no"
+    ) {
+      return `En ${block.name.toLowerCase()}, aparece una experiencia propia positiva, pero aquello que recibís de tu pareja no coincide completamente. Por eso el resultado se expresa como intermitencia: existe una respuesta positiva desde tu lado, pero no aparece la misma reciprocidad en lo que recibís.`;
+    }
+
+    if (
+      result.answers &&
+      result.answers[0] === "no" &&
+      result.answers[1] === "no" &&
+      result.answers[2] === "yes"
+    ) {
+      return `En ${block.name.toLowerCase()}, aparece una experiencia propia difícil, mientras que reconocés recibir algo positivo de tu pareja. Esa diferencia se expresa como intermitencia: las experiencias de ambos lados no están coincidiendo en esta dimensión.`;
+    }
+
+    return `En ${block.name.toLowerCase()}, las respuestas muestran una experiencia que no se sostiene de la misma manera en ambos lados. Por eso aparece una señal de intermitencia: hay una diferencia entre lo que vivís o expresás y aquello que recibís de tu pareja.`;
+  }
+
   if (result.relation === "coherence") {
     return `En ${block.name.toLowerCase()}, tus respuestas muestran una experiencia positiva y además reconocés recibir este aspecto de tu pareja.`;
   }
@@ -743,29 +799,43 @@ function calculateSegment(answerKeys) {
 
   const colorState = getColorState(relation);
 
+  /*
+  NUEVA LÓGICA DE COLOR
+
+  ROJO:
+  únicamente cuando las tres respuestas son Sí.
+
+  CELESTE:
+  únicamente cuando las tres respuestas son No.
+
+  AMARILLO / INTERMITENCIA:
+  cualquier otra combinación.
+
+  De esta manera, una respuesta positiva propia no alcanza
+  para representar reciprocidad plena si la recepción del otro
+  es diferente.
+  */
+
+  const allYes =
+    answerKeys[0] === "yes" &&
+    answerKeys[1] === "yes" &&
+    answerKeys[2] === "yes";
+
+  const allNo =
+    answerKeys[0] === "no" &&
+    answerKeys[1] === "no" &&
+    answerKeys[2] === "no";
+
+  const intermittent =
+    !allYes &&
+    !allNo;
+
   let color = "yellow";
 
-  if (
-    relation === "contradiction" ||
-    relation === "perceptionReceptionDifference" ||
-    relation === "partialDifference"
-  ) {
-    color = "gray";
-  } else if (
-    relation === "coincidentDifficulty"
-  ) {
-    color = "ice";
-  } else if (
-    relation === "coherence"
-  ) {
+  if (allYes) {
     color = "red";
-  } else if (
-    relation === "attention" ||
-    relation === "receivedResource" ||
-    relation === "variability" ||
-    relation === "fragility"
-  ) {
-    color = "yellow";
+  } else if (allNo) {
+    color = "ice";
   }
 
   return {
@@ -781,13 +851,19 @@ function calculateSegment(answerKeys) {
     yesCount,
     maybeCount,
     noCount,
+    intermittent,
+    allYes,
+    allNo,
+    answers: [...answerKeys],
     answerKey: answerKeys.join("-"),
     feedback: getBlockInterpretation(
       blocks[state.currentBlock],
       {
         ownTrend,
         received,
-        relation
+        relation,
+        intermittent,
+        answers: [...answerKeys]
       }
     )
   };
@@ -797,31 +873,36 @@ function calculateSegment(answerKeys) {
 function calculateOverallColor() {
   const results = state.segmentResults.filter(Boolean);
 
-  const positive = results.filter(
-    result => result.relation === "coherence"
-  ).length;
-
-  const negative = results.filter(
-    result => result.relation === "coincidentDifficulty"
-  ).length;
-
-  const contradictions = results.filter(
-    result =>
-      result.relation === "contradiction" ||
-      result.relation === "perceptionReceptionDifference" ||
-      result.relation === "partialDifference"
-  ).length;
-
-  if (contradictions > 0) {
-    return "gray";
+  if (results.length === 0) {
+    return "yellow";
   }
 
-  if (negative > positive) {
-    return "ice";
-  }
+  const allRed =
+    results.length === 9 &&
+    results.every(result => result.color === "red");
 
-  if (positive > negative) {
+  const allIce =
+    results.length === 9 &&
+    results.every(result => result.color === "ice");
+
+  /*
+  El corazón general solamente puede ser rojo cuando
+  existe reciprocidad positiva plena en los nueve bloques.
+
+  El celeste general solamente aparece cuando los nueve
+  bloques coinciden en una valoración negativa.
+
+  Cualquier combinación diferente representa un recorrido
+  con matices, diferencias o intermitencias y permanece
+  en amarillo.
+  */
+
+  if (allRed) {
     return "red";
+  }
+
+  if (allIce) {
+    return "ice";
   }
 
   return "yellow";
@@ -845,15 +926,6 @@ function applyOverallHeartColor() {
       "#ff3838",
       "#ff1717",
       "#ff5656",
-      "#ffffff"
-    ];
-  } else if (state.overallColor === "gray") {
-    colors = [
-      "#ffffff",
-      "#d8dce2",
-      "#aeb5bf",
-      "#858d98",
-      "#c4c9d0",
       "#ffffff"
     ];
   } else if (state.overallColor === "yellow") {
@@ -896,38 +968,42 @@ function calculateGlobalScore() {
 function getRelationPriority(result) {
   if (!result) return 99;
 
+  if (result.intermittent) {
+    return 1;
+  }
+
   if (
     result.relation === "contradiction" ||
     result.relation === "perceptionReceptionDifference"
   ) {
-    return 1;
-  }
-
-  if (result.relation === "partialDifference") {
     return 2;
   }
 
-  if (result.relation === "fragility") {
+  if (result.relation === "partialDifference") {
     return 3;
   }
 
-  if (result.relation === "coincidentDifficulty") {
+  if (result.relation === "fragility") {
     return 4;
   }
 
-  if (result.relation === "attention") {
+  if (result.relation === "coincidentDifficulty") {
     return 5;
   }
 
-  if (result.relation === "variability") {
+  if (result.relation === "attention") {
     return 6;
   }
 
-  if (result.relation === "receivedResource") {
+  if (result.relation === "variability") {
     return 7;
   }
 
-  return 8;
+  if (result.relation === "receivedResource") {
+    return 8;
+  }
+
+  return 9;
 }
 
 
@@ -1139,6 +1215,35 @@ function getRepeatedPatterns() {
       (relations[result.relation] || 0) + 1;
   });
 
+  const intermittentCount =
+    state.segmentResults.filter(
+      result => result && result.intermittent
+    ).length;
+
+  /*
+  NUEVA LECTURA DE RECIPROCIDAD
+
+  Una intermitencia aislada no se interpreta igual que
+  una repetición en muchos bloques.
+
+  Con 5 o más de los 9 bloques:
+  → patrón repetido de intermitencia / reciprocidad.
+
+  Con 1 a 4:
+  → también se señala la presencia de intermitencias,
+    pero sin convertirlas automáticamente en un patrón general.
+  */
+
+  if (intermittentCount >= 5) {
+    patterns.push(
+      "En una parte importante de tu recorrido aparece intermitencia entre aquello que vivís o expresás y aquello que sentís que recibís de tu pareja. Cuando esta diferencia se repite en varios aspectos del vínculo, puede ser especialmente significativo observar la reciprocidad: no alcanza solamente con que algo exista desde un lado si del otro lado no se siente, no se recibe o no se sostiene de una manera parecida. La reciprocidad no significa que ambos tengan que responder exactamente igual, sino que aquello que se ofrece pueda encontrar algún tipo de correspondencia en la experiencia del otro."
+    );
+  } else if (intermittentCount > 0) {
+    patterns.push(
+      `En ${intermittentCount} de los 9 aspectos aparece cierta intermitencia entre lo que vivís o expresás y aquello que sentís que recibís de tu pareja. Una diferencia aislada no define el vínculo completo, pero puede ser interesante observarla porque la reciprocidad también forma parte de cómo una persona se siente dentro de una relación.`
+    );
+  }
+
   if ((relations.contradiction || 0) >= 2) {
     patterns.push(
       "En distintos momentos de la lectura aparece una distancia entre aquello que vos vivís de manera positiva y aquello que sentís que recibís del otro. Que esa diferencia se repita no explica por sí sola por qué ocurre, pero sí puede señalar una experiencia que atraviesa más de un aspecto del vínculo."
@@ -1181,7 +1286,8 @@ function getPositiveCoherences() {
     }))
     .filter(item =>
       item.result &&
-      item.result.relation === "coherence"
+      item.result.relation === "coherence" &&
+      !item.result.intermittent
     );
 }
 
@@ -1220,7 +1326,8 @@ function getContrasts() {
         item.result.relation === "contradiction" ||
         item.result.relation === "perceptionReceptionDifference" ||
         item.result.relation === "partialDifference"
-      )
+      ) &&
+      !item.result.intermittent
     )
     .sort(
       (a, b) =>
@@ -1251,6 +1358,40 @@ function buildIntegratedReading() {
     } else {
       paragraphs.push(
         `A lo largo de tus respuestas aparecen varios lugares en los que parece haber una sensación compartida entre lo que vivís y aquello que recibís de tu pareja: ${joinNatural(names)}. No se trata solamente de respuestas positivas aisladas; en esas dimensiones aparece una coincidencia que puede formar parte de la manera en que hoy estás viviendo el vínculo.`
+      );
+    }
+  }
+
+  /*
+  La reciprocidad se incorpora antes de las demás
+  observaciones porque ahora constituye una parte
+  central de la lógica de lectura de los bloques.
+  */
+
+  const intermittentResults =
+    state.segmentResults.filter(
+      result => result && result.intermittent
+    );
+
+  if (intermittentResults.length > 0) {
+    const intermittentNames = blocks
+      .map((block, index) => ({
+        block,
+        result: state.segmentResults[index]
+      }))
+      .filter(item =>
+        item.result &&
+        item.result.intermittent
+      )
+      .map(item => item.block.name.toLowerCase());
+
+    if (intermittentResults.length >= 5) {
+      paragraphs.push(
+        `Una parte importante de tu recorrido aparece marcada por la intermitencia: ${joinNatural(intermittentNames.slice(0, 6))}. Esto no significa necesariamente que exista un problema general en el vínculo, pero sí muestra que en varias dimensiones hay una diferencia entre aquello que vos vivís o expresás y aquello que sentís que recibís. La reciprocidad puede ser importante para sentirse bien dentro de un vínculo: no implica que ambos tengan que sentir o responder exactamente igual, sino que lo que una persona ofrece pueda encontrar algún tipo de correspondencia en la experiencia del otro.`
+      );
+    } else {
+      paragraphs.push(
+        `En ${joinNatural(intermittentNames)} aparece una señal de intermitencia. En esos aspectos existe una diferencia entre aquello que vivís o expresás y aquello que sentís que recibís de tu pareja. Una intermitencia aislada no define el vínculo completo, pero puede ser interesante observar qué ocurre allí con la reciprocidad y si esa diferencia aparece solamente en determinadas circunstancias.`
       );
     }
   }
@@ -1510,6 +1651,7 @@ function updateWheel() {
         if (
           result.color === "yellow" &&
           (
+            result.intermittent ||
             result.relation === "attention" ||
             result.relation === "variability" ||
             result.relation === "fragility" ||
