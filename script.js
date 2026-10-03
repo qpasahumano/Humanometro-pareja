@@ -1,6 +1,6 @@
 "use strict";
 
-// HUMANÓMETRO PAREJAS — actualización 02/10/2026
+// HUMANÓMETRO PAREJAS — actualización 03/10/2026
 
 /*
 HUMANÓMETRO PAREJAS
@@ -283,10 +283,26 @@ function initialize() {
 
   enableHeart.addEventListener("click", startTest);
   closeQuestion.addEventListener("click", closeQuestionPanel);
-  restartButton.addEventListener("click", restartTest);
+
+  if (restartButton) {
+    restartButton.style.display = "none";
+  }
+
+  const closeResultsButton =
+    document.getElementById("closeResultsButton");
+
+  if (closeResultsButton) {
+    closeResultsButton.addEventListener(
+      "click",
+      closeResults
+    );
+  }
 
   if (resultsInner) {
-    resultsInner.addEventListener("scroll", updateResultsScrollIndicator);
+    resultsInner.addEventListener(
+      "scroll",
+      updateResultsScrollIndicator
+    );
   }
 
   updateWheel();
@@ -1394,12 +1410,6 @@ function showResults() {
 
 function renderSegmentResults() {
   segmentResults.innerHTML = "";
-
-  /*
-  Los nueve análisis siguen disponibles internamente para la matriz,
-  pero la pantalla final NO presenta nueve devoluciones independientes.
-  La lectura integral se muestra únicamente en resultGeneral.
-  */
 }
 
 
@@ -1562,7 +1572,10 @@ function closeQuestionPanel() {
 }
 
 
-function restartTest() {
+function closeResults() {
+  resultsPanel.classList.add("hidden");
+  questionPanel.classList.add("hidden");
+
   state.started = false;
   state.currentBlock = 0;
 
@@ -1579,9 +1592,6 @@ function restartTest() {
     Array(9).fill(null);
 
   state.overallColor = null;
-
-  resultsPanel.classList.add("hidden");
-  questionPanel.classList.add("hidden");
 
   enableHeart.classList.remove("enabled");
 
@@ -1600,6 +1610,11 @@ function restartTest() {
   }
 
   updateWheel();
+}
+
+
+function restartTest() {
+  return;
 }
 
 
