@@ -28,6 +28,19 @@ Cualquier combinación en la que exista diferencia entre
 lo que se vive/proyecta y lo que se recibe:
 → INTERMITENCIA / AMARILLO
 
+Ejemplos:
+Sí + Sí + No
+→ INTERMITENCIA
+
+No + No + Sí
+→ INTERMITENCIA
+
+Sí + No + Sí
+→ INTERMITENCIA
+
+No + Sí + No
+→ INTERMITENCIA
+
 Las respuestas "A veces" también permanecen dentro
 de la zona intermedia / amarilla.
 
@@ -304,6 +317,11 @@ function initialize() {
 
   enableHeart.addEventListener("click", startTest);
   closeQuestion.addEventListener("click", closeQuestionPanel);
+
+  /*
+  CERRAR debe cerrar la lectura y devolver el Humanómetro
+  a su estado inicial para poder comenzar nuevamente.
+  */
   restartButton.addEventListener("click", restartTest);
 
   if (resultsInner) {
@@ -1461,26 +1479,6 @@ function showResults() {
   resultGeneral.innerHTML =
     buildIntegratedReading();
 
-  /*
-  AJUSTE 2:
-  La tipografía de las devoluciones finales aumenta levemente,
-  sin modificar el contenido de la lectura.
-  */
-  if (resultGeneral) {
-    resultGeneral.style.fontSize = "1.06em";
-    resultGeneral.style.lineHeight = "1.65";
-  }
-
-  /*
-  AJUSTE 3:
-  La lectura mantiene su desplazamiento interno.
-  */
-  if (resultsInner) {
-    resultsInner.style.overflowY = "auto";
-    resultsInner.style.webkitOverflowScrolling = "touch";
-    resultsInner.style.overscrollBehavior = "contain";
-  }
-
   renderSegmentResults();
 
   const wheelShell = document.querySelector(".wheel-shell");
@@ -1505,6 +1503,59 @@ function showResults() {
 
 function renderSegmentResults() {
   segmentResults.innerHTML = "";
+
+  /*
+  Se conservan las nueve devoluciones de los segmentos.
+  Se muestran dentro del mismo results-inner para que formen
+  parte del recorrido continuo de lectura hasta CERRAR.
+  */
+
+  blocks.forEach((block, index) => {
+    const result = state.segmentResults[index];
+
+    if (!result) return;
+
+    const card = document.createElement("article");
+    card.className = "segment-result-card";
+
+    const header = document.createElement("div");
+    header.className = "segment-result-header";
+
+    const number = document.createElement("span");
+    number.className = "segment-result-number";
+    number.textContent = `BLOQUE ${block.number}`;
+
+    const title = document.createElement("h3");
+    title.className = "segment-result-title";
+    title.textContent = block.name;
+
+    header.appendChild(number);
+    header.appendChild(title);
+
+    const stateLabel = document.createElement("div");
+    stateLabel.className =
+      `segment-result-state ${result.color} ${result.intermittent ? "intermittent" : ""}`;
+
+    if (result.allYes) {
+      stateLabel.textContent = "RECIPROCIDAD POSITIVA";
+    } else if (result.allNo) {
+      stateLabel.textContent = "DIFICULTAD COINCIDENTE";
+    } else if (result.intermittent) {
+      stateLabel.textContent = "INTERMITENCIA";
+    } else {
+      stateLabel.textContent = result.relationLabel;
+    }
+
+    const feedback = document.createElement("p");
+    feedback.className = "segment-result-feedback";
+    feedback.textContent = result.feedback;
+
+    card.appendChild(header);
+    card.appendChild(stateLabel);
+    card.appendChild(feedback);
+
+    segmentResults.appendChild(card);
+  });
 }
 
 
@@ -1669,7 +1720,14 @@ function closeQuestionPanel() {
 
 
 function closeResults() {
-  restartTest();
+  resultsPanel.classList.add("hidden");
+  document.body.style.overflow = "";
+
+  if (resultsInner) {
+    resultsInner.scrollTop = 0;
+  }
+
+  updateWheel();
 }
 
 
@@ -1708,9 +1766,6 @@ function restartTest() {
 
   if (resultsInner) {
     resultsInner.scrollTop = 0;
-    resultsInner.style.overflowY = "auto";
-    resultsInner.style.webkitOverflowScrolling = "touch";
-    resultsInner.style.overscrollBehavior = "contain";
   }
 
   updateWheel();
