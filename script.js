@@ -1487,14 +1487,6 @@ function buildIntegratedReading() {
     "Humanómetro Parejas no dice cómo es tu relación. Muestra cómo estás percibiendo lo que vivís, qué recibís del otro y dónde ambas cosas coinciden o se separan."
   );
 
-  // AJUSTE 5: Bloque final agregado a la devolución
-  paragraphs.push(
-    "<strong>Hacete el Humanómetro en el día a día</strong><br>" +
-    "Una mirada a cómo estás viviendo tu humanidad en la vida general.<br>" +
-    "<strong>→ CONOCÉ HUMANÓMETRO</strong><br>" +
-    "www.humanómetro.com"
-  );
-
   return paragraphs
     .map(text => `<p>${text}</p>`)
     .join("");
@@ -1554,8 +1546,13 @@ function showResults() {
 
 
 function renderSegmentResults() {
-  // AJUSTE 4: Eliminación del texto de los 9 segmentos
   segmentResults.innerHTML = "";
+
+  /*
+  Los nueve análisis siguen disponibles internamente para la matriz,
+  pero la pantalla final NO presenta nueve devoluciones independientes.
+  La lectura integral se muestra únicamente en resultGeneral.
+  */
 }
 
 
@@ -1687,7 +1684,6 @@ function updateWheel() {
 
 
 function updateResultsScrollIndicator() {
-  // AJUSTE 1 y 2: Indicador dinámico y scroll real hasta poder leer el 100%
   if (!resultsInner || !resultsScrollIndicator) return;
 
   const canScroll =
@@ -1721,7 +1717,6 @@ function closeQuestionPanel() {
 
 
 function closeResults() {
-  // AJUSTE 3: Botón CERRAR funcional
   resultsPanel.classList.add("hidden");
   document.body.style.overflow = "";
 
