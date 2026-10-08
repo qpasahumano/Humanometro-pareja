@@ -319,8 +319,8 @@ function initialize() {
   closeQuestion.addEventListener("click", closeQuestionPanel);
   restartButton.addEventListener("click", closeResults);
 
-  if (resultsInner) {
-    resultsInner.addEventListener("scroll", updateResultsScrollIndicator);
+  if (resultsPanel) {
+    resultsPanel.addEventListener("scroll", updateResultsScrollIndicator);
   }
 
   updateWheel();
@@ -1537,9 +1537,7 @@ function showResults() {
   resultsPanel.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 
-  if (resultsInner) {
-    resultsInner.scrollTop = 0;
-  }
+  resultsPanel.scrollTop = 0;
 
   updateResultsScrollIndicator();
 }
@@ -1684,11 +1682,11 @@ function updateWheel() {
 
 
 function updateResultsScrollIndicator() {
-  if (!resultsInner || !resultsScrollIndicator) return;
+  if (!resultsPanel || !resultsScrollIndicator) return;
 
   const canScroll =
-    resultsInner.scrollHeight >
-    resultsInner.clientHeight + 2;
+    resultsPanel.scrollHeight >
+    resultsPanel.clientHeight + 2;
 
   if (!canScroll) {
     resultsScrollIndicator.classList.add("hidden");
@@ -1698,9 +1696,9 @@ function updateResultsScrollIndicator() {
   resultsScrollIndicator.classList.remove("hidden");
 
   const atBottom =
-    resultsInner.scrollTop +
-    resultsInner.clientHeight >=
-    resultsInner.scrollHeight - 4;
+    resultsPanel.scrollTop +
+    resultsPanel.clientHeight >=
+    resultsPanel.scrollHeight - 4;
 
   resultsScrollIndicator.textContent =
     atBottom
@@ -1720,9 +1718,7 @@ function closeResults() {
   resultsPanel.classList.add("hidden");
   document.body.style.overflow = "";
 
-  if (resultsInner) {
-    resultsInner.scrollTop = 0;
-  }
+  resultsPanel.scrollTop = 0;
 
   updateWheel();
 }
@@ -1761,8 +1757,8 @@ function restartTest() {
 
   document.body.style.overflow = "hidden";
 
-  if (resultsInner) {
-    resultsInner.scrollTop = 0;
+  if (resultsPanel) {
+    resultsPanel.scrollTop = 0;
   }
 
   updateWheel();
